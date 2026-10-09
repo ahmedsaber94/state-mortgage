@@ -1,0 +1,57 @@
+name: Update data and publish
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Freddie Mac publishes the weekly rate on Thursdays; refresh Thursday evening (UTC).
+    - cron: '30 18 * * 4'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Restore project folders
+        run: |
+          if [ -f build.mjs ]; then
+            mkdir -p src scripts assets test/helpers content data
+            mv build.mjs calc.mjs ledger.mjs states.mjs app.js src/
+            mv fetch-data.mjs scripts/
+            mv style.css assets/
+            mv calc.test.mjs build.test.mjs test/
+            mv synthetic.mjs test/helpers/
+          fi
+      - name: Run tests
+        run: npm test
+      - name: Fetch latest rate and Census data, then build
+        env:
+          CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: npm run update
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

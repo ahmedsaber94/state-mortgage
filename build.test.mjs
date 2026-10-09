@@ -1,0 +1,99 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { mkdtemp, writeFile, readFile, readdir, access } from 'node:fs/promises';
+import { spawnSync } from 'node:child_process';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
+import vm from 'node:vm';
+import { fileURLToPath } from 'node:url';
+import { syntheticData } from './helpers/synthetic.mjs';
+
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const BUILD = path.join(ROOT, 'src', 'build.mjs');
+
+async function buildSynthetic() {
+  const dir = await mkdtemp(path.join(tmpdir(), 'mortgage-build-'));
+  const dataFile = path.join(dir, 'states.json');
+  const out = path.join(dir, 'dist');
+  await writeFile(dataFile, JSON.stringify(syntheticData()));
+  // '--base' '' pins the root path so these tests do not depend on the deployed config.json.
+  const res = spawnSync(process.execPath, [BUILD, '--data', dataFile, '--out', out, '--allow-synthetic', '--base', ''], { encoding: 'utf8' });
+  return { dir, dataFile, out, res };
+}
+
+const exists = (p) => access(p).then(() => true, () => false);
+const htmlFiles = async (out) =>
+  (await readdir(out, { recursive: true })).filter((f) => f.endsWith('.html')).map((f) => path.join(out, f));
+
+test('build refuses synthetic data without the explicit flag', async () => {
+  const dir = await mkdtemp(path.join(tmpdir(), 'mortgage-refuse-'));
+  const dataFile = path.join(dir, 'states.json');
+  await writeFile(dataFile, JSON.stringify(syntheticData()));
+  const res = spawnSync(process.execPath, [BUILD, '--data', dataFile, '--out', path.join(dir, 'dist')], { encoding: 'utf8' });
+  assert.notEqual(res.status, 0);
+  assert.match(res.stderr, /synthetic/i);
+});
+
+test('build produces 50 state pages, home, static pages and sitemap', async () => {
+  const { out, res } = await buildSynthetic();
+  assert.equal(res.status, 0, res.stderr);
+  const states = await readdir(path.join(out, 'mortgage-calculator'));
+  assert.equal(states.length, 50);
+  for (const p of ['index.html', 'methodology/index.html', 'about/index.html', 'privacy/index.html', 'disclaimer/index.html', 'contact/index.html', '404.html', 'sitemap.xml', 'robots.txt', 'assets/app.js', 'assets/style.css']) {
+    assert.ok(await exists(path.join(out, p)), `missing ${p}`);
+  }
+  const sitemap = await readFile(path.join(out, 'sitemap.xml'), 'utf8');
+  assert.equal((sitemap.match(/<loc>/g) || []).length, 56);
+});
+
+test('no broken internal links, and no NaN/undefined leaks', async () => {
+  const { out } = await buildSynthetic();
+  for (const file of await htmlFiles(out)) {
+    const html = await readFile(file, 'utf8');
+    assert.ok(!/NaN|undefined|\[object/.test(html), `bad value in ${file}`);
+    for (const m of html.matchAll(/(?:href|src)="(\/[^"#?]*)"/g)) {
+      const target = m[1].endsWith('/') ? path.join(out, m[1], 'index.html') : path.join(out, m[1]);
+      assert.ok(await exists(target), `${file} links to missing ${m[1]}`);
+    }
+  }
+});
+
+test('basePath prefixes every internal link and asset', async () => {
+  const dir = await mkdtemp(path.join(tmpdir(), 'mortgage-base-'));
+  const dataFile = path.join(dir, 'states.json');
+  const out = path.join(dir, 'dist');
+  await writeFile(dataFile, JSON.stringify(syntheticData()));
+  const res = spawnSync(process.execPath, [BUILD, '--data', dataFile, '--out', out, '--allow-synthetic', '--base', '/sub'], { encoding: 'utf8' });
+  assert.equal(res.status, 0, res.stderr);
+  let checked = 0;
+  for (const file of await htmlFiles(out)) {
+    const html = await readFile(file, 'utf8');
+    for (const m of html.matchAll(/(?:href|src)="(\/[^"#?]*)"/g)) {
+      assert.ok(m[1].startsWith('/sub/'), `${file} has unprefixed link ${m[1]}`);
+      const rest = m[1].slice('/sub'.length);
+      const target = rest.endsWith('/') ? path.join(out, rest, 'index.html') : path.join(out, rest);
+      assert.ok(await exists(target), `${file} links to missing ${m[1]}`);
+      checked++;
+    }
+  }
+  assert.ok(checked > 1000);
+  const sitemap = await readFile(path.join(out, 'sitemap.xml'), 'utf8');
+  assert.match(sitemap, /<loc>https:\/\/[^<]+\/mortgage-calculator\/texas\/<\/loc>/);
+});
+
+test('state pages carry different numbers, not just a swapped name', async () => {
+  const { out } = await buildSynthetic();
+  const tx = await readFile(path.join(out, 'mortgage-calculator/texas/index.html'), 'utf8');
+  const ny = await readFile(path.join(out, 'mortgage-calculator/new-york/index.html'), 'utf8');
+  const text = (h) => h.match(/<h2>What a typical home costs[\s\S]*?<\/section>/)[0].replace(/Texas|New York/g, 'X');
+  assert.notEqual(text(tx), text(ny));
+  assert.match(tx, /FAQPage/);
+});
+
+test('browser bundle parses and loads without a DOM', async () => {
+  const { out } = await buildSynthetic();
+  const code = await readFile(path.join(out, 'assets/app.js'), 'utf8');
+  assert.doesNotMatch(code, /^export /m);
+  const sandbox = { document: { getElementById: () => null } };
+  vm.runInNewContext(code, sandbox);
+});

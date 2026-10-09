@@ -1,0 +1,13 @@
+{
+  "siteName": "State Mortgage Calculators",
+  "siteUrl": "https://ahmedsaber94.github.io/state-mortgage",
+  "basePath": "/state-mortgage",
+  "contactEmail": "",
+  "adsenseClient": "",
+  "analyticsId": "",
+  "defaultDownPct": 20,
+  "defaultTermYears": 30,
+  "insuranceRatePct": 0.4,
+  "pmiRatePct": 0.5,
+  "incomeRatio": 0.28
+}

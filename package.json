@@ -1,0 +1,13 @@
+{
+  "name": "state-mortgage-calculators",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "fetch": "node scripts/fetch-data.mjs",
+    "build": "node src/build.mjs",
+    "update": "node scripts/fetch-data.mjs && node src/build.mjs",
+    "test": "node --test \"test/*.test.mjs\""
+  }
+}
