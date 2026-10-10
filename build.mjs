@@ -81,7 +81,8 @@ const states = STATES.map((s) => {
     ...d,
     eff,
     taxRate: round2(eff),
-    price: roundK(d.medianHomeValue),
+    // Start from the exact Census median so the page text and the calculator agree.
+    price: d.medianHomeValue,
     insRatePct: insRates[s.slug] ?? config.insuranceRatePct,
   };
 });
@@ -203,13 +204,24 @@ ${stateSelect}
 </form>`;
 }
 
-function statement(r) {
+// Sources, date and a one-paragraph method, shown right under the payment so visitors do not have to
+// hunt for the footer or the methodology page.
+function trustNote(kind, s) {
+  const how =
+    kind === 'state'
+      ? `Principal and interest use the standard fixed-rate loan formula. Property tax uses the ${esc(s.name)} average effective rate: the median real estate tax paid divided by the median home value. Home insurance is a general estimate that you can change.`
+      : 'Principal and interest use the standard fixed-rate loan formula. Pick a state to start from its average property tax rate. Home insurance is a general estimate that you can change.';
+  return `<div class="trust"><p><strong>How this is calculated.</strong> ${how}</p><p>Sources: <a href="https://www.freddiemac.com/pmms" rel="noopener">Freddie Mac mortgage rate survey</a>, week of ${esc(RATE_DATE)}; <a href="https://www.census.gov/programs-surveys/acs" rel="noopener">U.S. Census Bureau American Community Survey</a>, ${esc(data.meta.acsLabel)}. Updated ${esc(UPDATED)}. <a href="${BASE}/methodology/">Full methodology</a>.</p></div>`;
+}
+
+function statement(r, extra = '') {
   return `<section class="statement" aria-labelledby="st-h">
 <h2 id="st-h">Estimated monthly payment</h2>
 <div id="bar" class="bar" aria-hidden="true">${barHtml(r)}</div>
 <div id="ledger" aria-live="polite">${ledgerHtml(r)}</div>
 <dl id="facts" class="facts">${factsHtml(r, RATIO)}</dl>
 <p class="note">Estimate only. Mortgage insurance (PMI) is added when the down payment is under 20%. Real taxes, insurance and lender fees vary by property.</p>
+${extra}
 </section>`;
 }
 
@@ -282,7 +294,7 @@ ${calcForm({
   insRatePct: s.insRatePct,
   taxHint: `${esc(s.name)} average effective rate`,
 })}
-${statement(r)}
+${statement(r, trustNote('state', s))}
 </div>
 
 <section class="block">
@@ -390,7 +402,7 @@ ${calcForm({
   stateSelect: select,
   taxHint: 'Typical state average. Pick a state to load its rate.',
 })}
-${statement(natScenario)}
+${statement(natScenario, trustNote('home'))}
 </div>
 
 <section class="block wide" id="states">
