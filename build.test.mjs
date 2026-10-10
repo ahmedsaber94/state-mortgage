@@ -90,6 +90,33 @@ test('state pages carry different numbers, not just a swapped name', async () =>
   assert.match(tx, /FAQPage/);
 });
 
+test('calculator starts at the exact median home value quoted in the page text', async () => {
+  const { out } = await buildSynthetic();
+  const data = syntheticData();
+  for (const slug of ['texas', 'new-york', 'hawaii']) {
+    const html = await readFile(path.join(out, `mortgage-calculator/${slug}/index.html`), 'utf8');
+    const price = Number(html.match(/name="price"[^>]*value="(\d+)"/)[1]);
+    const median = data.states.find((s) => s.slug === slug).medianHomeValue;
+    assert.equal(price, median, `${slug}: calculator starts at ${price}, median is ${median}`);
+    assert.ok(html.includes(median.toLocaleString('en-US')), `${slug}: median not quoted in text`);
+  }
+});
+
+test('sources, date and method are shown next to the calculator', async () => {
+  const { out } = await buildSynthetic();
+  for (const p of ['index.html', 'mortgage-calculator/texas/index.html']) {
+    const html = await readFile(path.join(out, p), 'utf8');
+    const section = html.match(/<section class="statement"[\s\S]*?<\/section>/)[0];
+    assert.match(section, /How this is calculated/, p);
+    assert.match(section, /href="https:\/\/www\.freddiemac\.com\/pmms"/, p);
+    assert.match(section, /href="https:\/\/www\.census\.gov\/programs-surveys\/acs"/, p);
+    assert.match(section, /October 8, 2026/, p);
+    assert.match(section, /Updated October 2026/, p);
+  }
+  const tx = await readFile(path.join(out, 'mortgage-calculator/texas/index.html'), 'utf8');
+  assert.match(tx.match(/<div class="trust">[\s\S]*?<\/div>/)[0], /Texas average effective rate/);
+});
+
 test('browser bundle parses and loads without a DOM', async () => {
   const { out } = await buildSynthetic();
   const code = await readFile(path.join(out, 'assets/app.js'), 'utf8');
