@@ -51,6 +51,8 @@ if (data.meta?.synthetic && !ALLOW_SYNTHETIC) {
   fail('data/states.json is synthetic test data. Run "npm run fetch" to load real Census and Freddie Mac figures.');
 }
 const insRates = (await readJson(path.join(ROOT, 'data', 'insurance-rates.json'), true)) ?? {};
+// Optional, sourced local facts per state (see README). Every item carries its own official source link.
+const LOCAL = (await readJson(path.join(ROOT, 'local-content.json'), true)) ?? { states: {} };
 
 if (!(OUT.length > 8) || ROOT.startsWith(OUT)) fail(`Refusing to clean output directory: ${OUT}`);
 
@@ -128,6 +130,31 @@ const ord = (n) => {
 const dateFmt = (iso, opts) => new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-US', { timeZone: 'UTC', ...opts });
 const monthYear = (iso) => dateFmt(iso, { month: 'long', year: 'numeric' });
 const longDate = (iso) => dateFmt(iso, { month: 'long', day: 'numeric', year: 'numeric' });
+// Sourced local facts: homebuyer programs, property-tax rules, closing taxes. Items without an https link are skipped.
+const LOCAL_SECTIONS = [
+  ['programs', 'Homebuyer assistance'],
+  ['propertyTax', 'Property tax exemptions and rules'],
+  ['closing', 'Taxes and fees at closing'],
+];
+function localHtml(name, entry) {
+  if (!entry) return '';
+  const blocks = [];
+  for (const [key, title] of LOCAL_SECTIONS) {
+    const items = (entry[key] ?? []).filter((it) => it && it.text && it.source && /^https:\/\//.test(it.url ?? ''));
+    if (!items.length) continue;
+    const lis = items
+      .map((it) => `<li>${esc(it.text)} <span class="src">(<a href="${esc(it.url)}" rel="noopener">${esc(it.source)}</a>)</span></li>`)
+      .join('');
+    blocks.push(`<h3>${esc(title)}</h3><ul>${lis}</ul>`);
+  }
+  if (!blocks.length) return '';
+  const agency =
+    entry.agency && /^https:\/\//.test(entry.agency.url ?? '')
+      ? `<p>The state housing finance agency is <a href="${esc(entry.agency.url)}" rel="noopener">${esc(entry.agency.name)}</a>.</p>`
+      : '';
+  const checked = LOCAL.checked ? ` Last checked ${esc(monthYear(LOCAL.checked))}.` : '';
+  return `${agency}${blocks.join('')}<p class="note">Each item links to the official source it comes from.${checked} Programs, limits and deadlines change, so confirm with the agency before you rely on them.</p>`;
+}
 const YEAR = new Date(`${data.meta.generated}T00:00:00Z`).getUTCFullYear();
 const UPDATED = monthYear(data.meta.generated);
 const RATE_DATE = longDate(data.meta.rateDate);
@@ -258,7 +285,9 @@ async function statePage(s) {
       return `<tr><td>${usd0(p)}</td><td class="num">${usd0(annual)}</td><td class="num">${usd0(annual / 12)}</td></tr>`;
     })
     .join('');
-  const editorial = await readText(path.join(ROOT, 'content', `${s.slug}.html`));
+  const editorial = [localHtml(s.name, LOCAL.states?.[s.slug]), await readText(path.join(ROOT, 'content', `${s.slug}.html`))]
+    .filter(Boolean)
+    .join('\n');
 
   const faqs = [
     [

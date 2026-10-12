@@ -124,3 +124,44 @@ test('browser bundle parses and loads without a DOM', async () => {
   const sandbox = { document: { getElementById: () => null } };
   vm.runInNewContext(code, sandbox);
 });
+
+test('local-content.json is well formed: known states, https sources, no empty text', async () => {
+  const raw = JSON.parse(await readFile(path.join(ROOT, 'local-content.json'), 'utf8'));
+  const { STATES } = await import('../src/states.mjs');
+  const slugs = new Set(STATES.map((s) => s.slug));
+  assert.match(raw.checked, /^\d{4}-\d{2}-\d{2}$/);
+  const allowed = new Set(['agency', 'programs', 'propertyTax', 'closing']);
+  for (const [slug, entry] of Object.entries(raw.states)) {
+    assert.ok(slugs.has(slug), `unknown state slug ${slug}`);
+    for (const [key, val] of Object.entries(entry)) {
+      assert.ok(allowed.has(key), `${slug}: unknown section ${key}`);
+      const items = key === 'agency' ? [val] : val;
+      for (const it of items) {
+        const label = it.text ?? it.name;
+        assert.ok(label && label.trim().length > 10, `${slug}.${key}: empty text`);
+        assert.match(it.url, /^https:\/\/[^\s"<>]+$/, `${slug}.${key}: bad url`);
+        if (key !== 'agency') {
+          assert.ok(it.source && it.source.trim(), `${slug}.${key}: missing source name`);
+          assert.ok(it.quote && it.quote.trim(), `${slug}.${key}: missing quote for audit`);
+        }
+      }
+    }
+  }
+});
+
+test('sourced local facts appear on the state page with their source link', async () => {
+  const { out } = await buildSynthetic();
+  const tx = await readFile(path.join(out, 'mortgage-calculator/texas/index.html'), 'utf8');
+  assert.match(tx, /<h3>Property tax exemptions and rules<\/h3>/);
+  assert.match(tx, /\$140,000 exemption/);
+  assert.match(tx, /href="https:\/\/comptroller\.texas\.gov\/taxes\/property-tax\/exemptions\/"/);
+  assert.match(tx, /Last checked October 2026/);
+  // A state with no sourced entry must not show an empty section.
+  const raw = JSON.parse(await readFile(path.join(ROOT, 'local-content.json'), 'utf8'));
+  const { STATES } = await import('../src/states.mjs');
+  const bare = STATES.find((s) => !raw.states[s.slug]);
+  if (bare) {
+    const html = await readFile(path.join(out, `mortgage-calculator/${bare.slug}/index.html`), 'utf8');
+    assert.doesNotMatch(html, /Property tax exemptions and rules|Homebuyer assistance|Taxes and fees at closing/);
+  }
+});

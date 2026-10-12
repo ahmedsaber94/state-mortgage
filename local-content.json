@@ -1,0 +1,1615 @@
+{
+  "checked": "2026-10-12",
+  "states": {
+    "alabama": {
+      "agency": {
+        "name": "Alabama Housing Finance Authority (AHFA)",
+        "url": "https://www.ahfa.com/"
+      },
+      "programs": [
+        {
+          "text": "AHFA's Step Up program is designed for moderate-income homebuyers who can afford a mortgage but need help with the down payment.",
+          "source": "AHFA: available programs",
+          "url": "https://www.ahfa.com/programs/homeownership/available-programs",
+          "quote": "designed specifically for moderate-income home buyers who can afford a mortgage, but need help with the down payment"
+        },
+        {
+          "text": "AHFA's First Step program offers below-market, 30-year fixed mortgage interest rates to first-time or repeat homebuyers.",
+          "source": "AHFA: available programs",
+          "url": "https://www.ahfa.com/programs/homeownership/available-programs",
+          "quote": "offers below-market, 30-year fixed mortgage interest rates | first-time or repeat homebuyers"
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "Alabama's homestead exemption applies to a single-family owner-occupied dwelling and its land, up to 160 acres. For owners under 65 who are not disabled, the exemption is up to $4,000 of assessed value for state taxes and up to $2,000 for county taxes.",
+          "source": "Alabama Department of Revenue: homestead exemptions",
+          "url": "https://www.revenue.alabama.gov/property-tax/homestead-exemptions/",
+          "quote": "A homestead is defined as a single-family owner-occupied dwelling and the land thereto, not exceeding 160 acres. | Not more than $4,000. | Not more than $2,000"
+        },
+        {
+          "text": "Homeowners 65 or older with combined federal net taxable income of $12,000 or less can qualify for a homestead exemption from all ad valorem taxes. To apply, visit your local county office.",
+          "source": "Alabama Department of Revenue: homestead exemptions",
+          "url": "https://www.revenue.alabama.gov/property-tax/homestead-exemptions/",
+          "quote": "Age 65+ with combined federal net taxable income of $12,000 or less ... exempt from all ad valorem taxes. | Visit your local county office to apply for a homestead exemption."
+        }
+      ],
+      "closing": [
+        {
+          "text": "Alabama's recordation tax is $0.50 per $500 of value on deeds and $0.15 per $100 of indebtedness on mortgages, each counting any fraction.",
+          "source": "Alabama Department of Revenue: recordation tax",
+          "url": "https://www.revenue.alabama.gov/tax-types/recordation-tax/",
+          "quote": "Deeds – $.50 per $500 of value or fraction thereof. | Mortgages – $.15 per $100 of indebtedness or fraction thereof."
+        }
+      ]
+    },
+    "alaska": {
+      "agency": {
+        "name": "Alaska Housing Finance Corporation (AHFC)",
+        "url": "https://www.ahfc.us/"
+      },
+      "programs": [
+        {
+          "text": "AHFC's page says nonprofit organizations provide down payment assistance to borrowers purchasing homes. Funds are subject to availability, and borrowers must meet the organization's guidelines.",
+          "source": "Alaska Housing Finance Corporation: down payment assistance",
+          "url": "https://www.ahfc.us/buy/resources/down-payment-assistance",
+          "quote": "Nonprofit organizations provide down payment assistance to borrowers purchasing homes | Funds are subject to availability, and borrowers must meet the organization's guidelines."
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "Under Alaska law (AS 29.45.030), there is a mandatory exemption up to the first $150,000 of assessed value of a primary residence for a senior citizen age 65 or older, or a disabled veteran with a service-connected disability of 50% or more. It must be applied for by a local deadline.",
+          "source": "Alaska Dept. of Commerce, Community, and Economic Development: property tax exemptions",
+          "url": "https://www.commerce.alaska.gov/web/dcra/LocalGovernmentResourceDesk/TaxationAssessment/PropertyTaxExemptionsinAlaska.aspx",
+          "quote": "there is a mandatory exemption up to the first $150,000 of assessed value for the primary residence | a senior citizen, age 65 years and older, or a disabled veteran with a service connected disability of 50% or more."
+        }
+      ]
+    },
+    "arizona": {
+      "propertyTax": [
+        {
+          "text": "Arizona's property class summary lists a 10% assessment ratio for primary residences (property class 3).",
+          "source": "Arizona Department of Revenue: property class summary",
+          "url": "https://azdor.gov/sites/default/files/2023-03/PROPERTY_PropertyClassSummary.pdf",
+          "quote": "3.1 03 / 0301 LAP / R&P .10 F PRIMARY RESIDENCE"
+        }
+      ]
+    },
+    "arkansas": {
+      "agency": {
+        "name": "Arkansas Development Finance Authority (ADFA)",
+        "url": "https://adfa.arkansas.gov/"
+      },
+      "programs": [
+        {
+          "text": "ADFA's Down Payment Assistance Loan Program provides $1,000 to $15,000 for down payment and closing cost assistance.",
+          "source": "Arkansas Development Finance Authority: down payment assistance program",
+          "url": "https://adfa.arkansas.gov/programs/homeloans/down-payment-assistance-program/",
+          "quote": "The DPA ranges from $1,000 to $15,000 for down payment and closing cost assistance."
+        },
+        {
+          "text": "The assistance is available to qualifying applicants of an ADFA StartSmart or ADFA Move-Up first mortgage.",
+          "source": "Arkansas Development Finance Authority: down payment assistance program",
+          "url": "https://adfa.arkansas.gov/programs/homeloans/down-payment-assistance-program/",
+          "quote": "available to qualifying applicants of an “ADFA StartSmart” or “ADFA Move-Up” first mortgage."
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "For a homestead after reappraisal, the increase in assessed value is limited to not more than 5% of the property's assessed value for the previous year.",
+          "source": "Arkansas Department of Finance and Administration: property tax FAQs (2023)",
+          "url": "https://www.dfa.arkansas.gov/wp-content/uploads/faqs-2023.pdf",
+          "quote": "limited (capped) to not more than five percent (5%) of the assessed value of the property for the previous year."
+        },
+        {
+          "text": "To claim the homestead property tax credit, the owner must register proof of eligibility on or before October 15 of the year after the assessment.",
+          "source": "Arkansas Department of Finance and Administration: property tax FAQs (2023)",
+          "url": "https://www.dfa.arkansas.gov/wp-content/uploads/faqs-2023.pdf",
+          "quote": "Yes, on or before October 15 of the year after the assessment."
+        }
+      ]
+    },
+    "california": {
+      "agency": {
+        "name": "California Housing Finance Agency (CalHFA)",
+        "url": "https://www.calhfa.ca.gov/"
+      },
+      "programs": [
+        {
+          "text": "CalHFA's MyHome Assistance Program offers a deferred-payment junior loan toward down payment and closing costs, up to 3.5% of the purchase price with FHA loans or 3% with conventional loans, subject to the program's other limits.",
+          "source": "CalHFA loan programs",
+          "url": "https://www.calhfa.ca.gov/homebuyer/programs/index.htm",
+          "quote": "MyHome offers a deferred-payment junior loan of an amount up to the lesser of 3.5% of the purchase price..."
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "The California Constitution provides a $7,000 reduction in the taxable value of a qualifying owner-occupied home (the homeowners' exemption).",
+          "source": "California State Board of Equalization: homeowners' exemption",
+          "url": "https://www.boe.ca.gov/proptaxes/homeowners_exemption.htm",
+          "quote": "The California Constitution provides a $7,000 reduction in the taxable value for a qualifying owner-occupied home."
+        },
+        {
+          "text": "To qualify, the home must have been the owner's principal place of residence on January 1. The owner files once with the county assessor, and should file by February 15 to receive the full exemption for that year.",
+          "source": "California State Board of Equalization: homeowners' exemption",
+          "url": "https://www.boe.ca.gov/proptaxes/homeowners_exemption.htm",
+          "quote": "The home must have been the principal place of residence of the owner on the lien date, January 1st. | To claim the exemption, the homeowner must make a one-time filing with the county assessor where the property is located. | ...but no later than February 15 to receive the full exemption for that year."
+        }
+      ]
+    },
+    "colorado": {
+      "agency": {
+        "name": "Colorado Housing and Finance Authority (CHFA)",
+        "url": "https://www.chfainfo.com/"
+      },
+      "programs": [
+        {
+          "text": "CHFA's FirstGeneration program offers up to $25,000 toward a down payment. Repayment is deferred until events such as payoff of the first mortgage, sale or refinance of the home, or when the home is no longer your primary residence.",
+          "source": "CHFA: homeownership",
+          "url": "https://www.chfainfo.com/homeownership",
+          "quote": "Up to $25,000 down payment | payoff of first mortgage loan, sale or refinance of home"
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "Colorado's senior homestead exemption exempts 50 percent of the first $200,000 of the actual value of a qualified applicant's primary residence. Applicants must have been born on or before January 1, 1961, and have owned and occupied the home as their primary residence continuously since January 1, 2016 or earlier.",
+          "source": "Colorado Division of Property Taxation: senior and disabled veteran exemptions",
+          "url": "https://dpt.colorado.gov/property-tax-exemption-for-senior-citizens-and-veterans-with-a-disability",
+          "quote": "50 percent of the first $200,000 of actual value of the qualified applicant's primary residence is exempted. | born on or before January 1, 1961 | owned and occupied their home as their primary residence continuously since January 1, 2016 (or earlier)"
+        },
+        {
+          "text": "Veterans with a service-connected disability can also qualify. There is no age requirement, but they must have the required VA-approved disability rating.",
+          "source": "Colorado Division of Property Taxation: senior and disabled veteran exemptions",
+          "url": "https://dpt.colorado.gov/property-tax-exemption-for-senior-citizens-and-veterans-with-a-disability",
+          "quote": "There is no age requirement for veterans, but you must have the required VA approved disability rating."
+        }
+      ]
+    },
+    "connecticut": {
+      "agency": {
+        "name": "Connecticut Housing Finance Authority (CHFA)",
+        "url": "https://www.chfa.org/"
+      },
+      "programs": [
+        {
+          "text": "CHFA's Time To Own program offers both down payment and closing cost assistance to eligible first-time homebuyers. CHFA defines a first-time buyer as someone who has not owned a home in the past three years.",
+          "source": "CHFA: homebuyer mortgage programs",
+          "url": "https://www.chfa.org/homebuyers/all-homebuyer-mortgage-programs/",
+          "quote": "offers both down payment and closing cost assistance to eligible first-time homebuyers | someone who has not owned a home in the past three years"
+        }
+      ]
+    },
+    "delaware": {
+      "agency": {
+        "name": "Delaware State Housing Authority (DSHA)",
+        "url": "https://www.destatehousing.com/"
+      },
+      "programs": [
+        {
+          "text": "DSHA's Welcome Home program is designed for first-time homebuyers and offers below-market interest rates. It lists a minimum credit score of 620, with housing counseling required for scores of 659 or below.",
+          "source": "Delaware State Housing Authority: homeownership loans",
+          "url": "https://www.destatehousing.com/homeownership-loans/",
+          "quote": "Designed for first-time homebuyers, this program offers below-market interest rates to help you buy with confidence. | Minimum credit score of 620. (Applicants with credit scores of 659 or below must participate in housing counseling.)"
+        },
+        {
+          "text": "DSHA's Open Door program is open to both first-time and repeat buyers.",
+          "source": "Delaware State Housing Authority: homeownership loans",
+          "url": "https://www.destatehousing.com/homeownership-loans/",
+          "quote": "Open Door expands homeownership opportunities for both first-time and repeat buyers."
+        },
+        {
+          "text": "DSHA's down payment and closing cost options include zero-interest second mortgages equal to 3% (First State Home Loan) or 4% (Keys4You Home Loan) of the first mortgage amount, or 5% (Take5) with Welcome Home. No monthly payment is required; repayment is deferred until refinancing, sale, transfer of title, or when the home is no longer the primary residence.",
+          "source": "Delaware State Housing Authority: homeownership loans",
+          "url": "https://www.destatehousing.com/homeownership-loans/",
+          "quote": "A zero-interest second mortgage equal to 3% of the first mortgage amount. | A zero-interest second mortgage equal to 4% of the first mortgage amount. | A zero-interest second mortgage equal to 5% of the first mortgage amount. | No monthly payment is required. Repayment is deferred until refinancing, sale, transfer of title, or when the home is no longer the primary residence."
+        }
+      ],
+      "closing": [
+        {
+          "text": "Delaware's realty transfer tax is 4% of the value of the property: 2.5% goes to the State and 1.5% to the county or municipality. The tax is apportioned equally between the seller and the buyer.",
+          "source": "Delaware Division of Revenue: realty transfer tax instructions (form RTT-TAX, January 2022)",
+          "url": "https://revenuefiles.delaware.gov/2022/RTT-TAX_2022-01_Instructions.pdf",
+          "quote": "the consideration to be taxed at 2.5% by the State of Delaware and 1.5% by either the municipality or the county. | Said tax is to be apportioned equally between the Grantor/Seller and Grantee/Buyer. | a Realty Transfer Tax at the rate of four percent (4%) of the value of the property represented by such document."
+        }
+      ]
+    },
+    "florida": {
+      "agency": {
+        "name": "Florida Housing Finance Corporation",
+        "url": "https://www.floridahousing.org/"
+      },
+      "programs": [
+        {
+          "text": "The Florida Assist program offers up to $10,000 on FHA, VA, USDA and conventional loans.",
+          "source": "Florida Housing: homebuyer programs",
+          "url": "https://www.floridahousing.org/programs/homebuyer-overview-page",
+          "quote": "Offers up to $10,000 on FHA, VA, USDA and Conventional Loans."
+        },
+        {
+          "text": "The Florida Homeownership Loan Program (FL HLP) offers a $12,500 second mortgage at 3%, fully amortizing.",
+          "source": "Florida Housing: homebuyer programs",
+          "url": "https://www.floridahousing.org/programs/homebuyer-overview-page",
+          "quote": "Offers $12,500. | 3% fully-amortizing, second mortgage."
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "The first $25,000 of the homestead exemption applies to all property taxes, including school district taxes.",
+          "source": "Florida Department of Revenue: homestead exemption",
+          "url": "https://floridarevenue.com/property/documents/pt113.pdf",
+          "quote": "The first $25,000 applies to all property taxes, including school district taxes."
+        },
+        {
+          "text": "An additional exemption of up to $25,000 applies to the assessed value over $50,000, and only to non-school taxes.",
+          "source": "Florida Department of Revenue: homestead exemption",
+          "url": "https://floridarevenue.com/property/documents/pt113.pdf",
+          "quote": "The additional exemption of up to $25,000 applies to the assessed value over $50,000 and only to non-school taxes."
+        },
+        {
+          "text": "To claim it, submit Form DR-501 to your county property appraiser by March 1 of the tax year.",
+          "source": "Florida Department of Revenue: homestead exemption",
+          "url": "https://floridarevenue.com/property/documents/pt113.pdf",
+          "quote": "you must complete and submit Form DR-501 to your county property appraiser by March 1 of the tax year."
+        },
+        {
+          "text": "Under Save Our Homes, the annual increase in a homestead's assessed value cannot exceed the lower of 3% or the change in the Consumer Price Index.",
+          "source": "Florida Department of Revenue: Save Our Homes",
+          "url": "https://floridarevenue.com/property/Documents/SaveOurHomes.pdf",
+          "quote": "an annual increase in assessment shall not exceed the lower of the following: (3% of the prior year's assessed value; the percent change in the Consumer Price Index)"
+        }
+      ]
+    },
+    "georgia": {
+      "agency": {
+        "name": "Georgia Department of Community Affairs (Georgia Dream)",
+        "url": "https://www.dca.ga.gov/safe-affordable-housing/homeownership/georgia-dream"
+      },
+      "propertyTax": [
+        {
+          "text": "The standard Georgia homestead exemption can take $2,000 off the value used for county and school taxes. The home must be the owner's primary residence and have been the owner's legal residence on January 1 of the tax year.",
+          "source": "Georgia Department of Revenue: homestead exemptions",
+          "url": "https://dor.georgia.gov/property-tax-homestead-exemptions",
+          "quote": "may be granted a $2,000 exemption from county and school taxes. | the home was owned by the homeowner and was their legal residence as of January 1 of the taxable year."
+        },
+        {
+          "text": "Homeowners 65 or older may claim a $4,000 exemption from all county ad valorem taxes if their income, with their spouse's, does not exceed $10,000 for the prior year.",
+          "source": "Georgia Department of Revenue: homestead exemptions",
+          "url": "https://dor.georgia.gov/property-tax-homestead-exemptions",
+          "quote": "Individuals 65 years of age or over may claim a $4,000 exemption from all county ad valorem taxes. | if the income of that person and his spouse does not exceed $10,000 for the prior year."
+        }
+      ],
+      "closing": [
+        {
+          "text": "Georgia's real estate transfer tax is $1 for the first $1,000 (or fractional part of $1,000) and 10 cents for each additional $100 (or fractional part of $100).",
+          "source": "Georgia Department of Revenue: real estate transfer tax",
+          "url": "https://dor.georgia.gov/real-estate-transfer-tax",
+          "quote": "at the rate of $1 for the first $1,000 or fractional part of $1,000 | at the rate of 10 cents for each additional $100 or fractional part of $100"
+        },
+        {
+          "text": "The seller is liable for the transfer tax, though the sales contract can say the buyer will pay it. It must be paid before the deed can be recorded.",
+          "source": "Georgia Department of Revenue: real estate transfer tax",
+          "url": "https://dor.georgia.gov/real-estate-transfer-tax",
+          "quote": "The seller is liable for the real estate transfer tax | the parties agree in the sales contract that the buyer will pay the tax | Before a deed, security instrument, or other writing can be recorded the real estate transfer tax must be paid."
+        }
+      ],
+      "programs": [
+        {
+          "text": "The Georgia Dream Loan Program provides assistance and funding for eligible first-time homebuyers. The standard option provides five percent (5%) of the purchase price or a maximum of $10,000, whichever is less (effective July 8, 2026). The PEN (Protectors, Educators & Nurses) and Choice options provide six percent (6%) or a maximum of $12,500, whichever is less.",
+          "source": "Georgia Department of Community Affairs: Georgia Dream",
+          "url": "https://dca.georgia.gov/affordable-housing/home-ownership/georgia-dream-mortgage-products/georgia-dream",
+          "quote": "The Georgia Dream Loan Program provides assistance and funding for eligible first-time homebuyers. | Five percent (5%) of the property purchase price or a maximum $10,000, whichever is the lesser amount. | Six percent (6%) of the property purchase price or a maximum of $12,500, whichever is the lesser amount. | Effective July 8, 2026"
+        },
+        {
+          "text": "The page defines a first-time buyer as one with no interest or ownership in a primary residence in the last three years, and requires liquid assets of no more than $20,000 or 20% of the sales price immediately after closing (whichever is greater). Income limits depend on location and household size.",
+          "source": "Georgia Department of Community Affairs: Georgia Dream",
+          "url": "https://dca.georgia.gov/affordable-housing/home-ownership/georgia-dream-mortgage-products/georgia-dream",
+          "quote": "interest or ownership in a primary residence in the last three years | Have liquid assets of no more than $20,000 or 20% of the sales price immediately after closing (whichever is greater)."
+        }
+      ]
+    },
+    "hawaii": {
+      "agency": {
+        "name": "Hawaiʻi Housing Finance and Development Corporation (HHFDC)",
+        "url": "https://dbedt.hawaii.gov/hhfdc/"
+      },
+      "programs": [
+        {
+          "text": "The Hale Kamaʻāina Mortgage Program is designed for first-time homebuyers. Qualified borrowers may receive competitive fixed-rate 30-year mortgage financing with optional down payment assistance.",
+          "source": "Hawaiʻi Housing Finance and Development Corporation: Hale Kamaʻāina Mortgage Program",
+          "url": "https://dbedt.hawaii.gov/hhfdc/hk-mortgage-program/",
+          "quote": "Designed for first-time homebuyers, qualified borrowers may receive competitive fixed rate 30-year mortgage financing | with optional down payment assistance."
+        }
+      ]
+    },
+    "idaho": {
+      "agency": {
+        "name": "Idaho Housing and Finance Association (IHFA)",
+        "url": "https://www.idahohousing.com/"
+      },
+      "programs": [
+        {
+          "text": "Idaho Housing's down payment assistance program provides homebuyers up to 8% of the sales price of the home. It can cover the down payment, closing costs, or both.",
+          "source": "Idaho Housing and Finance Association: down payment and closing cost assistance",
+          "url": "https://www.idahohousing.com/homebuyers/down-payment-closing-cost-assistance/",
+          "quote": "This program provides homebuyers up to 8% of the sales price of the home"
+        },
+        {
+          "text": "Buyers can contribute as little as $500 of their own funds. Assistance is available to all eligible Idaho homebuyers, not just first-time buyers, who must sign up for Finally Home! Homebuyer Education.",
+          "source": "Idaho Housing and Finance Association: down payment and closing cost assistance",
+          "url": "https://www.idahohousing.com/homebuyers/down-payment-closing-cost-assistance/",
+          "quote": "Idahoans who use this program can contribute as little as $500 of the sales price of their own funds to the purchase. | Down payment assistance is available to all eligible Idaho homebuyers, not just first-time homebuyers."
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "Idaho's homeowner's exemption exempts 50% of the value of your home and up to one acre of land. The state's page lists a maximum of $125,000 for tax years 2021–2025.",
+          "source": "Idaho State Tax Commission: homeowner's exemption",
+          "url": "https://tax.idaho.gov/taxes/property/homeowners/exemption/",
+          "quote": "The homeowner’s exemption will exempt 50% of the value of your home and up to one acre of land | 2021-2025 | $125,000"
+        },
+        {
+          "text": "You may qualify if you own and occupy a home as your primary residence. You apply for the exemption with your county assessor's office.",
+          "source": "Idaho State Tax Commission: homeowner's exemption",
+          "url": "https://tax.idaho.gov/taxes/property/homeowners/exemption/",
+          "quote": "If you own and occupy a home (including manufactured homes) as your primary residence, you could qualify for a homeowner’s exemption."
+        }
+      ]
+    },
+    "illinois": {
+      "agency": {
+        "name": "Illinois Housing Development Authority (IHDA)",
+        "url": "https://www.ihda.org/"
+      },
+      "programs": [
+        {
+          "text": "IHDA Access Forgivable gives 4% of the purchase price, up to $6,000, for down payment and closing costs, forgiven monthly over 10 years.",
+          "source": "IHDA: getting an IHDA loan",
+          "url": "https://www.ihda.org/my-home/getting-an-ihda-loan/",
+          "quote": "4% of the purchase price up to $6,000 in assistance for down payment & closing costs, forgiven monthly over 10 years"
+        },
+        {
+          "text": "IHDA Access Deferred gives 5% of the purchase price, up to $7,500, as an interest-free loan with repayment deferred until you sell, refinance or pay off the mortgage.",
+          "source": "IHDA: getting an IHDA loan",
+          "url": "https://www.ihda.org/my-home/getting-an-ihda-loan/",
+          "quote": "5% of the purchase price up to $7,500 assistance for down payment & closing costs offered as an interest-free loan | you don't need to repay until you sell your house, refinance, or pay off your mortgage"
+        },
+        {
+          "text": "IHDA Access Repayable gives 10% of the purchase price, up to $10,000, as an interest-free loan repaid monthly over 10 years.",
+          "source": "IHDA: getting an IHDA loan",
+          "url": "https://www.ihda.org/my-home/getting-an-ihda-loan/",
+          "quote": "10% of the purchase price up to $10,000 in assistance for down payment & closing costs offered as an interest-free loan | repaid monthly over a 10 year period"
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "The General Homestead Exemption applies to a home occupied by its owner as a principal dwelling. It reduces equalized assessed value by up to $10,000 in Cook County, $8,000 in counties next to Cook County, and $6,000 in all other counties.",
+          "source": "Illinois Department of Revenue: property tax exemptions",
+          "url": "https://tax.illinois.gov/localgovernments/property/taxrelief.html",
+          "quote": "occupied by its owner or owners as his or their principal dwelling place | up to a maximum of $10,000 in Cook County, $8,000 in counties contiguous to Cook County, and $6,000 in all other counties."
+        },
+        {
+          "text": "Homeowners 65 or older can qualify for a Senior Citizens Homestead Exemption, which reduces equalized assessed value by up to $8,000 in Cook County and counties next to it, or $5,000 elsewhere.",
+          "source": "Illinois Department of Revenue: property tax exemptions",
+          "url": "https://tax.illinois.gov/localgovernments/property/taxrelief.html",
+          "quote": "available for property that is occupied as a residence by a person 65 years of age or older | $8,000 in Cook County and counties contiguous to Cook County or $5,000 in all other counties."
+        }
+      ]
+    },
+    "indiana": {
+      "agency": {
+        "name": "Indiana Housing and Community Development Authority (IHCDA)",
+        "url": "https://www.in.gov/ihcda/"
+      },
+      "programs": [
+        {
+          "text": "IHCDA's First Step program offers qualifying first-time homebuyers down payment assistance equal to 5% of the price of the home.",
+          "source": "IHCDA: homebuyers",
+          "url": "https://www.in.gov/ihcda/homebuyers/",
+          "quote": "This program offers qualifying first-time homebuyers with 5% of the price of the home in down payment assistance."
+        },
+        {
+          "text": "IHCDA's Next Home program offers qualifying homebuyers down payment assistance of up to 3.5% of the price of the home.",
+          "source": "IHCDA: homebuyers",
+          "url": "https://www.in.gov/ihcda/homebuyers/",
+          "quote": "This program offers qualifying homebuyers up to 3.5% of the price of the home in down payment assistance."
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "Indiana's circuit breaker caps keep a property owner from paying more than a fixed percent of the property's gross assessed value: 1% for a principal residence that receives the Homestead Standard Deduction, 2% for other residential property, and 3% for nonresidential and personal property. If the tax is over the cap, the county auditor issues a credit for the excess.",
+          "source": "Indiana Department of Local Government Finance: circuit breaker caps fact sheet",
+          "url": "https://www.in.gov/dlgf/files/240429-Fact-Sheet-Circuit-Breaker-Caps.pdf",
+          "quote": "a property owner does not pay more than a fixed percent of the property's gross assessed value | 1% of Homestead Property; 2% of Residential Property; 3% of Nonresidential Property"
+        }
+      ]
+    },
+    "iowa": {
+      "agency": {
+        "name": "Iowa Finance Authority (IFA)",
+        "url": "https://www.iowafinanceauthority.gov/"
+      },
+      "propertyTax": [
+        {
+          "text": "Iowa's 2026 law (SF2472) replaces the homestead tax credit with a homestead tax exemption of 10% of the taxable value of the homestead, retroactive to assessment year 2026.",
+          "source": "Iowa Department of Revenue: homestead tax credit and exemption",
+          "url": "https://revenue.iowa.gov/taxes/tax-guidance/property-tax/homestead-tax-credit-and-exemption",
+          "quote": "replaces the homestead tax credit with a homestead tax exemption in the amount of 10% of the taxable value of the homestead. | retroactive to assessment year 2026 | Division 20 of 2026 Iowa Acts, SF2472"
+        }
+      ],
+      "closing": [
+        {
+          "text": "Iowa's real estate transfer tax is eighty cents for each $500, or fractional part of $500, of consideration in excess of $500.",
+          "source": "Iowa Code 428A.1: real estate transfer tax",
+          "url": "https://www.legis.iowa.gov/docs/code/428a.1.pdf",
+          "quote": "the tax is eighty cents for each five hundred dollars or fractional part of five hundred dollars"
+        }
+      ]
+    },
+    "kansas": {
+      "agency": {
+        "name": "Kansas Housing Resources Corporation (KHRC)",
+        "url": "https://kshousingcorp.org/"
+      },
+      "programs": [
+        {
+          "text": "KHRC's First Time Homebuyer Program lets income-eligible buyers apply for a 0% interest loan of 15 or 20% of the home's purchase price. Check the program page for area and income limits.",
+          "source": "Kansas Housing Resources Corporation: First Time Homebuyer",
+          "url": "https://kshousingcorp.org/homeownership/first-time-homebuyer/",
+          "quote": "allowing homebuyers to apply for a 0% interest loan in the amount of 15 or 20% of the home’s purchase price."
+        },
+        {
+          "text": "Buyers must invest at least 1% and no more than 10% of the sale price from their own funds.",
+          "source": "Kansas Housing Resources Corporation: First Time Homebuyer",
+          "url": "https://kshousingcorp.org/homeownership/first-time-homebuyer/",
+          "quote": "Homebuyers must make an investment of 1% but no more than 10% of the sale price from their own funds."
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "For tax year 2025, the Kansas Homestead refund for homeowners (Form K-40H) required household income of $43,389 or less and a house valued at no more than $350,000. Filers had to be 55 or older for all of 2025, or blind or totally and permanently disabled all of 2025. Other groups also qualify.",
+          "source": "Kansas Department of Revenue: Homestead refund programs",
+          "url": "https://www.ksrevenue.gov/perstaxtypeshs.html",
+          "quote": "You must have household income of $43,389 or less | Your house cannot be valued at more than $350,000 | You must have been 55 years of age or older for the entire calendar year of 2025"
+        },
+        {
+          "text": "The maximum Homestead refund is $700 (tax year 2025).",
+          "source": "Kansas Department of Revenue: Homestead refund programs",
+          "url": "https://www.ksrevenue.gov/perstaxtypeshs.html",
+          "quote": "The maximum refund is $700."
+        }
+      ]
+    },
+    "kentucky": {
+      "agency": {
+        "name": "Kentucky Housing Corporation (KHC)",
+        "url": "https://www.kyhousing.org/"
+      },
+      "programs": [
+        {
+          "text": "KHC's Down Payment Assistance provides up to $12,500 toward your down payment and closing costs as a secondary loan, repayable over a 15-year term. It is available to all KHC first-mortgage loan recipients.",
+          "source": "Kentucky Housing Corporation: down payment assistance",
+          "url": "https://www.kyhousing.org/page/down-payment-assistance",
+          "quote": "up to $12,500 toward your down payment and closing costs | Repayable over a 15-year term | Available to all KHC first-mortgage loan recipients"
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "Kentucky's homestead exemption is for homeowners who are at least 65 or have been classified as totally disabled. For the 2025-2026 assessment years it is $49,100. Apply with the property valuation administrator (PVA) in the county where the property is located.",
+          "source": "Kentucky Department of Revenue: homestead exemption",
+          "url": "https://revenue.ky.gov/Property/Residential-Farm-Commercial-Property/Pages/Homestead-Exemption.aspx",
+          "quote": "homeowners who are least 65 years of age or who have been classified as totally disabled | The value of the homestead exemption for the 2025-2026 assessment years is $49,100. | is filed with the property valuation administrator of the county in which the property is located."
+        }
+      ],
+      "closing": [
+        {
+          "text": "Kentucky's real estate transfer tax is fifty cents for each $500 of value or fraction of $500, paid by the grantor named in the deed and collected by the county clerk before the deed is recorded.",
+          "source": "Kentucky Revised Statutes § 142.050",
+          "url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=43160",
+          "quote": "at the rate of fifty cents ($0.50) for each $500 of value or fraction thereof | as prerequisite to acceptance of the deed for recordation"
+        }
+      ]
+    },
+    "louisiana": {
+      "agency": {
+        "name": "Louisiana Housing Corporation (LHC)",
+        "url": "https://www.lhc.la.gov/"
+      },
+      "programs": [
+        {
+          "text": "LHC's down payment and closing cost programs include MRB Assisted, with assistance of 4%, and MRB Home, with assistance of 5% to 9% depending on loan amount.",
+          "source": "Louisiana Housing Corporation: down payment assistance",
+          "url": "https://www.lhc.la.gov/down-payment-assistance-homebuyers",
+          "quote": "Amount of assistance for the MRB Assisted Program is 4%. | Assistance for the MRB Home program ranges between 5-9% depending on loan amount."
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "The Louisiana homestead exemption is a maximum of $7,500 of assessed value. Apply at the parish assessor's office as soon as you purchase and occupy your home.",
+          "source": "Louisiana Tax Commission: frequently asked questions",
+          "url": "https://www.latax.state.la.us/Menu_FAQ/FAQ.aspx",
+          "quote": "a maximum of $7,500 of assessed value | as soon as you purchase and occupy your home"
+        }
+      ]
+    },
+    "maine": {
+      "agency": {
+        "name": "MaineHousing",
+        "url": "https://www.mainehousing.org/"
+      },
+      "programs": [
+        {
+          "text": "MaineHousing's First Home Loan Program offers low fixed-rate mortgages. Its Advantage option can provide $5,000 toward the cash you need for closing.",
+          "source": "MaineHousing: First Home Loan Program",
+          "url": "https://www.mainehousing.org/programs-services/homebuyer/homebuyerdetail/first-home-loan-program",
+          "quote": "by providing low fixed interest rate mortgages. | The Advantage option can provide $5,000 toward the cash you need for closing."
+        },
+        {
+          "text": "Buyers qualify as first-time buyers if they have not held an ownership interest in their principal home within the past 3 years. The page lists an acceptable credit history with a minimum credit score of 640.",
+          "source": "MaineHousing: First Home Loan Program",
+          "url": "https://www.mainehousing.org/programs-services/homebuyer/homebuyerdetail/first-home-loan-program",
+          "quote": "If you have not held an ownership interest in your principal home within the past 3 years | You must have an acceptable credit history with a minimum credit score of 640"
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "Maine's homestead exemption provides a reduction of up to $25,000 in the value of your home for property tax purposes. The $25,000 exemption is adjusted by the local certified ratio.",
+          "source": "Maine Revenue Services: homestead exemption FAQ",
+          "url": "https://www.maine.gov/revenue/faq/homestead-exemption-program",
+          "quote": "The homestead exemption provides a reduction of up to $25,000 in the value of your home for property tax purposes. | The $25,000 exemption must be adjusted by the local certified ratio."
+        },
+        {
+          "text": "To qualify, you must be a permanent resident of Maine, the home must be your permanent residence, and you must have owned a home in Maine for the twelve months before applying. The application must be filed on or before April 1 with the municipality.",
+          "source": "Maine Revenue Services: homestead exemption FAQ",
+          "url": "https://www.maine.gov/revenue/faq/homestead-exemption-program",
+          "quote": "To qualify, you must be a permanent resident of Maine, the home must be your permanent residence, | an application must be filed on or before April 1 with the municipality where the property is located. | you must have owned a home in Maine for the twelve months prior to applying"
+        }
+      ],
+      "closing": [
+        {
+          "text": "Maine's real estate transfer tax rate is $2.20 for each $500 or fractional part of $500. The tax is imposed half on the seller and half on the buyer.",
+          "source": "Maine Revenue Services: transfer tax",
+          "url": "https://www.maine.gov/revenue/taxes/property-tax/transfer-tax",
+          "quote": "The rate of tax is $2.20 for each $500 or fractional part of $500 | The tax is imposed ½ on the grantor (seller), and ½ on the grantee (buyer)."
+        }
+      ]
+    },
+    "maryland": {
+      "agency": {
+        "name": "Maryland Mortgage Program (Maryland Department of Housing and Community Development)",
+        "url": "https://mmp.maryland.gov/"
+      },
+      "programs": [
+        {
+          "text": "The Maryland Mortgage Program's 1st Time Advantage offers eligible first-time homebuyers the lowest 30-year fixed interest rate.",
+          "source": "Maryland Mortgage Program",
+          "url": "https://mmp.maryland.gov/",
+          "quote": "Offers eligible first-time homebuyers the lowest 30-year fixed interest rate."
+        },
+        {
+          "text": "The Maryland Mortgage Program also offers down payment and closing cost assistance for teachers and first responders buying a first home in Maryland.",
+          "source": "Maryland Mortgage Program",
+          "url": "https://mmp.maryland.gov/",
+          "quote": "down payment and closing cost assistance"
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "Every county and municipality in Maryland is required to limit taxable assessment increases on a principal residence to 10% or less each year under the Homestead Property Tax Credit.",
+          "source": "Maryland Department of Assessments and Taxation: Homestead Tax Credit",
+          "url": "https://dat.maryland.gov/realproperty/pages/maryland-homestead-tax-credit.aspx",
+          "quote": "Every county and municipality in Maryland is required to limit taxable assessment increases to 10% or less each year."
+        },
+        {
+          "text": "Homeowners must submit a one-time application to establish eligibility for the Homestead credit.",
+          "source": "Maryland Department of Assessments and Taxation: Homestead Tax Credit",
+          "url": "https://dat.maryland.gov/realproperty/pages/maryland-homestead-tax-credit.aspx",
+          "quote": "a law was enacted in 2007 that requires all homeowners to submit a one-time application to establish eligibility for the credit."
+        }
+      ]
+    },
+    "massachusetts": {
+      "agency": {
+        "name": "MassHousing",
+        "url": "https://www.masshousing.com/"
+      },
+      "programs": [
+        {
+          "text": "MassHousing offers down payment assistance of up to $30,000, as a second mortgage loan, for purchases in every city and town in Massachusetts.",
+          "source": "MassHousing: down payment assistance",
+          "url": "https://www.masshousing.com/en/home-ownership/homebuyers/down-payment-assistance",
+          "quote": "Down Payment Assistance of up to $30,000 when purchasing a home in every city and town in Massachusetts. | MassHousing provides down payment assistance in the form of a second mortgage loan."
+        },
+        {
+          "text": "Option 1 is a 0% deferred loan with no payments until the property is sold or refinanced (up to $30,000). Options 2 and 3 are 15-year amortizing second mortgages at a fixed 2% or 3% rate (up to $25,000).",
+          "source": "MassHousing: down payment assistance",
+          "url": "https://www.masshousing.com/en/home-ownership/homebuyers/down-payment-assistance",
+          "quote": "no payments are due until the property is sold or refinanced | is a 15-year amortizing second mortgage loan at a fixed 2% rate of interest (APR 2%). | is a 15-year amortizing second mortgage loan at a fixed 3% rate of interest (APR 3%). | Option 1 maximum $30,000; Options 2 and 3 maximum $25,000 (table)."
+        },
+        {
+          "text": "To qualify, you must be an income-eligible first-time homebuyer, buy a single-family home, condominium or 2- to 4-family property as your primary residence, pair the assistance with a MassHousing mortgage, and complete homebuyer education.",
+          "source": "MassHousing: down payment assistance",
+          "url": "https://www.masshousing.com/en/home-ownership/homebuyers/down-payment-assistance",
+          "quote": "Be an income-eligible first-time homebuyer. | Purchase a single-family home, condominium, or 2-, 3- or 4-family property that will be your primary residence. | Pair Down Payment Assistance with an affordable MassHousing Mortgage loan to purchase your home."
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "Under Proposition 2½, a Massachusetts community cannot levy more than 2.5 percent of the total full and fair cash value of its property, and each year its levy limit automatically increases by 2.5 percent.",
+          "source": "Massachusetts Department of Revenue: a primer on Proposition 2½",
+          "url": "https://www.mass.gov/doc/levy-limits-a-primer-on-proposition-2-12-0/download",
+          "quote": "a community cannot levy more than 2.5 percent of the total full and fair cash value | Each year, a community's levy limit automatically increases by 2.5 percent"
+        }
+      ],
+      "closing": [
+        {
+          "text": "The Massachusetts deeds excise tax is $2.28 per $500 of the sales price.",
+          "source": "Massachusetts Department of Revenue: tax rates",
+          "url": "https://www.mass.gov/info-details/massachusetts-tax-rates",
+          "quote": "$2.28 per $500"
+        }
+      ]
+    },
+    "michigan": {
+      "agency": {
+        "name": "Michigan State Housing Development Authority (MSHDA)",
+        "url": "https://www.michigan.gov/mshda"
+      },
+      "programs": [
+        {
+          "text": "MSHDA's MI 10K DPA Loan provides up to $10,000 toward down payment, closing costs and prepaid expenses as an interest-free loan. Repayment is deferred until certain events, such as payoff of the first mortgage. It must be combined with a MSHDA MI Home Loan, a homebuyer education certificate of completion is required, and homebuyers must contact a MSHDA approved lender to apply.",
+          "source": "MSHDA: MI 10K DPA Loan",
+          "url": "https://www.michigan.gov/mshda/pathway-to-housing/mi-10k-dpa-loan",
+          "quote": "provides up to $10,000 toward down payment, closing costs, and prepaid expenses. | comes in the form of an interest-free loan. | Repayment of the loan is deferred until certain events, such as payoff of the first mortgage. | Must be combined with a MSHDA MI Home Loan. | A homebuyer education certificate of completion is required for all homebuyers. | Homebuyers must contact a MSHDA approved lender to apply."
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "A Principal Residence Exemption (PRE) exempts an owner's principal residence from the local school operating millage, up to 18 mills.",
+          "source": "Michigan Department of Treasury: Principal Residence Exemption",
+          "url": "https://www.michigan.gov/taxes/property/principal",
+          "quote": "exempts an owner's principal residence from the local school operating millage, up to 18 mills."
+        }
+      ]
+    },
+    "minnesota": {
+      "agency": {
+        "name": "Minnesota Housing",
+        "url": "https://www.mnhousing.gov/"
+      },
+      "programs": [
+        {
+          "text": "Minnesota Housing's down payment and closing cost loans go up to $18,000 and are not grants. They can only be used with a Minnesota Housing first mortgage.",
+          "source": "Minnesota Housing: buy a home",
+          "url": "https://www.mnhousing.gov/home/homeownership/buy-home-refinance",
+          "quote": "These loans, with amounts up to $18,000, are not grants. | Each loan program has eligibility requirements and can only be used with a Minnesota Housing first mortgage."
+        },
+        {
+          "text": "The Monthly Payment Loan (up to $14,000) is repaid over 15 years at your first mortgage rate. The Deferred Payment Loan has no interest or monthly payments, with a balloon payment due at the end of the mortgage term, or if the property is sold or refinanced (unless refinancing with the Step Up program).",
+          "source": "Minnesota Housing: buy a home",
+          "url": "https://www.mnhousing.gov/home/homeownership/buy-home-refinance",
+          "quote": "Repaid over 15 years at your first mortgage rate. | No interest or monthly payments, with a balloon payment due at the end of the mortgage term. | the property is sold or refinanced | Up to $14,000 | (unless refinancing with our Step Up program)"
+        },
+        {
+          "text": "For the Start Up program, a first-time buyer is someone who has not had an ownership interest in a principal residence in the last three years.",
+          "source": "Minnesota Housing: buy a home",
+          "url": "https://www.mnhousing.gov/home/homeownership/buy-home-refinance",
+          "quote": "has not had an ownership interest in a principal residence in the last three years"
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "The Homestead Market Value Exclusion reduces the taxable market value of qualifying homesteads. The full 40% exclusion (maximum $38,000) applies to homesteads valued at $95,000 or less, and it phases out for homesteads valued at $517,200 or more.",
+          "source": "Minnesota Department of Revenue: homestead market value exclusion",
+          "url": "https://www.revenue.state.mn.us/homestead",
+          "quote": "For homesteads valued at $95,000 or less, the exclusion is 40% of the market value, creating a maximum exclusion of $38,000. | The exclusion is reduced as property values increase and phases out for homesteads valued at $517,200 or more."
+        }
+      ],
+      "closing": [
+        {
+          "text": "Minnesota's state deed tax rate is 0.0033 (0.33%) of the net consideration, and the state mortgage registry tax rate is 0.0023 (0.23%) of the debt secured by the mortgage. Both are paid to the county where the document is recorded.",
+          "source": "Minnesota Department of Revenue: mortgage registry and deed tax",
+          "url": "https://www.revenue.state.mn.us/mortgage-registry-and-deed-tax",
+          "quote": "The Deed Tax rate is 0.0033 of the net consideration. | The state Mortgage Tax rate is 0.0023 of the debt that is being secured by a mortgage on Minnesota real property. | It is collected and paid to the Minnesota county where the conveyance document is being recorded."
+        }
+      ]
+    },
+    "mississippi": {
+      "agency": {
+        "name": "Mississippi Home Corporation (MHC)",
+        "url": "https://www.mshomecorp.com/"
+      },
+      "programs": [
+        {
+          "text": "Mississippi Home Corporation has programs that offer cash assistance at closing. All MHC products require pre-purchase homebuyer education, and some require first-time buyer status in certain counties.",
+          "source": "Mississippi Home Corporation: helping homebuyers",
+          "url": "https://www.mshomecorp.com/how-we-help/helping-homebuyers/",
+          "quote": "We have programs that will offer you cash assistance at closing | All MHC products require that you complete pre-purchase homebuyer education."
+        },
+        {
+          "text": "The Home4All program provides up to $25,000 in homebuyer assistance. Down payment assistance cannot exceed 50% of the purchase price, and the amount is based on the homebuyer's need.",
+          "source": "Mississippi Home Corporation: Home4All",
+          "url": "https://www.mshomecorp.com/federal-programs/home/home4all/",
+          "quote": "The Home4All program is designed to assist people to become homeowners by providing up to $25,000 in homebuyer assistance. | Downpayment assistance cannot exceed 50% of the purchase price."
+        },
+        {
+          "text": "Home4All requires household income below 80% of median income, adjusted for family size, and that the buyer has not owned or had an interest in a principal residence within the past three years.",
+          "source": "Mississippi Home Corporation: Home4All",
+          "url": "https://www.mshomecorp.com/federal-programs/home/home4all/",
+          "quote": "Household income must be below 80% of median income, adjusted for family size. | Cannot have owned or had an interest in a principal residence within the past three years."
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "Mississippi's homestead exemption gives eligible applicants a tax credit of up to $300 (based on property value) against taxes due on the property.",
+          "source": "Mississippi Department of Revenue: homestead exemption",
+          "url": "https://www.dor.ms.gov/county-services/homestead-exemption",
+          "quote": "Eligible applicants can receive a tax credit of up to $300 (based on property value) against taxes due on the property."
+        },
+        {
+          "text": "Applicants must own and occupy the home as their primary residence on January 1. Applications are accepted during the filing period of January 1 to April 1.",
+          "source": "Mississippi Department of Revenue: homestead exemption",
+          "url": "https://www.dor.ms.gov/county-services/homestead-exemption",
+          "quote": "Applicants must own and occupy their home as their primary residence on January 1 | during the designated filing period (January 1 – April 1)."
+        },
+        {
+          "text": "Applicants who are at least 65, or totally disabled, by January 1 are exempt from taxes on the first $7,500 of assessed value of their homestead.",
+          "source": "Mississippi Department of Revenue: homestead exemption",
+          "url": "https://www.dor.ms.gov/county-services/homestead-exemption",
+          "quote": "exempt from taxes on the first $7,500 of assessed value of their homestead."
+        }
+      ]
+    },
+    "missouri": {
+      "agency": {
+        "name": "Missouri Housing Development Commission (MHDC)",
+        "url": "https://mhdc.com/"
+      },
+      "programs": [
+        {
+          "text": "MHDC's First Place program serves potential first-time homebuyers and qualified veterans. It offers the option of cash assistance for down payment and closing costs, with no minimum down payment or minimum loan amount.",
+          "source": "MHDC: First Place program",
+          "url": "https://mhdc.com/services/homebuyer-programs/first-place/",
+          "quote": "potential first-time homebuyers and qualified Veterans | the option for cash assistance to be used for down payment and closing costs | with no minimum down payment or minimum loan amounts"
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "The Missouri Property Tax Credit is for certain senior citizens and 100 percent disabled individuals. It is a maximum of $1,100 for owners who owned and occupied their home, and it is based on the real estate taxes paid and total household income.",
+          "source": "Missouri Department of Revenue: property tax credit",
+          "url": "https://dor.mo.gov/taxation/individual/tax-types/property-tax-credit/",
+          "quote": "certain senior citizens and 100 percent disabled individuals | The credit is for a maximum of $750 for renters and $1,100 for owners who owned and occupied their home. | is based on the amount of real estate taxes or rent paid and total household income"
+        }
+      ]
+    },
+    "nevada": {
+      "agency": {
+        "name": "Nevada Housing Division",
+        "url": "https://housing.nv.gov/"
+      },
+      "closing": [
+        {
+          "text": "Nevada's real property transfer tax rate is $1.95 for every $500 of the property's value, or any fraction of $500. The county recorder collects it when the transfer documents are recorded.",
+          "source": "Nevada Department of Taxation: real property transfer tax",
+          "url": "https://tax.nv.gov/tax-types/real-property-transfer-tax/",
+          "quote": "the rate is $1.95 for every $500 of the property's value or any fraction thereof"
+        },
+        {
+          "text": "Washoe and Churchill counties add $0.10 to the base rate, and Clark County adds $0.60.",
+          "source": "Nevada Department of Taxation: real property transfer tax",
+          "url": "https://tax.nv.gov/tax-types/real-property-transfer-tax/",
+          "quote": "An additional $0.10 is added to the base rate. | An additional $0.60 is added to the base rate."
+        }
+      ]
+    },
+    "new-jersey": {
+      "agency": {
+        "name": "New Jersey Housing and Mortgage Finance Agency (NJHMFA)",
+        "url": "https://www.nj.gov/dca/hmfa/"
+      },
+      "programs": [
+        {
+          "text": "NJHMFA's Down Payment Assistance Program provides qualified buyers up to $15,000 based on the county of the property being purchased, as an interest-free, five-year forgivable second loan with no monthly payment.",
+          "source": "NJHMFA: homebuyers",
+          "url": "https://www.nj.gov/dca/hmfa/homebuyers-and-renters/homebuyers/",
+          "quote": "provides qualified buyers with up to $15,000 based upon the county of the property being purchased. | an interest-free, five-year forgivable second loan with no monthly payment."
+        },
+        {
+          "text": "NJHMFA considers you a first-time homebuyer if you have not owned a home within the previous three years.",
+          "source": "NJHMFA: homebuyers",
+          "url": "https://www.nj.gov/dca/hmfa/homebuyers-and-renters/homebuyers/",
+          "quote": "You're considered a first-time homebuyer if you have not owned a home within the previous three years."
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "New Jersey's homeowner property tax relief programs include ANCHOR, Stay NJ and the Senior Freeze.",
+          "source": "NJ Division of Taxation: property tax relief programs",
+          "url": "https://www.nj.gov/treasury/taxation/relief.shtml",
+          "quote": "The Fiscal Year 2027 budget provides property tax relief benefits for the Senior Freeze, ANCHOR, and Stay NJ programs."
+        }
+      ],
+      "closing": [
+        {
+          "text": "New Jersey charges the seller a Realty Transfer Fee for recording the deed, calculated on the consideration stated in the deed.",
+          "source": "NJ Division of Taxation: realty transfer fee",
+          "url": "https://www.nj.gov/treasury/taxation/realty.shtml",
+          "quote": "The State imposes a Realty Transfer Fee (RTF) on the seller of real property for recording a deed for the sale. | The RTF is calculated based on the amount of consideration recited in the deed"
+        },
+        {
+          "text": "A Graduated Percent Fee also applies to sales of Class 2 residential property above $1,000,000. It starts at 1% of total consideration between $1,000,000 and $2,000,000 and rises in higher tiers, to 3.5% above $3.5 million. The seller is statutorily responsible for it.",
+          "source": "NJ Division of Taxation: realty transfer fee",
+          "url": "https://www.nj.gov/treasury/taxation/realty.shtml",
+          "quote": "1% of total consideration if in excess of $1,000,000 but not in excess of $2,000,000; | The seller is statutorily responsible for the RTF and the Graduated Percent Fee. | 3.5% of total consideration if in excess of $3,500,000."
+        }
+      ]
+    },
+    "new-mexico": {
+      "agency": {
+        "name": "Mortgage Finance Authority (Housing New Mexico)",
+        "url": "https://housingnm.org/"
+      },
+      "programs": [
+        {
+          "text": "FirstHome is a mortgage loan program for first-time New Mexico homebuyers with low to moderate incomes. FirstDown, a fixed-rate second mortgage, provides down payment and closing cost assistance and must be combined with FirstHome.",
+          "source": "Housing New Mexico: mortgage programs",
+          "url": "https://housingnm.org/programs/homebuyers/mortgage-programs",
+          "quote": "FirstHome is a mortgage loan program for first-time New Mexico homebuyers with low to moderate incomes."
+        },
+        {
+          "text": "HomeNow is a down payment and closing cost second mortgage loan for first-time buyers with lower household incomes. The loan has a 0% interest rate and may be forgiven after 10 years if certain conditions are met.",
+          "source": "Housing New Mexico: mortgage programs",
+          "url": "https://housingnm.org/programs/homebuyers/mortgage-programs",
+          "quote": "The loan has a 0% interest rate and may be forgiven after 10 years if certain conditions are met."
+        },
+        {
+          "text": "The programs page lists a minimum credit score of 620 and requires all homebuyers to receive pre-purchase homebuyer counseling.",
+          "source": "Housing New Mexico: mortgage programs",
+          "url": "https://housingnm.org/programs/homebuyers/mortgage-programs",
+          "quote": "A minimum credit score of 620 is required. | All homebuyers must receive pre-purchase homebuyer counseling."
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "Per the Legislative Finance Committee's May 15, 2024 report, the taxable value of a residential property cannot grow by more than 3 percent each year.",
+          "source": "New Mexico Legislative Finance Committee: Property Taxes in New Mexico (May 2024)",
+          "url": "https://www.nmlegis.gov/Entity/LFC/Documents/Revenue_Reports/Property%20Taxes%20in%20NM%20brief_FINAL.pdf",
+          "quote": "Simply put, the taxable value of a residential property cannot grow by more than 3 percent each year."
+        },
+        {
+          "text": "Heads of household are allowed a $2,000 exemption on the taxable value of residential property for a primary home (as of the committee's May 2024 report).",
+          "source": "New Mexico Legislative Finance Committee: Property Taxes in New Mexico (May 2024)",
+          "url": "https://www.nmlegis.gov/Entity/LFC/Documents/Revenue_Reports/Property%20Taxes%20in%20NM%20brief_FINAL.pdf",
+          "quote": "In New Mexico, head of households are allowed a $2,000 exemption on the taxable value of residential property"
+        }
+      ]
+    },
+    "new-york": {
+      "agency": {
+        "name": "State of New York Mortgage Agency (SONYMA), part of NY Homes and Community Renewal",
+        "url": "https://hcr.ny.gov/homebuyers"
+      },
+      "programs": [
+        {
+          "text": "SONYMA's Down Payment Assistance Loan is an enhanced loan of up to $30,000 for low-income first-time home buyers.",
+          "source": "NY Homes and Community Renewal: SONYMA programs",
+          "url": "https://hcr.ny.gov/sonyma-programs",
+          "quote": "An enhanced down payment assistance loan of up to $30,000 available to low-income first time home buyers."
+        },
+        {
+          "text": "SONYMA also runs programs for veterans (Homes for Veterans) and for recent college graduates (Graduate to Home Ownership).",
+          "source": "NY Homes and Community Renewal: SONYMA programs",
+          "url": "https://hcr.ny.gov/sonyma-programs",
+          "quote": "This program offers low-interest loans for home buying to veterans who have served or currently serving in the armed forces. | This program helps recent college graduates get a home of their own."
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "The School Tax Relief (STAR) program offers property tax relief to eligible New York homeowners. The STAR exemption is no longer available to new homeowners, who can instead register for the STAR credit, which the Tax Department pays by check or direct deposit.",
+          "source": "NY Department of Taxation and Finance: STAR",
+          "url": "https://www.tax.ny.gov/star/",
+          "quote": "The School Tax Relief (STAR) program offers property tax relief to eligible New York State homeowners. | If you are registered for the STAR credit, the Tax Department will issue your STAR benefit via check or direct deposit. | no longer available to new homeowners"
+        },
+        {
+          "text": "For the STAR credit, the combined income of the owners and the owners' spouses must be $500,000 or less.",
+          "source": "NY Department of Taxation and Finance: STAR",
+          "url": "https://www.tax.ny.gov/star/",
+          "quote": "the combined income of the owners and the owners' spouses is $500,000 or less"
+        }
+      ],
+      "closing": [
+        {
+          "text": "New York's mortgage recording tax is made up of a basic tax of 50 cents per $100 of mortgage debt, a special additional tax of 25 cents per $100, and an additional tax of 25 cents per $100 (30 cents per $100 in the Metropolitan Commuter Transportation District). A city or county tax of 25 to 50 cents per $100 applies where it is imposed.",
+          "source": "NY Department of Taxation and Finance: mortgage recording tax",
+          "url": "https://www.tax.ny.gov/pit/mortgage/mtgidx.htm",
+          "quote": "basic tax of 50 cents per $100 of mortgage debt or obligation secured. | special additional tax of 25 cents per $100 | an additional tax of 25 cents per $100 ... (30 cents per $100 for counties within the Metropolitan Commuter Transportation District). | city or county mortgage tax of 25 to 50 cents per $100 ... where applicable."
+        },
+        {
+          "text": "The state real estate transfer tax is two dollars for each $500 of consideration, or fractional part of it.",
+          "source": "NY Department of Taxation and Finance: real estate transfer tax",
+          "url": "https://www.tax.ny.gov/bus/transfer/rptidx.htm",
+          "quote": "Tax is computed at a rate of two dollars for each $500, or fractional part thereof, of consideration."
+        },
+        {
+          "text": "An additional 1% tax (the \"mansion tax\") applies to residences sold for $1 million or more.",
+          "source": "NY Department of Taxation and Finance: real estate transfer tax",
+          "url": "https://www.tax.ny.gov/bus/transfer/rptidx.htm",
+          "quote": "An additional tax (mansion tax) of 1% of the sale price applies to residences where consideration is $1 million or more."
+        }
+      ]
+    },
+    "north-carolina": {
+      "agency": {
+        "name": "North Carolina Housing Finance Agency (NCHFA)",
+        "url": "https://www.nchfa.com/"
+      },
+      "programs": [
+        {
+          "text": "The NC Home Advantage Mortgage is open to both first-time and move-up buyers and comes with down payment assistance. The assistance is forgiven at 20% per year at the end of years 11 through 15, and repayment is required only if you sell, refinance or transfer the home before year 15.",
+          "source": "NCHFA: NC Home Advantage Mortgage",
+          "url": "https://www.nchfa.com/home-buyers/buy-home/nc-home-advantage-mortgage",
+          "quote": "both first-time and move-up home buyers | forgiven at 20% per year at the end of years 11–15 | Repayment of all of our down payment options is required only if you sell, refinance or transfer your home before year 15."
+        },
+        {
+          "text": "A separate $15,000 down payment option, the NC 1st Home Advantage Down Payment, is limited to first-time buyers and military veterans who meet additional eligibility criteria.",
+          "source": "NCHFA: NC Home Advantage Mortgage",
+          "url": "https://www.nchfa.com/home-buyers/buy-home/nc-home-advantage-mortgage",
+          "quote": "first-time buyers and military veterans who meet additional eligibility criteria | $15,000 option"
+        }
+      ],
+      "closing": [
+        {
+          "text": "North Carolina charges an excise tax on conveyances of real property of $1.00 on each $500 of consideration or value, paid by the person transferring the property to the register of deeds before the deed is recorded.",
+          "source": "North Carolina General Statutes § 105-228.30",
+          "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_105/GS_105-228.30.pdf",
+          "quote": "The tax rate is one dollar ($1.00) on each five hundred dollars ($500.00). | The transferor must pay the tax | The transferor must pay the tax to the register of deeds of the county in which the real estate is located | before recording the instrument of conveyance"
+        }
+      ]
+    },
+    "ohio": {
+      "agency": {
+        "name": "Ohio Housing Finance Agency (OHFA)",
+        "url": "https://ohiohome.org/"
+      },
+      "programs": [
+        {
+          "text": "OHFA's Your Choice! Down Payment Assistance lets buyers choose either 2.5% or 5% of the home's purchase price, and it can go toward the down payment, closing costs or other pre-closing expenses. The assistance is forgiven after seven years. If you sell within seven years, you must repay all of it.",
+          "source": "OHFA: Your Choice! Down Payment Assistance",
+          "url": "https://ohiohome.org/partners/documents/DPA.pdf",
+          "quote": "allows homebuyers to choose either 2.5% or 5% of the home's purchase price. | Down payment assistance is forgiven after seven years. | If you sell your home within seven years, you must repay all of the assistance provided."
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "Ohio's homestead exemption lets qualifying homeowners exempt some of the market value of their homes from local property taxes. It is for low-income senior citizens, certain permanently and totally disabled Ohioans, and surviving spouses of those individuals.",
+          "source": "Ohio Department of Taxation: homestead exemption",
+          "url": "https://tax.ohio.gov/help-center/faqs/real-property-tax-homestead-means-testing",
+          "quote": "allows qualifying homeowners to exempt some of the market value of their homes from local property taxes. | low-income senior citizens, certain permanently and totally disabled Ohioans, the surviving spouses of any of those individuals."
+        },
+        {
+          "text": "For tax year 2026 real property, the exemption removes $29,700 of market value for a low-income senior or disabled Ohioan, up from $29,000 for tax year 2025. The income limit for that group is $41,000 for tax year 2026 and $40,000 for tax year 2025.",
+          "source": "Ohio Department of Taxation: homestead exemption",
+          "url": "https://tax.ohio.gov/help-center/faqs/real-property-tax-homestead-means-testing",
+          "quote": "Low-income senior citizen or disabled Ohioan (excluding a disabled veteran): $29,000 (TY 2025 real property), $29,700 (TY 2026 real property). Income threshold: $40,000 (TY 2025), $41,000 (TY 2026)."
+        },
+        {
+          "text": "Applications for real property must be filed on or before December 31 of the year for which the homestead exemption is sought.",
+          "source": "Ohio Department of Taxation: homestead exemption",
+          "url": "https://tax.ohio.gov/help-center/faqs/real-property-tax-homestead-means-testing",
+          "quote": "Applications for real property must be filed on or before December 31st of the year for which"
+        }
+      ]
+    },
+    "oklahoma": {
+      "agency": {
+        "name": "Oklahoma Housing Finance Agency (OHFA)",
+        "url": "https://www.ohfa.org/"
+      },
+      "programs": [
+        {
+          "text": "OHFA offers 3.5% down payment assistance toward your total home loan amount at closing, for first-time and repeat buyers, statewide in all 77 counties. Buyers must use an OHFA lending partner.",
+          "source": "Oklahoma Housing Finance Agency: down payment assistance",
+          "url": "https://www.ohfa.org/homebuyers/downpayment/",
+          "quote": "3.5% OHFA down payment assistance toward your total home loan amount at closing. | Available for first-time and repeat buyers. | in all 77 counties"
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "The Oklahoma homestead exemption requires that you own and occupy the home as your place of residence on January 1. The application must be filed on or before March 15, or within 30 days of receiving a notice of valuation increase.",
+          "source": "Oklahoma Tax Commission: homestead exemption application (Form 921)",
+          "url": "https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/ad-valorem/current/921.pdf",
+          "quote": "only if the application is filed on or before March 15 of such year or within thirty (30) days from and after receipt of notice of valuation increase | Homestead exemption cannot be approved if you do not own and occupy the subject property as your place of residence"
+        }
+      ],
+      "closing": [
+        {
+          "text": "Oklahoma's documentary stamp tax on deeds is 75 cents for each $500 of consideration, or any fractional part of $500.",
+          "source": "Oklahoma Tax Commission: documentary stamps rules (OAC 710:30)",
+          "url": "https://oklahoma.gov/content/dam/ok/en/tax/documents/resources/rules-and-policies/agency-rules/Chapter30-2023.pdf",
+          "quote": "Stamps worth 75 cents must be affixed for each $500.00 (or any fractional part thereof) of the consideration."
+        }
+      ]
+    },
+    "oregon": {
+      "agency": {
+        "name": "Oregon Housing and Community Services (OHCS)",
+        "url": "https://www.oregon.gov/ohcs"
+      },
+      "programs": [
+        {
+          "text": "Oregon's Down Payment Assistance program provides up to $60,000 or 20% of the purchase price, whichever is less, depending on the program and eligibility requirements.",
+          "source": "Oregon Housing and Community Services: down payment assistance",
+          "url": "https://www.oregon.gov/ohcs/homeownership/homebuyers/pages/down-payment-assistance.aspx",
+          "quote": "up to $60,000 or 20% of the purchase price, whichever is less"
+        },
+        {
+          "text": "Buyers must be first-time and/or first-generation homebuyers with income at or below 100% of area median income, complete first-time homebuyer education, and meet with a certified housing counselor.",
+          "source": "Oregon Housing and Community Services: down payment assistance",
+          "url": "https://www.oregon.gov/ohcs/homeownership/homebuyers/pages/down-payment-assistance.aspx",
+          "quote": "first-time and/or first-generation homebuyer | at or below 100% of area median income (AMI) | First-Time Homebuyer Education"
+        },
+        {
+          "text": "Flex Lending down payment funds can cover up to 100% of the borrower's cash requirements at closing, as a forgivable second lien with no payments and no interest, or as an amortizing second lien.",
+          "source": "Oregon Housing and Community Services: down payment assistance",
+          "url": "https://www.oregon.gov/ohcs/homeownership/homebuyers/pages/down-payment-assistance.aspx",
+          "quote": "up to 100% of the borrower's cash requirements at closing | a forgivable second lien with no payments and no interest | an amortizing second lien"
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "Under Measure 50, growth in a property's maximum assessed value is limited to 3 percent per year. Assessed value, the value used to calculate taxes, can't exceed real market value.",
+          "source": "Oregon Department of Revenue: maximum assessed value manual",
+          "url": "https://www.oregon.gov/dor/forms/FormsPubs/maximum-assessed-value-manual_303-438.pdf",
+          "quote": "MAV growth is limited to 3 percent per year. | AV is the value used to calculate the taxes assessed on property and can't exceed RMV."
+        }
+      ]
+    },
+    "pennsylvania": {
+      "agency": {
+        "name": "Pennsylvania Housing Finance Agency (PHFA)",
+        "url": "https://www.phfa.org/"
+      },
+      "programs": [
+        {
+          "text": "The PHFA Grant provides $500 to help with down payment and closing costs.",
+          "source": "PHFA: assistance loans for home purchase",
+          "url": "https://www.phfa.org/programs/assistance.aspx",
+          "quote": "The PHFA Grant provides grant assistance of $500 to help with downpayment and closing costs"
+        },
+        {
+          "text": "The Keystone Forgivable in Ten Years (K-FIT) program provides a second mortgage loan that is forgiven gradually over ten years.",
+          "source": "PHFA: assistance loans for home purchase",
+          "url": "https://www.phfa.org/programs/assistance.aspx",
+          "quote": "This program provides a second mortgage loan to help buyers supplement the costs of homeownership. (Keystone Forgivable in Ten Years Loan Program (K-FIT))"
+        }
+      ],
+      "closing": [
+        {
+          "text": "Pennsylvania's realty transfer tax is 1 percent of the value of the real estate.",
+          "source": "Pennsylvania Department of Revenue: realty transfer tax",
+          "url": "https://www.pa.gov/agencies/revenue/resources/tax-types-and-information/realty-transfer-tax",
+          "quote": "Pennsylvania realty transfer tax is imposed at a rate of 1 percent on the value of real estate."
+        },
+        {
+          "text": "County recorders of deeds collect the state tax, often along with an additional local realty transfer tax.",
+          "source": "Pennsylvania Department of Revenue: realty transfer tax",
+          "url": "https://www.pa.gov/agencies/revenue/resources/tax-types-and-information/realty-transfer-tax",
+          "quote": "collected, often along with an additional local realty transfer tax, by county Recorders of Deeds."
+        }
+      ]
+    },
+    "south-carolina": {
+      "agency": {
+        "name": "South Carolina State Housing Finance and Development Authority (SC Housing)",
+        "url": "https://schousing.sc.gov/"
+      },
+      "propertyTax": [
+        {
+          "text": "South Carolina's homestead exemption, for homeowners over age 65, totally and permanently disabled, or legally blind, completely exempts the first $50,000 of the fair market value of a legal residence from property tax. Contact your county auditor's office to apply.",
+          "source": "South Carolina Department of Revenue: exempt property",
+          "url": "https://dor.sc.gov/property/exempt-property",
+          "quote": "for homeowners over age 65, totally and permanently disabled, or legally blind | The Homestead Exemption is a complete exemption of taxes on the first $50,000 in Fair Market Value of your Legal Residence | Contact your county auditor's office for more information."
+        }
+      ],
+      "closing": [
+        {
+          "text": "South Carolina's deed recording fee is $1.85 on realty value of $100 to $500, and $1.85 for each additional $500 increment. The state portion is $1.30 and the county portion is $0.55.",
+          "source": "South Carolina Department of Revenue: deed recording fee",
+          "url": "https://dor.sc.gov/tax-index/deed-recording-fee",
+          "quote": "$1.85 on realty value of $100-$500 | $1.85 for each $500 increments afterwards | The state portion is $1.30 | The county portion is $.55"
+        }
+      ],
+      "programs": [
+        {
+          "text": "SC Housing's Palmetto Home Advantage offers forgivable down payment assistance of 0%, 3% or 4% of the loan amount with no monthly payment. It is open to first-time, move-up and repeat buyers, with no first-time homebuyer requirement.",
+          "source": "SC Housing: Palmetto Home Advantage",
+          "url": "https://schousing.sc.gov/homebuyers/programs-homebuyers/palmetto-home-advantage",
+          "quote": "forgivable down payment assistance of 0%, 3%, or 4% of the loan amount with no monthly payment. | first-time, move-up and repeat buyers with no first-time home buyer requirements"
+        }
+      ]
+    },
+    "tennessee": {
+      "agency": {
+        "name": "Tennessee Housing Development Agency (THDA)",
+        "url": "https://thda.org/"
+      },
+      "programs": [
+        {
+          "text": "With a THDA Great Choice Home Loan, a deferred down payment option provides up to $6,000 or up to $10,000 as a forgivable second mortgage at 0% interest. It is forgiven after a 10-year term, and the loan is due in full if you sell or refinance before then.",
+          "source": "THDA: down payment assistance",
+          "url": "https://thda.org/homebuyers/down-payment-assistance/",
+          "quote": "If you qualify for a Great Choice Home Loan | forgivable second mortgage loan | 0% interest | forgiven after a 10-year term | Down Payment Assistance is available up to $6,000 or up to $10,000 in the form of a forgivable second mortgage loan. | Loan is forgiven at the end of 10-year term. | If the home is sold or refinanced prior to 10-year term, the loan is due in full."
+        },
+        {
+          "text": "THDA also offers an amortizing option of up to 5% of the sales price, capped at $15,000, as a 30-year second mortgage loan.",
+          "source": "THDA: down payment assistance",
+          "url": "https://thda.org/homebuyers/down-payment-assistance/",
+          "quote": "up to 5% of the sales price, capped at $15,000 | second mortgage loan | 30-year amortizing term"
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "Tennessee state law provides property tax relief for low-income elderly and disabled homeowners, as well as disabled veteran homeowners or their surviving spouses.",
+          "source": "Tennessee Comptroller: property tax programs",
+          "url": "https://comptroller.tn.gov/office-functions/pa/property-taxes/property-tax-programs.html",
+          "quote": "Tennessee state law provides for property tax relief for low-income elderly and disabled homeowners | as well as disabled veteran homeowners or their surviving spouses."
+        }
+      ],
+      "closing": [
+        {
+          "text": "Tennessee's realty transfer tax is $0.37 per $100 of the purchase price.",
+          "source": "Tennessee Department of Revenue: recordation taxes",
+          "url": "https://www.tn.gov/revenue/taxes/local-taxes/recordation-taxes/due-date-tax-rate.html",
+          "quote": "$0.37 per $100 of purchase price for the realty transfer"
+        },
+        {
+          "text": "The recordation tax on a mortgage or deed of trust is $0.115 per $100 of indebtedness, and the first $2,000 of the debt is exempt.",
+          "source": "Tennessee Department of Revenue: recordation taxes",
+          "url": "https://www.tn.gov/revenue/taxes/local-taxes/recordation-taxes/due-date-tax-rate.html",
+          "quote": "$0.115 per $100 of indebtedness. (The first $2,000 of the debt is exempt from taxation.)"
+        }
+      ]
+    },
+    "texas": {
+      "agency": {
+        "name": "Texas State Affordable Housing Corporation (TSAHC)",
+        "url": "https://www.tsahc.org/"
+      },
+      "programs": [
+        {
+          "text": "TSAHC offers homebuyer programs that include down payment assistance and Mortgage Credit Certificates (MCCs).",
+          "source": "TSAHC homebuyer programs",
+          "url": "https://www.tsahc.org/homebuyers",
+          "quote": "Down Payment Assistance (DPA) ... Mortgage Credit Certificates (MCCs)"
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "School districts must provide a $140,000 exemption on a residence homestead, which is the home you live in as your main residence.",
+          "source": "Texas Comptroller: property tax exemptions",
+          "url": "https://comptroller.texas.gov/taxes/property-tax/exemptions/",
+          "quote": "Tax Code Section 11.13(b) requires school districts to provide a $140,000 exemption on a residence homestead."
+        },
+        {
+          "text": "Homeowners who are 65 or older, or who are disabled, qualify for an additional $60,000 school district exemption.",
+          "source": "Texas Comptroller: property tax exemptions",
+          "url": "https://comptroller.texas.gov/taxes/property-tax/exemptions/",
+          "quote": "Tax Code Section 11.13(c) requires school districts to provide an additional $60,000 residence homestead exemption."
+        },
+        {
+          "text": "The general deadline to file a homestead exemption application is before May 1.",
+          "source": "Texas Comptroller: property tax exemptions",
+          "url": "https://comptroller.texas.gov/taxes/property-tax/exemptions/",
+          "quote": "The general deadline for filing an exemption application is before May 1."
+        }
+      ]
+    },
+    "utah": {
+      "agency": {
+        "name": "Utah Housing Corporation",
+        "url": "https://utahhousingcorp.org/"
+      },
+      "programs": [
+        {
+          "text": "Utah Housing Corporation lets eligible buyers borrow their entire minimum required down payment plus all or part of their closing costs on a 30-year fixed-rate second mortgage. You must first qualify for a Utah Housing first mortgage.",
+          "source": "Utah Housing Corporation: down payment assistance",
+          "url": "https://utahhousingcorp.org/homebuyer/programs/downPaymentAssistance",
+          "quote": "You may be able to borrow your entire minimum required down payment plus all or a portion of your closing costs | on a Utah Housing Corp 30 year fixed rate second mortgage | you must first qualify for a Utah Housing Corp first mortgage home loan"
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "Utah law allows a 45% exemption on the market value of qualifying primary residential property, which reduces taxable value to 55% of fair market value.",
+          "source": "Utah State Tax Commission: primary residential exemption",
+          "url": "https://tax.utah.gov/propertytax/tax-relief/primary-residential-exemption/",
+          "quote": "45% exemption on the market value of qualifying primary residential property | This exemption reduces the taxable value of eligible primary residences to 55% of their fair market value."
+        },
+        {
+          "text": "A primary residence is a dwelling occupied as a primary domicile for at least 183 consecutive days in a calendar year. A household can claim only one such exemption in Utah.",
+          "source": "Utah State Tax Commission: primary residential exemption",
+          "url": "https://tax.utah.gov/propertytax/tax-relief/primary-residential-exemption/",
+          "quote": "occupied as a primary domicile for at least 183 consecutive days in a calendar year | Only one primary residential exemption may be claimed per household within the State of Utah."
+        }
+      ]
+    },
+    "virginia": {
+      "agency": {
+        "name": "Virginia Housing",
+        "url": "https://www.virginiahousing.com/"
+      },
+      "programs": [
+        {
+          "text": "Virginia Housing's Down Payment Assistance Grant is for qualified first-time homebuyers, or repeat buyers purchasing in Areas of Economic Opportunity, who have a bond FHA or conventional loan from Virginia Housing. It can only be used with eligible Virginia Housing loans, and household income and purchase price must fall within the program's limits.",
+          "source": "Virginia Housing: Down Payment Assistance Grant",
+          "url": "https://www.virginiahousing.com/homebuyers/down-payment-assistance-grant",
+          "quote": "Be a qualified first-time homebuyer or repeat buyer purchasing in Areas of Economic Opportunity | Have a bond FHA/Conventional loan from Virginia Housing | may only be used with eligible Virginia Housing loans"
+        }
+      ]
+    },
+    "washington": {
+      "propertyTax": [
+        {
+          "text": "Washington offers a property tax reduction for senior citizens and people with disabilities. Applicants must be at least 61 or retired from regular gainful employment due to a disability, and have combined disposable income at or below the threshold for their county. The reduction depends on income, home value and local levy rates.",
+          "source": "Washington Department of Revenue: property tax exemptions and deferrals",
+          "url": "https://dor.wa.gov/taxes-rates/property-tax/property-tax-exemptions-and-deferrals",
+          "quote": "At least 61 years of age or older. | Retired from regular gainful employment due to a disability. | have combined disposable income of Income Threshold 3 or less for your county. | The qualifying applicant receives a reduction in the amount of property taxes due. | The amount of the reduction is based on the applicant's income, the value of the residence, and the local levy rates."
+        },
+        {
+          "text": "A separate deferral program lets eligible homeowners age 60 or older (or retired due to a disability) postpone paying property taxes. Deferred amounts accrue 5% simple interest and are repaid when the home is sold, the owner dies, or the home stops being the primary residence.",
+          "source": "Washington Department of Revenue: property tax exemptions and deferrals",
+          "url": "https://dor.wa.gov/taxes-rates/property-tax/property-tax-exemptions-and-deferrals",
+          "quote": "Taxpayers who are at least 60 years of age or older by December 31 of the year the application for deferral is filed. | allow payment of property taxes and special assessments for current and delinquent years. | The deferred amount accrues 5% simple interest until repayment is complete."
+        }
+      ],
+      "closing": [
+        {
+          "text": "Washington's state real estate excise tax rate depends on the sale price (rates effective January 1, 2023): 1.10% for $525,000 or less; 1.28% for $525,000.01 to $1,525,000; 2.75% for $1,525,000.01 to $3,025,000; and 3% for $3,025,000.01 or more. The thresholds change for sales beginning January 1, 2027.",
+          "source": "Washington Department of Revenue: real estate excise tax",
+          "url": "https://dor.wa.gov/taxes-rates/other-taxes/real-estate-excise-tax",
+          "quote": "$525,000 or less: 1.10% | $525,000.01 - $1,525,000: 1.28% | $1,525,000.01 - $3,025,000: 2.75% | $3,025,000.01 or more: 3% | Graduated REET Structure effective Jan. 1, 2023 for the state portion of REET | The selling price thresholds and tax rates for sales beginning January 1, 2027 are:"
+        },
+        {
+          "text": "The seller usually pays the real estate excise tax, but if they don't, the buyer is responsible. The local excise tax is added to the state rate for the total tax due.",
+          "source": "Washington Department of Revenue: real estate excise tax",
+          "url": "https://dor.wa.gov/taxes-rates/other-taxes/real-estate-excise-tax",
+          "quote": "Usually, the seller pays this tax, but if they don't, the buyer is responsible. | The local REET must be calculated and added to the graduated state rate for the total tax due."
+        }
+      ],
+      "agency": {
+        "name": "Washington State Housing Finance Commission (Here to Home)",
+        "url": "https://heretohome.org/"
+      },
+      "programs": [
+        {
+          "text": "The Washington State Housing Finance Commission says every one of its home loans, including Home Advantage and House Key Opportunity, comes with down payment assistance.",
+          "source": "Washington State Housing Finance Commission: Here to Home",
+          "url": "https://heretohome.org/",
+          "quote": "Home Advantage and House Key Opportunity provide many options -- all with downpayment assistance. | Every one of our loans includes downpayment assistance."
+        }
+      ]
+    },
+    "wisconsin": {
+      "agency": {
+        "name": "Wisconsin Housing and Economic Development Authority (WHEDA)",
+        "url": "https://www.wheda.com/"
+      },
+      "programs": [
+        {
+          "text": "WHEDA's Easy Close Advantage down payment assistance is a 10-year fixed rate second mortgage with monthly payments, with a $1,000 minimum loan amount and a maximum of 6% of the purchase price when partnered with a WHEDA Conventional first mortgage.",
+          "source": "WHEDA: available programs",
+          "url": "https://www.wheda.com/homeownership-and-renters/home-buyers/available-programs",
+          "quote": "10-year fixed rate second mortgage with monthly payment | Minimum loan amount of $1,000 | Maximum loan amount is 6% of the purchase price when partnered with a WHEDA Conventional first mortgage loan"
+        },
+        {
+          "text": "WHEDA's Capital Access down payment assistance is $7,500 as a 30-year fixed rate mortgage at 0% interest with no monthly payments (the page notes actual APR may vary). Reservations are accepted on a first-come, first-served basis.",
+          "source": "WHEDA: available programs",
+          "url": "https://www.wheda.com/homeownership-and-renters/home-buyers/available-programs",
+          "quote": "Loan amount of $7,500 | 30-year fixed rate mortgage | 0% Interest rate* | No Monthly Payments | Actual APR may vary | first-come, first-served basis"
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "The Wisconsin Lottery and Gaming Credit is for Wisconsin residents who own a dwelling and use it as their primary residence as of the January 1 certification date. It appears on the tax bill as a reduction of property taxes due.",
+          "source": "Wisconsin Department of Revenue: lottery and gaming credit",
+          "url": "https://www.revenue.wi.gov/Pages/FAQS/slf-lottcr.aspx",
+          "quote": "must be a Wisconsin resident, own a dwelling and use it as your primary residence as of the January 1 certification date | The lottery and gaming credit is displayed on tax bills as a reduction of property taxes due."
+        }
+      ],
+      "closing": [
+        {
+          "text": "Wisconsin's real estate transfer fee is $0.30 for each $100 of value, or fraction of $100, of the property being transferred.",
+          "source": "Wisconsin Department of Revenue: real estate transfer fee report",
+          "url": "https://www.revenue.wi.gov/DORReports/RET2025.pdf",
+          "quote": "The current fee is $0.30 for each $100 of value or fraction thereof of the value of the property being transferred."
+        }
+      ]
+    },
+    "nebraska": {
+      "agency": {
+        "name": "Nebraska Investment Finance Authority (NIFA)",
+        "url": "https://www.nifa.org/"
+      },
+      "programs": [
+        {
+          "text": "NIFA's First Home Program helps eligible first-time homebuyers purchase a home in Nebraska. The page says it may be a good fit if you are buying your first home, or if it has been three or more years since you owned and lived in a home as your primary residence.",
+          "source": "Nebraska Investment Finance Authority: First Home Program",
+          "url": "https://www.nifa.org/homebuyers-renters/first-home",
+          "quote": "The NIFA First Home Program helps eligible first-time homebuyers purchase a home in Nebraska. | This program may be a good fit if you are buying your first home, or if it has been three or more years since you owned and lived in a home as your primary residence."
+        }
+      ],
+      "closing": [
+        {
+          "text": "Nebraska's documentary stamp tax rate is $3.32 per each $1,000 of value or fraction thereof, effective July 18, 2026.",
+          "source": "Nebraska Department of Revenue: documentary stamp tax rate history",
+          "url": "https://revenue.nebraska.gov/PAD/documentary-stamp-tax/documentary-stamp-tax-rate-history",
+          "quote": "July 18, 2026 through current: $3.32 per each $1,000 of value or fraction thereof"
+        },
+        {
+          "text": "The tax is imposed on a grantor executing a deed for the privilege of recording the transfer.",
+          "source": "Nebraska Department of Revenue: documentary stamp tax",
+          "url": "https://revenue.nebraska.gov/PAD/documentary-stamp-tax",
+          "quote": "imposed on a grantor executing a deed for the privilege of recording the transfer."
+        }
+      ]
+    },
+    "new-hampshire": {
+      "closing": [
+        {
+          "text": "New Hampshire's real estate transfer tax is imposed on both the buyer and the seller at the rate of $0.75 per $100.",
+          "source": "New Hampshire Department of Revenue Administration: real estate transfer tax",
+          "url": "https://www.revenue.nh.gov/taxes-glance/real-estate-transfer-tax",
+          "quote": "The tax is imposed on both the buyer and the seller at the rate of $.75 per $100"
+        }
+      ],
+      "agency": {
+        "name": "New Hampshire Housing (NH Housing)",
+        "url": "https://www.nhhousing.org/"
+      },
+      "programs": [
+        {
+          "text": "In an announcement effective August 1, 2024, New Hampshire Housing said downpayment assistance is available in fixed amounts of $5,000, $10,000, or $15,000, raising the previous cap from $10,000 to $15,000, for all qualifying homebuyers, not only first-time buyers. Confirm current terms with NH Housing.",
+          "source": "New Hampshire Housing: downpayment assistance announcement",
+          "url": "https://www.nhhousing.org/homebuyers-in-new-hampshire-can-now-receive-up-to-15000-in-downpayment-assistance/",
+          "quote": "fixed amounts of $5,000, $10,000, or $15,000 | raises the previous assistance cap from $10,000 to $15,000 | these new tiers are available to all qualifying homebuyers, not limited to only first-time buyers | effective August 1st (announcement dated August 1, 2024)"
+        }
+      ]
+    },
+    "rhode-island": {
+      "agency": {
+        "name": "Rhode Island Housing (RIHousing)",
+        "url": "https://www.rihousing.com/"
+      },
+      "programs": [
+        {
+          "text": "RIHousing's 15kDPA program provides $15,000 in assistance for down payment and/or closing costs as a zero-percent (0%) interest rate loan to first-time homebuyers in Rhode Island. No monthly payments are due.",
+          "source": "RIHousing: $15K down payment assistance",
+          "url": "https://www.rihousing.com/homebuyers/15k-dpa/",
+          "quote": "RIHousing's 15kDPA program provides $15,000 in assistance for down payment and/or closing costs | in the form of a zero-percent (0%) interest rate loan to first-time homebuyers in Rhode Island. | No monthly payments due"
+        },
+        {
+          "text": "Listed requirements include being a first-time homebuyer purchasing a 1-4 family home or condominium in Rhode Island, a minimum credit score of 660, a homebuyer education course, meeting RIHousing price and income limits, a RIHousing-funded first mortgage, and occupying the home as your primary residence.",
+          "source": "RIHousing: $15K down payment assistance",
+          "url": "https://www.rihousing.com/homebuyers/15k-dpa/",
+          "quote": "Be a first-time homebuyer purchasing a 1-4 family home or condominium in Rhode Island | Have a minimum credit score of 660 | Complete a homebuyer education course | Must meet RIHousing Price and Income Limits"
+        }
+      ],
+      "closing": [
+        {
+          "text": "Rhode Island's real estate conveyance tax is $3.75 for each $500 (or fraction thereof), up from $2.30, effective October 1, 2025.",
+          "source": "Rhode Island Division of Taxation: advisory 2025-13, conveyance tax increase",
+          "url": "https://tax.ri.gov/sites/g/files/xkgbur541/files/2025-08/ADV_2025_13_Conveyance_tax_increase.pdf",
+          "quote": "Rates increase from $2.30 to $3.75 per each $500 | The change is effective October 1, 2025."
+        },
+        {
+          "text": "A second, higher tier applies when residential real property is conveyed for more than $800,000.",
+          "source": "Rhode Island Division of Taxation: advisory 2025-13, conveyance tax increase",
+          "url": "https://tax.ri.gov/sites/g/files/xkgbur541/files/2025-08/ADV_2025_13_Conveyance_tax_increase.pdf",
+          "quote": "a second tier (Tier 2) rate applies when Residential Real Property is conveyed for more than $800,000."
+        },
+        {
+          "text": "The tax must be paid by the seller, grantor, assignor, transferor or person making the conveyance, unless there is an agreement with the purchaser to the contrary.",
+          "source": "Rhode Island Division of Taxation: real estate conveyance tax",
+          "url": "https://tax.ri.gov/tax-sections/sales-excise-taxes/real-estate-conveyance-tax",
+          "quote": "The tax must be paid by the seller, grantor, assignor, transferor or person making the conveyance or vesting"
+        }
+      ]
+    },
+    "montana": {
+      "agency": {
+        "name": "Montana Board of Housing",
+        "url": "https://housing.mt.gov/"
+      },
+      "programs": [
+        {
+          "text": "Montana's Bond Advantage down payment assistance can be used for down payment and closing costs, up to 5% of the sales price with a maximum of $15,000. It requires a Montana Board of Housing 30-year first mortgage, a minimum credit score of 620, homebuyer education, and at least $1,000 cash invested by the borrower.",
+          "source": "Montana Board of Housing: down payment assistance",
+          "url": "https://commerce.mt.gov/Housing/Homeownership/Down-Payment-Assistance",
+          "quote": "Available for up to 5% of sales price, maximum $15,000 | Requires a Montana Board of Housing 30-year first mortgage, both loans have the same fixed rate | Minimum credit score of 620 for all borrowers | Homebuyer Education is required | Borrowers must provide a minimum of $1,000 cash investment in the purchase."
+        },
+        {
+          "text": "The MBOH Plus 0% Deferred program offers a 0% second loan with no monthly payments, up to 5% of the sales price with a maximum of $15,000. The page lists a household income limit of $80,000 for 1-2 people and $90,000 for 3 or more, a minimum credit score of 620, and a maximum debt-to-income ratio of 45%.",
+          "source": "Montana Board of Housing: down payment assistance",
+          "url": "https://commerce.mt.gov/Housing/Homeownership/Down-Payment-Assistance",
+          "quote": "0% second loan, no monthly payments | Household income limit $80,000 for 1-2 people and $90,000 for 3+ people | Minimum credit score of 620, maximum Debt-to-Income (DTI) of 45% for all borrowers | Available for up to 5% of sales price, maximum $15,000"
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "Montana's Homestead Reduced Rate gives qualifying owner-occupied homes a reduced tax rate compared to standard Class 4 residential property. Owners must occupy the home as their principal residence for at least seven months per year, and be current on property tax payments.",
+          "source": "Montana Department of Revenue: Homestead Reduced Tax Rate FAQs",
+          "url": "https://revenue.mt.gov/property/property-tax-changes/homestead-faqs",
+          "quote": "carries a reduced tax rate compared to standard Class 4 residential property. | occupy their Montana home as their principal residence for at least seven months per year"
+        },
+        {
+          "text": "Enrollment for the 2027 tax year closes on March 1, 2027. The Homestead Reduced Rate expires at the end of the calendar year.",
+          "source": "Montana Department of Revenue: Homestead Reduced Tax Rate FAQs",
+          "url": "https://revenue.mt.gov/property/property-tax-changes/homestead-faqs",
+          "quote": "Homestead and long-term rental reduced tax rate enrollment is now open for the 2027 tax year. | closes on March 1, 2027."
+        }
+      ]
+    },
+    "north-dakota": {
+      "agency": {
+        "name": "North Dakota Housing Finance Agency (NDHFA)",
+        "url": "https://www.ndhousing.nd.gov/"
+      },
+      "programs": [
+        {
+          "text": "NDHFA's FirstHome program requires that you have not owned a home as your principal residence within the last three years and that you meet income and purchase price limits. The agency says all of its programs require a $500 out-of-pocket cash investment.",
+          "source": "North Dakota Housing Finance Agency: homeownership programs",
+          "url": "https://www.ndhousing.nd.gov/homeownership",
+          "quote": "You must not have owned a home as your principle residence within the last three years | You must meet income and purchase price limits. | All of our programs require a $500 out-of-pocket cash investment."
+        },
+        {
+          "text": "NDHFA's DCA (down payment and closing cost assistance) equals three percent of the first mortgage loan amount. It cannot be used with other down payment assistance programs, requires a homebuyer education course, and is for one- to two-unit properties where one unit is occupied by the borrower.",
+          "source": "North Dakota Housing Finance Agency: homeownership programs",
+          "url": "https://www.ndhousing.nd.gov/homeownership",
+          "quote": "Amount of assistance equals three percent of the first mortgage loan amount | DCA cannot be used in conjunction with any other down payment assistance programs. | You must complete a homebuyer education course and receive a certificate of completion | Only one to two-unit properties (one unit must be occupied by borrower)."
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "North Dakota's homestead property tax credit is for homeowners who are 65 or older or have a permanent and total disability, who live at and have an ownership interest in the property, and whose income, including a spouse and dependents, does not exceed $70,000.",
+          "source": "North Dakota Office of State Tax Commissioner: homestead property tax credit",
+          "url": "https://www.tax.nd.gov/homestead-property-tax-credit",
+          "quote": "65 years of age or older, OR An individual with a permanent and total disability. | Live at and have an ownership interest in the property. | Not have income that exceeds $70,000, including the income of your spouse and any dependents."
+        },
+        {
+          "text": "With income of $0 to $40,000, taxable value is reduced by 100%, up to $9,000 of taxable value. With income of $40,001 to $70,000, it is reduced by 50%, up to $4,500 of taxable value.",
+          "source": "North Dakota Office of State Tax Commissioner: homestead property tax credit",
+          "url": "https://www.tax.nd.gov/homestead-property-tax-credit",
+          "quote": "Income $0–$40,000: taxable value reduced by 100%, up to $9,000 of taxable value | Income $40,001–$70,000: taxable value reduced by 50%, up to $4,500 of taxable value"
+        },
+        {
+          "text": "Applications are due April 1 in the year in which the property is assessed and for which the credit is requested.",
+          "source": "North Dakota Office of State Tax Commissioner: homestead property tax credit",
+          "url": "https://www.tax.nd.gov/homestead-property-tax-credit",
+          "quote": "Applications are due April 1st in the year in which the property is assessed and for which the credit is requested."
+        }
+      ]
+    },
+    "south-dakota": {
+      "agency": {
+        "name": "South Dakota Housing Development Authority (SD Housing)",
+        "url": "https://www.sdhda.org/"
+      },
+      "programs": [
+        {
+          "text": "SD Housing's Fixed Rate Plus loan may provide 3% or 5% in downpayment and closing costs assistance, as a second mortgage at 0% interest rate, due-on-sale or satisfaction, with no payments and no additional fees. Ask your lender to see if you qualify.",
+          "source": "SD Housing: downpayment assistance",
+          "url": "https://www.sdhda.org/homeownership/downpayment-assistance",
+          "quote": "If you qualify, you may receive 3% or 5% in downpayment and closing costs assistance to help with financing your mortgage. | will include a second mortgage at 0% interest rate, due-on-sale or satisfaction, no payments and no additional fees."
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "South Dakota's assessment freeze for the elderly and disabled requires you to be 65 or older or disabled, and to have owned an owner-occupied single-family dwelling and been a South Dakota resident for five years (unless you received the freeze the previous year). Income and property value limits apply, and applications go to the county treasurer on or before April 1.",
+          "source": "South Dakota Department of Revenue: property tax relief programs",
+          "url": "https://dor.sd.gov/individuals/taxes/property-tax/relief-programs/",
+          "quote": "You must be 65 years of age or older OR disabled | You must have been an owner of an owner-occupied single-family dwelling and a resident of South Dakota for five years, unless you received the assessment freeze in the previous year. | Income and property value limits apply. | on or before April 1st"
+        }
+      ]
+    },
+    "vermont": {
+      "agency": {
+        "name": "Vermont Housing Finance Agency (VHFA)",
+        "url": "https://vhfa.org/"
+      },
+      "programs": [
+        {
+          "text": "VHFA's ASSIST down payment assistance is up to a $10,000 loan for down payment and closing assistance, as a 0% deferred loan with no monthly payments. It is available exclusively with VHFA MOVE, and borrowers and non-borrowing spouses must have never owned a home and have less than $20,000 combined liquid assets.",
+          "source": "Vermont Housing Finance Agency: loan programs",
+          "url": "https://www.vhfa.org/homebuyers/loanprograms",
+          "quote": "Up to $10,000 loan for down payment and closing assistance | 0% deferred loan with no monthly payments | Borrowers and non-borrowing spouses must have NEVER owned a home and have less than $20,000 combined liquid assets | Available exclusively with VHFA MOVE."
+        },
+        {
+          "text": "The First Generation Homebuyer Grant is a $15,000 grant for down payment and closing costs. It is available exclusively with VHFA MOVE, MOVE MCC, or ADVANTAGE.",
+          "source": "Vermont Housing Finance Agency: loan programs",
+          "url": "https://www.vhfa.org/homebuyers/loanprograms",
+          "quote": "$15,000 grant for down payment and closing costs | Available exclusively with VHFA MOVE, MOVE MCC, or ADVANTAGE."
+        },
+        {
+          "text": "A Mortgage Credit Certificate (MCC) is a federal tax credit of up to 50% of mortgage interest paid annually, capped at $2,000 per year. Other credit and property eligibility requirements apply.",
+          "source": "Vermont Housing Finance Agency: loan programs",
+          "url": "https://www.vhfa.org/homebuyers/loanprograms",
+          "quote": "Federal tax credit up to 50% of mortgage interest paid annually, capped at $2,000 per year"
+        }
+      ],
+      "closing": [
+        {
+          "text": "Vermont's property transfer tax general rate is 1.25%. A separate 0.22% Clean Water Surcharge also applies.",
+          "source": "Vermont Department of Taxes: property transfer tax",
+          "url": "https://tax.vermont.gov/property/property-transfer-tax",
+          "quote": "General Tax Rate: 1.25%. | 0.22% Clean Water Surcharge"
+        },
+        {
+          "text": "For a principal residence, the first $200,000 of value paid is subject to the 0.5% Principal Residence Tax Rate.",
+          "source": "Vermont Department of Taxes: property transfer tax",
+          "url": "https://tax.vermont.gov/property/property-transfer-tax",
+          "quote": "Principal Residence Tax Rate: 0.5%. | The first $200,000 of value paid is subject to 0.5% Principal Residence Tax Rate."
+        }
+      ]
+    },
+    "west-virginia": {
+      "agency": {
+        "name": "West Virginia Housing Development Fund (WVHDF)",
+        "url": "https://www.wvhdf.com/"
+      },
+      "programs": [
+        {
+          "text": "A WVHDF Homeownership Program Loan is a 30-year, fixed rate mortgage loan, and up to 100% of the purchase price of the home can be financed.",
+          "source": "West Virginia Housing Development Fund: Homeownership Program",
+          "url": "https://www.wvhdf.com/home-buyers/homeownership-program",
+          "quote": "A Homeownership Program Loan is a 30-year, fixed rate mortgage loan. | Up to 100% of the purchase price of the home can be financed."
+        },
+        {
+          "text": "Borrower gross income must not exceed a county income limit, and the house must not exceed a house price limit. In certain counties the borrower cannot have owned a home within the prior three years.",
+          "source": "West Virginia Housing Development Fund: Homeownership Program",
+          "url": "https://www.wvhdf.com/home-buyers/homeownership-program",
+          "quote": "Borrower(s) gross income must not exceed a county income limit; | The house to be purchased must not exceed a house price limit; | cannot have owned a home within the prior three years"
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "The first $20,000 of assessed value of owner-occupied residential property owned by a person age 65 or older, or by a person who is permanently and totally disabled, is exempt.",
+          "source": "West Virginia State Tax Department: property tax exemptions",
+          "url": "https://tax.wv.gov/Business/PropertyTax/Pages/PropertyTaxExemptions.aspx",
+          "quote": "The first $20,000 of assessed value of owner-occupied residential property | owned by a person age 65 or older or by a person who is permanently and totally disabled is exempt."
+        }
+      ]
+    },
+    "wyoming": {
+      "agency": {
+        "name": "Wyoming Community Development Authority (WCDA)",
+        "url": "https://www.wyomingcda.com/"
+      },
+      "programs": [
+        {
+          "text": "WCDA's down payment assistance products list a $15,000 maximum loan amount, a 620 minimum credit score, and a $1,500 minimum borrower contribution (which may be a gift).",
+          "source": "Wyoming Community Development Authority: homebuyers",
+          "url": "https://www.wyomingcda.com/homebuyers/",
+          "quote": "$15,000 maximum loan amount | 620 minimum credit score | $1,500 minimum borrower contribution required (may be a gift)"
+        },
+        {
+          "text": "WCDA's Advantage loan is a 30-year fixed rate mortgage with no first-time homebuyer requirement. It lists a minimum credit score of 620 and requires you to occupy the property as your principal residence for at least one year.",
+          "source": "Wyoming Community Development Authority: homebuyers",
+          "url": "https://www.wyomingcda.com/homebuyers/",
+          "quote": "30-year fixed rate mortgage | No first-time homebuyer requirement | Minimum credit score of 620 | Must occupy property as principal residence for at least one year"
+        },
+        {
+          "text": "WCDA's First-Time Home Buyer loan requires no ownership interest in a primary residence in the last 3 years.",
+          "source": "Wyoming Community Development Authority: homebuyers",
+          "url": "https://www.wyomingcda.com/homebuyers/",
+          "quote": "Must meet first-time homebuyer (FTHB) requirement of no ownership interest in a primary residence in the last 3 years"
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "Wyoming assesses residential property at 9.5% of market value.",
+          "source": "Wyoming Department of Revenue, Property Tax Division: residential",
+          "url": "https://wyo-prop-div.wyo.gov/residential",
+          "quote": "Residential property is assessed at 9.5% of market value."
+        }
+      ]
+    }
+  }
+}
