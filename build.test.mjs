@@ -81,6 +81,26 @@ test('basePath prefixes every internal link and asset', async () => {
   assert.match(sitemap, /<loc>https:\/\/[^<]+\/mortgage-calculator\/texas\/<\/loc>/);
 });
 
+test('site icon files are generated and linked from the page head', async () => {
+  const { out, res } = await buildSynthetic();
+  assert.equal(res.status, 0, res.stderr);
+  const pngSig = [137, 80, 78, 71, 13, 10, 26, 10];
+  for (const [file, size] of [['icon-192.png', 192], ['apple-touch-icon.png', 180]]) {
+    const png = await readFile(path.join(out, file));
+    assert.deepEqual([...png.subarray(0, 8)], pngSig, `${file} is not a PNG`);
+    assert.equal(png.readUInt32BE(16), size);
+    assert.equal(png.readUInt32BE(20), size);
+  }
+  const ico = await readFile(path.join(out, 'favicon.ico'));
+  assert.equal(ico.readUInt16LE(2), 1);
+  assert.equal(ico.readUInt16LE(4), 3);
+  assert.match(await readFile(path.join(out, 'favicon.svg'), 'utf8'), /^<svg /);
+  const html = await readFile(path.join(out, 'index.html'), 'utf8');
+  assert.match(html, /<link rel="icon" href="\/favicon\.ico"/);
+  assert.match(html, /<link rel="icon" href="\/favicon\.svg"/);
+  assert.match(html, /<link rel="apple-touch-icon" href="\/apple-touch-icon\.png"/);
+});
+
 test('state pages carry different numbers, not just a swapped name', async () => {
   const { out } = await buildSynthetic();
   const tx = await readFile(path.join(out, 'mortgage-calculator/texas/index.html'), 'utf8');

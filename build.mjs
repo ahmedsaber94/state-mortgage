@@ -3,6 +3,7 @@
 
 import { readFile, writeFile, mkdir, rm } from 'node:fs/promises';
 import path from 'node:path';
+import { deflateSync } from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 import { STATES } from './states.mjs';
 import { paymentBreakdown, incomeNeeded } from './calc.mjs';
@@ -185,7 +186,11 @@ function layout({ title, description, urlPath, body, ld = [], noindex = false })
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${esc(canonical)}">
-${noindex ? '<meta name="robots" content="noindex">' : ''}
+<link rel="icon" href="${BASE}/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="${BASE}/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="${BASE}/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="${BASE}/apple-touch-icon.png">
+${noindex ?'<meta name="robots" content="noindex">' : ''}
 <meta property="og:type" content="website">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
@@ -565,6 +570,116 @@ ${analytics}${ads}
   ];
 }
 
+// ---- Site icon -------------------------------------------------------------
+// Navy tile with a cream house. One set of shapes drives both the SVG and the PNG/ICO pixels,
+// so there are no image files to upload or keep in the repository.
+const ICON_BG = '#16233a';
+const ICON_FG = '#eef2ea';
+const HOUSE = [[32, 11], [55, 31], [47, 31], [47, 52], [17, 52], [17, 31], [9, 31]];
+const DOOR = { x: 27, y: 37, w: 10, h: 15 };
+const ICON_RADIUS = 14;
+
+const iconSvg = () =>
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">` +
+  `<rect width="64" height="64" rx="${ICON_RADIUS}" fill="${ICON_BG}"/>` +
+  `<path fill="${ICON_FG}" d="M${HOUSE.map((p) => p.join(' ')).join('L')}Z"/>` +
+  `<rect x="${DOOR.x}" y="${DOOR.y}" width="${DOOR.w}" height="${DOOR.h}" fill="${ICON_BG}"/></svg>\n`;
+
+function inPolygon(x, y, pts) {
+  let inside = false;
+  for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+    const [xi, yi] = pts[i];
+    const [xj, yj] = pts[j];
+    if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) inside = !inside;
+  }
+  return inside;
+}
+function inTile(x, y, r) {
+  if (x < 0 || y < 0 || x > 64 || y > 64) return false;
+  const cx = x < r ? r : x > 64 - r ? 64 - r : x;
+  const cy = y < r ? r : y > 64 - r ? 64 - r : y;
+  return (x - cx) ** 2 + (y - cy) ** 2 <= r * r;
+}
+const hexRgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+
+const CRC_TABLE = Array.from({ length: 256 }, (_, n) => {
+  let c = n;
+  for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1;
+  return c >>> 0;
+});
+function crc32(buf) {
+  let c = 0xffffffff;
+  for (const b of buf) c = CRC_TABLE[(c ^ b) & 0xff] ^ (c >>> 8);
+  return (c ^ 0xffffffff) >>> 0;
+}
+function pngChunk(type, data) {
+  const body = Buffer.concat([Buffer.from(type, 'latin1'), data]);
+  const out = Buffer.alloc(body.length + 8);
+  out.writeUInt32BE(data.length, 0);
+  body.copy(out, 4);
+  out.writeUInt32BE(crc32(body), body.length + 4);
+  return out;
+}
+// round=false gives a full-bleed square (iOS rounds the corners itself and paints transparency black).
+function iconPng(size, round = true) {
+  const SS = 8;
+  const radius = round ? ICON_RADIUS : 0;
+  const bg = hexRgb(ICON_BG);
+  const fg = hexRgb(ICON_FG);
+  const stride = size * 4 + 1;
+  const raw = Buffer.alloc(size * stride);
+  for (let py = 0; py < size; py++) {
+    for (let px = 0; px < size; px++) {
+      let n = 0, r = 0, g = 0, b = 0;
+      for (let sy = 0; sy < SS; sy++) {
+        for (let sx = 0; sx < SS; sx++) {
+          const x = ((px + (sx + 0.5) / SS) / size) * 64;
+          const y = ((py + (sy + 0.5) / SS) / size) * 64;
+          if (!inTile(x, y, radius)) continue;
+          const door = x >= DOOR.x && x <= DOOR.x + DOOR.w && y >= DOOR.y && y <= DOOR.y + DOOR.h;
+          const c = inPolygon(x, y, HOUSE) && !door ? fg : bg;
+          n++; r += c[0]; g += c[1]; b += c[2];
+        }
+      }
+      const o = py * stride + 1 + px * 4;
+      if (n) {
+        raw[o] = Math.round(r / n); raw[o + 1] = Math.round(g / n); raw[o + 2] = Math.round(b / n);
+        raw[o + 3] = Math.round((255 * n) / (SS * SS));
+      }
+    }
+  }
+  const ihdr = Buffer.alloc(13);
+  ihdr.writeUInt32BE(size, 0);
+  ihdr.writeUInt32BE(size, 4);
+  ihdr[8] = 8; // bit depth
+  ihdr[9] = 6; // RGBA
+  return Buffer.concat([
+    Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]),
+    pngChunk('IHDR', ihdr),
+    pngChunk('IDAT', deflateSync(raw, { level: 9 })),
+    pngChunk('IEND', Buffer.alloc(0)),
+  ]);
+}
+// .ico that holds PNG images (supported by every current browser).
+function iconIco(sizes) {
+  const images = sizes.map((s) => iconPng(s));
+  const head = Buffer.alloc(6 + 16 * images.length);
+  head.writeUInt16LE(1, 2); // type: icon
+  head.writeUInt16LE(images.length, 4);
+  let offset = head.length;
+  images.forEach((img, i) => {
+    const o = 6 + 16 * i;
+    head[o] = sizes[i] % 256;
+    head[o + 1] = sizes[i] % 256;
+    head.writeUInt16LE(1, o + 4); // planes
+    head.writeUInt16LE(32, o + 6); // bits per pixel
+    head.writeUInt32LE(img.length, o + 8);
+    head.writeUInt32LE(offset, o + 12);
+    offset += img.length;
+  });
+  return Buffer.concat([head, ...images]);
+}
+
 // ---- Write everything ------------------------------------------------------
 async function writePage(p) {
   const dir = path.join(OUT, p.urlPath);
@@ -605,6 +720,10 @@ await writeFile(
     .map((p) => `<url><loc>${esc(SITE + p.urlPath)}</loc><lastmod>${data.meta.generated}</lastmod></url>`)
     .join('\n')}\n</urlset>\n`
 );
+await writeFile(path.join(OUT, 'favicon.svg'), iconSvg());
+await writeFile(path.join(OUT, 'favicon.ico'), iconIco([16, 32, 48]));
+await writeFile(path.join(OUT, 'icon-192.png'), iconPng(192));
+await writeFile(path.join(OUT, 'apple-touch-icon.png'), iconPng(180, false));
 await writeFile(path.join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
 if (config.adsenseClient) {
   const pub = config.adsenseClient.replace(/^ca-/, '');
