@@ -257,6 +257,14 @@
           "url": "https://floridarevenue.com/property/Documents/SaveOurHomes.pdf",
           "quote": "an annual increase in assessment shall not exceed the lower of the following: (3% of the prior year's assessed value; the percent change in the Consumer Price Index)"
         }
+      ],
+      "closing": [
+        {
+          "text": "Florida's documentary stamp tax on deeds is 70 cents on each $100 of the consideration.",
+          "source": "Florida Statutes § 201.02 (2025): Tax on deeds and other instruments relating to real property",
+          "url": "https://flsenate.gov/Laws/Statutes/2025/Chapter201/All",
+          "quote": "on each $100 of the consideration therefor the tax shall be 70 cents. | the tax shall be at the rate of 70 cents for each $100 or fractional part thereof of the consideration therefor."
+        }
       ]
     },
     "georgia": {
@@ -605,6 +613,14 @@
           "url": "https://dat.maryland.gov/realproperty/pages/maryland-homestead-tax-credit.aspx",
           "quote": "a law was enacted in 2007 that requires all homeowners to submit a one-time application to establish eligibility for the credit."
         }
+      ],
+      "closing": [
+        {
+          "text": "Maryland's state transfer tax is one-half of one percent of the consideration. It applies to instruments that transfer an interest in real property, such as deeds.",
+          "source": "Maryland Courts: Howard County Circuit Court, Land Records",
+          "url": "https://www.courts.state.md.us/clerks/howard/landrecords",
+          "quote": "State Transfer Tax is ½ of 1% of the consideration."
+        }
       ]
     },
     "massachusetts": {
@@ -668,6 +684,14 @@
           "source": "Michigan Department of Treasury: Principal Residence Exemption",
           "url": "https://www.michigan.gov/taxes/property/principal",
           "quote": "exempts an owner's principal residence from the local school operating millage, up to 18 mills."
+        }
+      ],
+      "closing": [
+        {
+          "text": "Michigan's state real estate transfer tax is $3.75 for each $500 of the total value of the property transferred.",
+          "source": "Michigan Legislature: State Real Estate Transfer Tax Act, MCL 207.525 (Act 330 of 1993)",
+          "url": "https://ombudsman.legislature.mi.gov/documents/mcl/pdf/MCL-ACT-330-OF-1993.pdf",
+          "quote": "is levied at the rate of $3.75 for each $500.00"
         }
       ]
     },
@@ -1242,6 +1266,34 @@
           "source": "Virginia Housing: Down Payment Assistance Grant",
           "url": "https://www.virginiahousing.com/homebuyers/down-payment-assistance-grant",
           "quote": "Be a qualified first-time homebuyer or repeat buyer purchasing in Areas of Economic Opportunity | Have a bond FHA/Conventional loan from Virginia Housing | may only be used with eligible Virginia Housing loans"
+        }
+      ],
+      "closing": [
+        {
+          "text": "Virginia's state recordation tax on a deed is 25 cents on every $100, or fraction of $100, of the deed's consideration or the property's actual value, whichever is greater.",
+          "source": "Code of Virginia § 58.1-801: Deeds generally; charter amendments",
+          "url": "https://law.lis.virginia.gov/vacode/58.1-801/",
+          "quote": "On every deed admitted to record, except a deed exempt from taxation by law, there is hereby levied a state recordation tax. | The rate of the tax shall be 25 cents on every $100 or fraction thereof | of (i) the consideration of the deed or (ii) the actual value of the property conveyed, whichever is greater."
+        },
+        {
+          "text": "Virginia also charges an additional tax on deeds, paid by the grantor (the seller): 50 cents for each $500, or fraction of $500, when the consideration or value is more than $100.",
+          "source": "Code of Virginia § 58.1-802: Additional tax paid by grantor; collection",
+          "url": "https://law.lis.virginia.gov/vacode/58.1-802/",
+          "quote": "The rate of the tax, when the consideration or value of the interest, whichever is greater, exceeds $100, | shall be 50 cents for each $500 or fraction thereof, | The tax imposed by this section shall be paid by the grantor, or any person who signs on behalf of the grantor,"
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "Virginia law lets each locality decide, by ordinance, whether to offer an exemption from, or deferral of, property taxes for people who are at least 65 years of age or who are found to be permanently and totally disabled. Ask your city or county whether it has adopted this program.",
+          "source": "Code of Virginia § 58.1-3210: Exemption or deferral of taxes on property of certain elderly individuals and individuals with disabilities",
+          "url": "https://law.lis.virginia.gov/vacode/58.1-3210/",
+          "quote": "governing body of any locality may, by ordinance, provide for the exemption from, deferral of | anyone at least 65 years of age | anyone found to be permanently and totally disabled"
+        },
+        {
+          "text": "Virginia exempts the real property of a veteran rated 100 percent service-connected, permanent, and total disabled when it is the veteran's principal place of residence. A surviving spouse who does not remarry can also qualify, under the conditions in the statute.",
+          "source": "Code of Virginia § 58.1-3219.5: Exemption from taxes on property for disabled veterans",
+          "url": "https://law.lis.virginia.gov/vacode/58.1-3219.5",
+          "quote": "rated . . . to have a 100 percent service-connected, permanent, and total disability | his principal place of residence | shall also qualify for the exemption | the surviving spouse does not remarry"
         }
       ]
     },
