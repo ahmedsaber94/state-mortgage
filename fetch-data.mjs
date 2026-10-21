@@ -39,26 +39,68 @@ async function get(url, label) {
 }
 
 // ---- Mortgage rate ---------------------------------------------------------
+const RATE_MAX_AGE_DAYS = 35;
+const plausible = (v) => Number.isFinite(v) && v > 1 && v < 20;
+
+// observations: [{ date: 'YYYY-MM-DD', value: '6.30' }] in any order. Only well-formed rows count.
+// Returns the newest plausible one. A bad value is skipped with a warning, so one source glitch
+// cannot block the whole refresh, and the page shows the real date of the rate it uses.
+function pickRate(observations) {
+  const rows = observations
+    .filter((o) => /^\d{4}-\d{2}-\d{2}$/.test(o.date) && /^\d+(\.\d+)?$/.test(String(o.value).trim()))
+    .map((o) => ({ date: o.date, rate: parseFloat(o.value) }))
+    .sort((a, b) => (a.date < b.date ? 1 : -1));
+  if (!rows.length) throw new Error('FRED: no well-formed observations');
+  for (const row of rows.slice(0, 8)) {
+    if (plausible(row.rate)) {
+      const ageDays = (Date.now() - Date.parse(row.date)) / 86400000;
+      if (ageDays > RATE_MAX_AGE_DAYS) throw new Error(`FRED: the newest usable rate is from ${row.date}, which is too old`);
+      return row;
+    }
+    console.warn(`Skipping implausible FRED value ${row.rate} for ${row.date}`);
+  }
+  throw new Error(
+    `FRED: no plausible rate among the latest observations (${rows
+      .slice(0, 3)
+      .map((r) => `${r.date}=${r.rate}`)
+      .join(', ')})`
+  );
+}
+
+async function getWithRetry(url, label, tries = 3) {
+  let last;
+  for (let i = 1; i <= tries; i++) {
+    try {
+      return await get(url, label);
+    } catch (err) {
+      last = err;
+      if (i < tries) await new Promise((r) => setTimeout(r, 4000 * i));
+    }
+  }
+  throw last;
+}
+
 async function latestRate() {
   if (FRED_KEY) {
     const url =
       'https://api.stlouisfed.org/fred/series/observations?series_id=MORTGAGE30US' +
       `&sort_order=desc&limit=10&file_type=json&api_key=${encodeURIComponent(FRED_KEY)}`;
-    const json = await (await get(url, 'FRED API')).json();
-    const obs = (json.observations || []).find((o) => o.value !== '.' && Number.isFinite(parseFloat(o.value)));
-    if (!obs) throw new Error('FRED API: no usable observation');
-    return { rate: parseFloat(obs.value), date: obs.date };
+    const json = await (await getWithRetry(url, 'FRED API')).json();
+    return pickRate((json.observations || []).map((o) => ({ date: o.date, value: o.value })));
   }
-  const text = await (await get('https://fred.stlouisfed.org/graph/fredgraph.csv?id=MORTGAGE30US', 'FRED CSV')).text();
+  const text = await (await getWithRetry('https://fred.stlouisfed.org/graph/fredgraph.csv?id=MORTGAGE30US', 'FRED CSV')).text();
   const rows = text
     .trim()
     .split(/\r?\n/)
     .slice(1)
     .map((l) => l.split(','))
-    .filter(([, v]) => v && v !== '.' && Number.isFinite(parseFloat(v)));
-  const last = rows.at(-1);
-  if (!last) throw new Error('FRED CSV: no usable rows');
-  return { rate: parseFloat(last[1]), date: last[0] };
+    .map(([date, value]) => ({ date: (date || '').trim(), value: (value || '').trim() }));
+  try {
+    return pickRate(rows);
+  } catch (err) {
+    // Show what FRED actually sent, so a source-side change is visible in the log.
+    throw new Error(`${err.message}\nStart of response: ${JSON.stringify(text.slice(0, 200))}\nEnd of response: ${JSON.stringify(text.slice(-200))}`);
+  }
 }
 
 // ---- Census ACS ------------------------------------------------------------
