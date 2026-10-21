@@ -76,6 +76,7 @@ p { margin: 0 0 1em; }
 .affix input {
   border: 0; background: transparent; color: inherit; width: 100%; min-width: 0;
   padding: 11px 10px; font: inherit; font-weight: 500; font-variant-numeric: tabular-nums;
+  font-size: max(16px, 1rem); /* 16px or more stops iPhone Safari from zooming the page on tap */
 }
 .affix .pre, .affix .suf { font-style: normal; font-weight: 400; color: var(--ink-soft); }
 .affix .pre { padding-left: 10px; }
@@ -83,6 +84,7 @@ p { margin: 0 0 1em; }
 .affix .pre + input { padding-left: 4px; }
 .field select {
   font: inherit; font-weight: 500; padding: 11px 10px; color: inherit;
+  font-size: max(16px, 1rem);
   background: var(--sheet); border: 1px solid var(--rule); border-radius: 3px;
 }
 .calc-msg { margin: 14px 0 0; color: #8a2b1a; font-weight: 600; }
@@ -132,6 +134,10 @@ p { margin: 0 0 1em; }
 .trust p { margin: 0 0 6px; }
 .trust strong { color: var(--ink); }
 
+/* Sourced local facts */
+.src { color: var(--ink-soft); font-size: 0.88em; }
+.prose li { margin-bottom: 8px; }
+
 /* Content blocks */
 .block { margin: 0 0 48px; max-width: 72ch; }
 .block.wide { max-width: none; }
@@ -160,6 +166,30 @@ td.num, th.num { text-align: right; }
 .statelinks li { break-inside: avoid; padding: 2px 0; }
 .foot-links { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-bottom: 16px; }
 .site-foot p { max-width: 80ch; }
+
+/* Phones: the payment sits below the fields, so keep the monthly total in view while editing.
+   app.js shows this bar only while the full statement is off screen. */
+.sumbar { display: none; }
+@media (max-width: 859px) {
+  .sumbar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+    display: flex; align-items: baseline; gap: 12px;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    background: var(--ink); color: var(--paper); text-decoration: none;
+    border-top: 2px solid var(--rule);
+  }
+  .sumbar[hidden] { display: none; }
+  .sumbar .sb-l, .sumbar .sb-go { font-size: 0.85rem; white-space: nowrap; }
+  .sumbar .sb-a {
+    margin-left: auto; font-family: var(--serif); font-size: 1.5rem; font-weight: 700;
+    font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  .sumbar .sb-go { text-decoration: underline; }
+  .site-foot { padding-bottom: 96px; }
+}
+@media (max-width: 359px) {
+  .sumbar .sb-go { display: none; }
+}
 
 @media (max-width: 420px) {
   .calc .grid { grid-template-columns: 1fr; }
