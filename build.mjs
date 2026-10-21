@@ -254,7 +254,8 @@ function statement(r, extra = '') {
 <dl id="facts" class="facts">${factsHtml(r, RATIO)}</dl>
 <p class="note">Estimate only. Mortgage insurance (PMI) is added when the down payment is under 20%. Real taxes, insurance and lender fees vary by property.</p>
 ${extra}
-</section>`;
+</section>
+<a id="sumbar" class="sumbar" href="#st-h" tabindex="-1" aria-hidden="true" hidden><span class="sb-l">Total per month</span><span id="sumbar-amt" class="sb-a">${money(r.total)}</span><span class="sb-go">Details &darr;</span></a>`;
 }
 
 const jsBase = (extra) => ({

@@ -8,6 +8,7 @@ function setupCalc(form) {
   var bar = document.getElementById('bar');
   var facts = document.getElementById('facts');
   var msg = document.getElementById('calc-msg');
+  var sumAmt = document.getElementById('sumbar-amt');
   var states = cfg.states || {};
   var cur = { price: cfg.price, taxRate: cfg.taxRate, insRatePct: cfg.insRatePct };
   var insTouched = false;
@@ -41,6 +42,7 @@ function setupCalc(form) {
     if (problems.length) {
       msg.textContent = problems.join(' ');
       msg.hidden = false;
+      if (sumAmt) sumAmt.textContent = '—';
       return;
     }
     msg.hidden = true;
@@ -55,6 +57,7 @@ function setupCalc(form) {
       pmiRatePct: cfg.pmiRatePct,
     });
     ledger.innerHTML = ledgerHtml(r);
+    if (sumAmt) sumAmt.textContent = money(r.total);
     bar.innerHTML = barHtml(r);
     facts.innerHTML = factsHtml(r, cfg.incomeRatio);
   }
@@ -91,6 +94,17 @@ function setupCalc(form) {
   });
 }
 
+// Sticky total on phones: shown only while the full payment statement is scrolled out of view.
+function setupSumBar() {
+  var sum = document.getElementById('sumbar');
+  if (!sum || !('IntersectionObserver' in window)) return;
+  var statement = document.querySelector('.statement');
+  if (!statement) return;
+  new IntersectionObserver(function (entries) {
+    sum.hidden = entries[0].isIntersecting;
+  }).observe(statement);
+}
+
 function setupFilter(input) {
   var rows = Array.prototype.slice.call(document.querySelectorAll('#state-table tbody tr'));
   var empty = document.getElementById('no-match');
@@ -109,6 +123,7 @@ function setupFilter(input) {
 (function init() {
   var form = document.getElementById('calc');
   if (form) setupCalc(form);
+  setupSumBar();
   var filter = document.getElementById('state-filter');
   if (filter) setupFilter(filter);
 })();

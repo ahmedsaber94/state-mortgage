@@ -101,6 +101,23 @@ test('site icon files are generated and linked from the page head', async () => 
   assert.match(html, /<link rel="apple-touch-icon" href="\/apple-touch-icon\.png"/);
 });
 
+test('phone summary bar repeats the monthly total, and form fields are 16px or larger', async () => {
+  const { out, res } = await buildSynthetic();
+  assert.equal(res.status, 0, res.stderr);
+  for (const page of ['index.html', 'mortgage-calculator/texas/index.html']) {
+    const html = await readFile(path.join(out, page), 'utf8');
+    const bar = html.match(/<a id="sumbar"[^>]*>.*?<span id="sumbar-amt"[^>]*>([^<]+)<\/span>/s);
+    assert.ok(bar, `${page} has no summary bar`);
+    const total = html.match(/class="line total">.*?<span class="amt">([^<]+)<\/span>/s);
+    assert.equal(bar[1], total[1], `${page}: bar total differs from the statement total`);
+    assert.match(html, /<a id="sumbar"[^>]*aria-hidden="true"[^>]*hidden/, 'bar must start hidden and be aria-hidden');
+  }
+  const css = await readFile(path.join(ROOT, 'assets', 'style.css'), 'utf8');
+  assert.match(css, /\.affix input \{[^}]*font-size:\s*max\(16px/);
+  assert.match(css, /\.field select \{[^}]*font-size:\s*max\(16px/);
+  assert.match(css, /\.sumbar\[hidden\]\s*\{\s*display:\s*none/);
+});
+
 test('state pages carry different numbers, not just a swapped name', async () => {
   const { out } = await buildSynthetic();
   const tx = await readFile(path.join(out, 'mortgage-calculator/texas/index.html'), 'utf8');
