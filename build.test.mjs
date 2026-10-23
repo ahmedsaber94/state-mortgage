@@ -118,6 +118,52 @@ test('phone summary bar repeats the monthly total, and form fields are 16px or l
   assert.match(css, /\.sumbar\[hidden\]\s*\{\s*display:\s*none/);
 });
 
+test('titles and descriptions fit search results, and every page has a skip link and share card', async () => {
+  const { out } = await buildSynthetic();
+  const titles = new Set();
+  for (const file of await htmlFiles(out)) {
+    const html = await readFile(file, 'utf8');
+    const name = path.relative(out, file);
+    const title = html.match(/<title>([^<]*)<\/title>/)[1].replaceAll('&amp;', '&');
+    const desc = html.match(/<meta name="description" content="([^"]*)">/)[1].replaceAll('&amp;', '&');
+    assert.ok(title.length <= 60, `${name}: title is ${title.length} characters: ${title}`);
+    assert.ok(!titles.has(title), `${name}: duplicate title ${title}`);
+    titles.add(title);
+    assert.ok(desc.length <= 160, `${name}: description is ${desc.length} characters`);
+    if (name !== '404.html') assert.ok(desc.length >= 70, `${name}: description is only ${desc.length} characters`);
+    assert.match(html, /<a class="skip" href="#main">/, `${name}: no skip link`);
+    assert.match(html, /<main id="main" tabindex="-1">/, `${name}: main has no id for the skip link`);
+    assert.match(html, /<meta name="twitter:card" content="summary">/, `${name}: no twitter card`);
+  }
+});
+
+test('rows can grow on narrow phones, field borders are visible, and invalid input is not left looking current', async () => {
+  const css = await readFile(path.join(ROOT, 'assets', 'style.css'), 'utf8');
+  assert.match(css, /\.line \{[^}]*min-height:\s*32px/, 'ledger rows must grow instead of using a fixed height');
+  assert.doesNotMatch(css, /\.line \{[^}]*[^-]height:\s*32px/);
+  assert.match(css, /\.affix \{[^}]*border:\s*1px solid var\(--field-line\)/);
+  assert.match(css, /--field-line:\s*#728872/);
+  assert.match(css, /\.statement\.stale/);
+  const js = await readFile(path.join(ROOT, 'src', 'app.js'), 'utf8');
+  assert.match(js, /classList\.add\('stale'\)/);
+  assert.match(js, /classList\.remove\('stale'\)/);
+  assert.match(js, /getElementById\('state-table'\)/, 'sticky bar must step aside while the home page state table is on screen');
+});
+
+test('methodology page says the property tax average can understate what a new buyer pays', async () => {
+  const { out } = await buildSynthetic();
+  const html = await readFile(path.join(out, 'methodology/index.html'), 'utf8');
+  assert.match(html, /limit how fast a home's assessed value can rise/);
+  const tx = await readFile(path.join(out, 'mortgage-calculator/texas/index.html'), 'utf8');
+  assert.match(tx, /Where a state caps yearly increases in assessed value/);
+});
+
+test('home page names the site for search engines', async () => {
+  const { out } = await buildSynthetic();
+  const html = await readFile(path.join(out, 'index.html'), 'utf8');
+  assert.match(html, /"@type":"WebSite","name":"State Mortgage Calculators"/);
+});
+
 test('state pages carry different numbers, not just a swapped name', async () => {
   const { out } = await buildSynthetic();
   const tx = await readFile(path.join(out, 'mortgage-calculator/texas/index.html'), 'utf8');

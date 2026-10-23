@@ -9,6 +9,7 @@ function setupCalc(form) {
   var facts = document.getElementById('facts');
   var msg = document.getElementById('calc-msg');
   var sumAmt = document.getElementById('sumbar-amt');
+  var stmt = document.querySelector('.statement');
   var states = cfg.states || {};
   var cur = { price: cfg.price, taxRate: cfg.taxRate, insRatePct: cfg.insRatePct };
   var insTouched = false;
@@ -43,9 +44,14 @@ function setupCalc(form) {
       msg.textContent = problems.join(' ');
       msg.hidden = false;
       if (sumAmt) sumAmt.textContent = '—';
+      // Do not leave the last good numbers on screen next to an error: dash the total and dim the rest.
+      var shown = ledger.querySelector('.total .amt');
+      if (shown) shown.textContent = '—';
+      if (stmt) stmt.classList.add('stale');
       return;
     }
     msg.hidden = true;
+    if (stmt) stmt.classList.remove('stale');
     var r = paymentBreakdown({
       homePrice: price,
       downPct: down,
@@ -95,14 +101,28 @@ function setupCalc(form) {
 }
 
 // Sticky total on phones: shown only while the full payment statement is scrolled out of view.
+// On the home page it also stays hidden while the state table is on screen, because the visitor
+// is comparing states there and the monthly total of the calculator above is not what they are reading.
 function setupSumBar() {
   var sum = document.getElementById('sumbar');
   if (!sum || !('IntersectionObserver' in window)) return;
   var statement = document.querySelector('.statement');
   if (!statement) return;
-  new IntersectionObserver(function (entries) {
-    sum.hidden = entries[0].isIntersecting;
-  }).observe(statement);
+  var watch = [statement];
+  var table = document.getElementById('state-table');
+  if (table) watch.push(table);
+  var seen = new Map();
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      seen.set(e.target, e.isIntersecting);
+    });
+    sum.hidden = watch.some(function (el) {
+      return seen.get(el);
+    });
+  });
+  watch.forEach(function (el) {
+    io.observe(el);
+  });
 }
 
 function setupFilter(input) {

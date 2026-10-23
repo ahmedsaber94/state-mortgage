@@ -7,6 +7,7 @@
   --ink-soft: #4a5a6e;
   --rule: #a9bba9;
   --rule-soft: #d3ddd0;
+  --field-line: #728872; /* input borders: 3.7:1 on the field background, above the 3:1 needed to see them */
   --green: #0d6b4d;
   --green-ink: #08503a;
   --ochre: #b8791a;
@@ -27,6 +28,12 @@ body {
 a { color: var(--green-ink); text-underline-offset: 2px; }
 a:hover { text-decoration-thickness: 2px; }
 :focus-visible { outline: 3px solid var(--ochre); outline-offset: 2px; }
+main:focus { outline: 0; }
+.skip {
+  position: absolute; left: 8px; top: -80px; z-index: 40; padding: 10px 14px;
+  background: var(--ink); color: var(--paper); font-weight: 600; text-decoration: none;
+}
+.skip:focus { top: 8px; }
 .sr-only {
   position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
@@ -37,12 +44,13 @@ a:hover { text-decoration-thickness: 2px; }
 /* Header */
 .site-head { border-bottom: 1px solid var(--rule); }
 .site-head .wrap {
-  display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: baseline;
-  justify-content: space-between; padding-top: 14px; padding-bottom: 14px;
+  display: flex; flex-wrap: wrap; gap: 0 24px; align-items: baseline;
+  justify-content: space-between; padding-top: 4px; padding-bottom: 4px;
 }
-.brand { font: 700 1.2rem/1.2 var(--serif); color: var(--ink); text-decoration: none; }
-.site-head nav { display: flex; flex-wrap: wrap; gap: 6px 20px; }
-.site-head nav a { color: var(--ink); text-decoration: none; font-weight: 500; }
+/* Links get vertical padding so a thumb can hit them: about 44px tall instead of 24px. */
+.brand { display: inline-block; padding: 10px 0; font: 700 1.2rem/1.2 var(--serif); color: var(--ink); text-decoration: none; }
+.site-head nav { display: flex; flex-wrap: wrap; gap: 0 20px; }
+.site-head nav a { display: inline-block; padding: 10px 0; color: var(--ink); text-decoration: none; font-weight: 500; }
 .site-head nav a:hover { text-decoration: underline; }
 
 /* Type */
@@ -52,8 +60,8 @@ h2 { font-size: 1.6rem; }
 h3 { font-size: 1.15rem; }
 p { margin: 0 0 1em; }
 
-.crumbs { padding-top: 16px; font-size: 0.875rem; color: var(--ink-soft); }
-.crumbs a { color: var(--ink-soft); }
+.crumbs { padding-top: 6px; font-size: 0.875rem; color: var(--ink-soft); }
+.crumbs a { display: inline-block; padding: 10px 0; color: var(--ink-soft); }
 .hero { padding: 24px 0 20px; }
 .lede { max-width: 62ch; color: var(--ink-soft); font-size: 1.075rem; margin: 14px 0 0; }
 
@@ -70,7 +78,7 @@ p { margin: 0 0 1em; }
 .field small { font-weight: 400; color: var(--ink-soft); font-size: 0.8rem; line-height: 1.35; }
 .affix {
   display: flex; align-items: center; background: var(--sheet);
-  border: 1px solid var(--rule); border-radius: 3px;
+  border: 1px solid var(--field-line); border-radius: 3px;
 }
 .affix:focus-within { border-color: var(--ink); }
 .affix input {
@@ -85,11 +93,11 @@ p { margin: 0 0 1em; }
 .field select {
   font: inherit; font-weight: 500; padding: 11px 10px; color: inherit;
   font-size: max(16px, 1rem);
-  background: var(--sheet); border: 1px solid var(--rule); border-radius: 3px;
+  background: var(--sheet); border: 1px solid var(--field-line); border-radius: 3px;
 }
 .calc-msg { margin: 14px 0 0; color: #8a2b1a; font-weight: 600; }
 .linkbtn {
-  margin-top: 16px; padding: 0; border: 0; background: none; color: var(--green-ink);
+  margin-top: 6px; padding: 12px 0; border: 0; background: none; color: var(--green-ink);
   font: inherit; text-decoration: underline; cursor: pointer;
 }
 
@@ -106,21 +114,18 @@ p { margin: 0 0 1em; }
 .k-ins { background: var(--ochre); }
 .k-pmi { background: var(--blue); }
 .k-hoa { background: var(--rule); }
-.rows {
-  background-image: repeating-linear-gradient(
-    to bottom, transparent 0, transparent 31px, var(--rule-soft) 31px, var(--rule-soft) 32px
-  );
-}
-.line { display: flex; align-items: center; height: 32px; }
-.line .key { flex: none; width: 10px; height: 10px; margin-right: 10px; }
+/* Rows are at least 32px and grow when a label wraps on a narrow phone, so text never sits on the rule. */
+.rows .line { border-bottom: 1px solid var(--rule-soft); }
+.line { display: flex; align-items: flex-end; min-height: 32px; padding: 3px 0; }
+.line .key { flex: none; width: 10px; height: 10px; margin-right: 10px; align-self: center; }
 .line .lbl { white-space: nowrap; }
 .line .dots {
-  flex: 1; min-width: 14px; margin: 0 8px 7px; align-self: flex-end;
+  flex: 1; min-width: 14px; margin: 0 8px 7px;
   border-bottom: 2px dotted #7f957f;
 }
 .line .amt { font-variant-numeric: tabular-nums; font-weight: 600; }
-.line.total { height: 54px; margin-top: 2px; border-top: 2px solid var(--ink); font-weight: 700; }
-.line.total .dots { margin-bottom: 14px; }
+.line.total { align-items: center; min-height: 54px; padding: 6px 0; margin-top: 2px; border-top: 2px solid var(--ink); font-weight: 700; }
+.line.total .dots { align-self: flex-end; margin-bottom: 14px; }
 .line.total .lbl { font-family: var(--serif); font-size: 1.15rem; }
 .line.total .amt { font-family: var(--serif); font-size: 1.9rem; }
 .facts {
@@ -133,6 +138,8 @@ p { margin: 0 0 1em; }
 .trust { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--rule-soft); font-size: 0.82rem; color: var(--ink-soft); line-height: 1.5; }
 .trust p { margin: 0 0 6px; }
 .trust strong { color: var(--ink); }
+/* Invalid input: the total shows a dash and the old breakdown is dimmed instead of looking current. */
+.statement.stale .bar, .statement.stale .rows, .statement.stale .facts { opacity: 0.35; }
 
 /* Sourced local facts */
 .src { color: var(--ink-soft); font-size: 0.88em; }
@@ -148,6 +155,8 @@ table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nu
 th, td { padding: 10px 12px; border-bottom: 1px solid var(--rule); text-align: left; }
 th { border-bottom: 2px solid var(--ink); font-weight: 600; }
 td.num, th.num { text-align: right; }
+/* State names in the table: bigger tap area without making the rows taller. */
+.tablewrap td a { display: inline-block; padding: 10px 0; margin: -10px 0; }
 .plain { list-style: none; padding: 0; margin: 0 0 8px; }
 .plain li { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px solid var(--rule-soft); }
 .plain .val { font-variant-numeric: tabular-nums; color: var(--ink-soft); }
@@ -163,8 +172,9 @@ td.num, th.num { text-align: right; }
 .site-foot { border-top: 2px solid var(--ink); margin-top: 56px; padding: 28px 0 44px; font-size: 0.9rem; color: var(--ink-soft); }
 .site-foot h2 { font-size: 1rem; margin-bottom: 10px; }
 .statelinks { columns: 4 150px; column-gap: 20px; list-style: none; padding: 0; margin: 0 0 28px; }
-.statelinks li { break-inside: avoid; padding: 2px 0; }
-.foot-links { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-bottom: 16px; }
+.statelinks li { break-inside: avoid; }
+.statelinks a, .foot-links a { display: inline-block; padding: 8px 0; }
+.foot-links { display: flex; flex-wrap: wrap; gap: 0 20px; margin-bottom: 16px; }
 .site-foot p { max-width: 80ch; }
 
 /* Phones: the payment sits below the fields, so keep the monthly total in view while editing.

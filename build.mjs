@@ -195,15 +195,17 @@ ${noindex ?'<meta name="robots" content="noindex">' : ''}
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${esc(canonical)}">
+<meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="${BASE}/assets/style.css">
 ${adsense}${analytics}${jsonld}
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site-head"><div class="wrap">
 <a class="brand" href="${BASE}/">${esc(config.siteName)}</a>
 <nav aria-label="Main"><a href="${BASE}/#states">All states</a><a href="${BASE}/methodology/">Methodology</a><a href="${BASE}/about/">About</a></nav>
 </div></header>
-${body}
+${body.replace('<main>', '<main id="main" tabindex="-1">')}
 <footer class="site-foot"><div class="wrap">
 <h2>Mortgage calculators by state</h2>
 <ul class="statelinks">${stateLinks}</ul>
@@ -346,7 +348,7 @@ ${statement(r, trustNote('state', s))}
 <thead><tr><th scope="col">Home price</th><th scope="col" class="num">Tax per year</th><th scope="col" class="num">Tax per month</th></tr></thead>
 <tbody>${taxRows}</tbody>
 </table></div>
-<p class="note">These figures apply the statewide average rate. Rates differ between counties and taxing districts, and some homes qualify for exemptions.</p>
+<p class="note">These figures apply the statewide average rate. Rates differ between counties and taxing districts, and some homes qualify for exemptions. Where a state caps yearly increases in assessed value, a new buyer can pay more than the long-time owners behind this average (see the <a href="${BASE}/methodology/">methodology</a>).</p>
 </section>
 
 <section class="block">
@@ -369,8 +371,9 @@ ${faqs.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join('\n')}
 </div>
 </main>`;
 
-  const title = `${s.name} Mortgage Calculator with Taxes & Insurance (${YEAR})`;
-  const description = `Estimate your monthly mortgage payment in ${s.name}, including property tax (${pct(s.eff)} average rate) and home insurance. Uses the current ${RATE}% 30-year rate and Census data.`;
+  // Search results cut titles at about 60 characters and descriptions at about 160, so keep both inside that.
+  const title = `${s.name} Mortgage Calculator: Taxes & Insurance (${YEAR})`;
+  const description = `Estimate your ${s.name} mortgage payment with property tax (${pct(s.eff)} average rate) and home insurance, using the current ${RATE}% 30-year rate.`;
   const urlPath = `/mortgage-calculator/${s.slug}/`;
   return {
     urlPath,
@@ -464,10 +467,11 @@ ${statement(natScenario, trustNote('home'))}
   return {
     urlPath: '/',
     html: layout({
-      title: `Mortgage Calculator by State (${YEAR}) | ${config.siteName}`,
+      title: `Mortgage Calculator for All 50 States (${YEAR})`,
       description: `Free mortgage calculator for all 50 U.S. states with property tax and insurance built in. Current 30-year rate ${RATE}%.`,
       urlPath: '/',
       body,
+      ld: [{ '@context': 'https://schema.org', '@type': 'WebSite', name: config.siteName, url: `${SITE}/` }],
     }),
   };
 }
@@ -513,6 +517,7 @@ function staticPages() {
 <ul>
 <li>Home values in the Census survey are what owners report, not current listing or sale prices.</li>
 <li>Medians describe the middle of a state. Your county, city and school district can have very different tax rates.</li>
+<li>The property tax figure comes from all owner-occupied homes, including ones owned for many years. Some states limit how fast a home's assessed value can rise each year. There, long-time owners can pay much less than someone who buys a similar home today, so the rate used here can be lower than what a new purchase will pay. Check your county's assessor for the rules that apply to you.</li>
 <li>Closing costs, points, special assessments, flood insurance and exemptions such as homestead credits are not included.</li>
 <li>The Census Bureau limits the highest reported tax amount, which can understate tax in very high-tax areas.</li>
 </ul>
@@ -534,7 +539,7 @@ function staticPages() {
       urlPath: '/privacy/',
       title: 'Privacy Policy',
       h1: 'Privacy policy',
-      description: `How ${config.siteName} handles visitor data.`,
+      description: `How ${config.siteName} handles visitor data: your calculator inputs, server logs, cookies, analytics and advertising.`,
       content: `
 <p>Last updated ${esc(UPDATED)}.</p>
 <h2>What the calculators do with your numbers</h2>
