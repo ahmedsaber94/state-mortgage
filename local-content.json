@@ -201,6 +201,14 @@
           "url": "https://prdext3.cga.ct.gov/2020/rpt/pdf/2020-R-0020.pdf",
           "quote": "0.75% on the first $800,000 | 1.25% | 2.25% | Beginning July 1, 2020 | The base rate is 0.25% for all municipalities."
         }
+      ],
+      "propertyTax": [
+        {
+          "text": "Connecticut's Elderly/Disabled Homeowners Circuit Breaker program gives owners who live in their home and are 65 or older, or totally disabled, a property tax credit of up to $1,250 for married couples and $1,000 for single persons, based on a graduated income scale. Income limits apply. You apply with your town's assessor between February 1 and May 15.",
+          "source": "Connecticut Office of Policy and Management: Homeowners Elderly/Disabled Circuit Breaker Tax Relief Program",
+          "url": "https://portal.ct.gov/OPM/IGPP/Grants/Tax-Relief-Grants/Homeowners--ElderlyDisabled-Circuit-Breaker-Tax-Relief-Program",
+          "quote": "elderly (65 and over) or totally disabled | up to $1,250 for married couples and $1,000 for single persons | between February 1 and May 15th"
+        }
       ]
     },
     "delaware": {
@@ -234,6 +242,14 @@
           "source": "Delaware Division of Revenue: realty transfer tax instructions (form RTT-TAX, January 2022)",
           "url": "https://revenuefiles.delaware.gov/2022/RTT-TAX_2022-01_Instructions.pdf",
           "quote": "the consideration to be taxed at 2.5% by the State of Delaware and 1.5% by either the municipality or the county. | Said tax is to be apportioned equally between the Grantor/Seller and Grantee/Buyer. | a Realty Transfer Tax at the rate of four percent (4%) of the value of the property represented by such document."
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "Delaware homeowners age 65 or over can take a credit against regular school property taxes, worth 50 percent of the school tax up to a dollar cap, and it applies only to a primary residence. If you became a Delaware legal domiciliary on or after January 1, 2018, you must have been domiciled in the state for at least 10 consecutive years. You apply through your county, and the deadline is April 30.",
+          "source": "Delaware Department of Finance: senior school property tax relief",
+          "url": "https://finance.delaware.gov/senior-relief",
+          "quote": "Homeowners age 65 or over are eligible for a tax credit against regular school property taxes of 50 percent | legally domiciled within the State for a period of at least 10 consecutive years | Application Deadline: April 30th"
         }
       ]
     },
@@ -350,6 +366,14 @@
           "source": "Hawaiʻi Housing Finance and Development Corporation: Hale Kamaʻāina Mortgage Program",
           "url": "https://dbedt.hawaii.gov/hhfdc/hk-mortgage-program/",
           "quote": "Designed for first-time homebuyers, qualified borrowers may receive competitive fixed rate 30-year mortgage financing | with optional down payment assistance."
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "In the City and County of Honolulu, an owner who lives in the home as a principal residence can claim a home exemption of $120,000 if under 65, or $160,000 if 65 or older on or before June 30. The home must be owned and occupied as the owner's principal home by September 30, which is also the filing deadline for the year before the exemption applies. This item is for Honolulu; check your own county's property tax office for its rules.",
+          "source": "City and County of Honolulu Real Property Assessment Division: Understanding the Home Exemption Program (revised December 2025)",
+          "url": "https://realproperty.honolulu.gov/media/vmpik01d/home-exemption-royal-blue-120125.pdf",
+          "quote": "Under 65 Years Old: $120,000 Exemption | 65 Years and Older: $160,000 Exemption | You must be 65 years old on or before June 30th. | Deadline: September 30 immediately preceding the year for which the exemption is claimed"
         }
       ]
     },
@@ -855,6 +879,20 @@
           "url": "https://tax.nv.gov/tax-types/real-property-transfer-tax/",
           "quote": "An additional $0.10 is added to the base rate. | An additional $0.60 is added to the base rate."
         }
+      ],
+      "propertyTax": [
+        {
+          "text": "Nevada limits how fast the tax bill on an owner's primary residence can grow: the partial abatement applies when the bill would rise by more than 3 percent over the prior year's bill. The home must be designated as the owner's primary residence in Nevada, and it cannot be rented or leased for exclusive occupancy by someone other than the owner.",
+          "source": "Nevada Legislature: AB 377 (2025), which amends NRS 361.4723",
+          "url": "https://archive.leg.state.nv.us/Session/83rd2025/Bills/AB/AB377_EN.pdf",
+          "quote": "by more than 3 percent over the tax bill | Is designated by the owner as the primary residence of the owner in this State | rented, leased or otherwise made available for exclusive occupancy by any person other than the owner"
+        },
+        {
+          "text": "Clark County's assessor says recording an ownership document removes the owner-occupied 3% abatement, so a new owner may need to apply again to keep it. Only one property in Nevada can be selected as a primary residence.",
+          "source": "Clark County Assessor: tax abatement",
+          "url": "https://www.clarkcountynv.gov/government/assessor/general_information/tax-abatement",
+          "quote": "Any ownership document recorded will remove your Owner Occupied 3% abatement. | Only one property may be selected in the State of Nevada as a primary residence."
+        }
       ]
     },
     "new-jersey": {
@@ -1019,6 +1057,14 @@
           "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_105/GS_105-228.30.pdf",
           "quote": "The tax rate is one dollar ($1.00) on each five hundred dollars ($500.00). | The transferor must pay the tax | The transferor must pay the tax to the register of deeds of the county in which the real estate is located | before recording the instrument of conveyance"
         }
+      ],
+      "propertyTax": [
+        {
+          "text": "North Carolina lets an owner who is at least 65, or totally and permanently disabled, exclude the greater of $25,000 or 50% of the home's appraised value from property tax. The owner must be a North Carolina resident and meet an income limit, which started at $25,000 for 2008 and rises each year with the Social Security cost-of-living adjustment. The Department of Revenue sets the current figure each year.",
+          "source": "North Carolina General Statutes § 105-277.1 (elderly or disabled exclusion)",
+          "url": "https://www.ncleg.gov/enactedlegislation/statutes/html/bysection/chapter_105/gs_105-277.1.html",
+          "quote": "The exclusion amount is the greater of twenty five thousand dollars ($25,000) | or fifty percent (50%) of the appraised value of the residence | twenty-five thousand dollars ($25,000)"
+        }
       ]
     },
     "ohio": {
@@ -1158,6 +1204,14 @@
           "source": "Pennsylvania Department of Revenue: realty transfer tax",
           "url": "https://www.pa.gov/agencies/revenue/resources/tax-types-and-information/realty-transfer-tax",
           "quote": "collected, often along with an additional local realty transfer tax, by county Recorders of Deeds."
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "Pennsylvania's Property Tax/Rent Rebate Program is for homeowners and renters who are 65 or older, widows and widowers 50 or older, or people with disabilities 18 or older. For the 2025 claim year, household income must be $48,110 or less, and the standard maximum rebate ranges from $380 to $1,000 depending on income. The deadline for 2025 applications is December 31, 2026.",
+          "source": "Pennsylvania Department of Revenue: Property Tax/Rent Rebate Program",
+          "url": "https://www.pa.gov/en/agencies/revenue/incentives-credits-and-programs/ptrr.html",
+          "quote": "65 and older | Widows and widowers 50 and older | People with disabilities 18 and older | your household income must be $48,110 or less | Applications postmarked by that date will be accepted for processing."
         }
       ]
     },
@@ -1441,17 +1495,17 @@
           "url": "https://revenue.nebraska.gov/PAD/documentary-stamp-tax",
           "quote": "imposed on a grantor executing a deed for the privilege of recording the transfer."
         }
+      ],
+      "propertyTax": [
+        {
+          "text": "Nebraska's homestead exemption is a property tax relief program for six categories of homeowners, including people 65 or older, some people with disabilities and some veterans. It covers the home and up to one acre of land. Several categories have income limits; veterans with a 100% service-connected permanent disability have none. The 2026 filing period runs from February 2 through June 30.",
+          "source": "Nebraska Department of Revenue: Homestead Exemption Information Guide (Rev. 2-2026)",
+          "url": "https://revenue.nebraska.gov/sites/default/files/doc/pad/homestead/Homestead%20Exemption%20Information%20Guide.pdf",
+          "quote": "a property tax relief program for six categories of homeowners | Persons 65 years of age or older | Veterans who have a 100% service-connected permanent disability | For filing after February 1, 2026, and on or before June 30, 2026"
+        }
       ]
     },
     "new-hampshire": {
-      "closing": [
-        {
-          "text": "New Hampshire's real estate transfer tax is imposed on both the buyer and the seller at the rate of $0.75 per $100.",
-          "source": "New Hampshire Department of Revenue Administration: real estate transfer tax",
-          "url": "https://www.revenue.nh.gov/taxes-glance/real-estate-transfer-tax",
-          "quote": "The tax is imposed on both the buyer and the seller at the rate of $.75 per $100"
-        }
-      ],
       "agency": {
         "name": "New Hampshire Housing (NH Housing)",
         "url": "https://www.nhhousing.org/"
@@ -1462,6 +1516,22 @@
           "source": "New Hampshire Housing: downpayment assistance announcement",
           "url": "https://www.nhhousing.org/homebuyers-in-new-hampshire-can-now-receive-up-to-15000-in-downpayment-assistance/",
           "quote": "fixed amounts of $5,000, $10,000, or $15,000 | raises the previous assistance cap from $10,000 to $15,000 | these new tiers are available to all qualifying homebuyers, not limited to only first-time buyers | effective August 1st (announcement dated August 1, 2024)"
+        }
+      ],
+      "closing": [
+        {
+          "text": "New Hampshire's real estate transfer tax is imposed on both the buyer and the seller at the rate of $0.75 per $100.",
+          "source": "New Hampshire Department of Revenue Administration: real estate transfer tax",
+          "url": "https://www.revenue.nh.gov/taxes-glance/real-estate-transfer-tax",
+          "quote": "The tax is imposed on both the buyer and the seller at the rate of $.75 per $100"
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "New Hampshire's elderly property tax exemption is set by each city or town. To qualify, you must have lived in the state for at least 3 consecutive years, and your income and assets must be within the local limits. Those limits cannot be lower than $13,400 of income for a single person or $20,400 for married persons, or $35,000 of assets (your home and land under it are excluded, up to the greater of 2 acres or the local minimum lot size). Ask your town for its amounts.",
+          "source": "New Hampshire RSA 72:39-a (qualifications for the elderly exemption)",
+          "url": "https://gc.nh.gov/rsa/html/V/72/72-39-a.htm",
+          "quote": "resided in this state for at least 3 consecutive years | determined by the city or town for purposes of RSA 72:39-b"
         }
       ]
     },
@@ -1646,6 +1716,14 @@
           "source": "Vermont Department of Taxes: property transfer tax",
           "url": "https://tax.vermont.gov/property/property-transfer-tax",
           "quote": "Principal Residence Tax Rate: 0.5%. | The first $200,000 of value paid is subject to 0.5% Principal Residence Tax Rate."
+        }
+      ],
+      "propertyTax": [
+        {
+          "text": "Vermont homeowners who file a Homestead Declaration, owned and lived in the home as their homestead on April 1, and meet the household income limit can claim a property tax credit. The maximum credit is $5,600 for the state education property tax portion, and the municipal portion is capped at $2,400. The 2025 income limit is $115,400. You claim it on Form HS-122, generally due April 15.",
+          "source": "Vermont Department of Taxes: property tax credit",
+          "url": "https://tax.vermont.gov/property/property-tax-credit",
+          "quote": "The maximum credit is $5,600 for the State education property tax portion. | if it is not leased for more than 182 days in the claim year"
         }
       ]
     },
