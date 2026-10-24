@@ -94,6 +94,14 @@
           "quote": "available to qualifying applicants of an “ADFA StartSmart” or “ADFA Move-Up” first mortgage."
         }
       ],
+      "closing": [
+        {
+          "text": "Arkansas charges a real estate transfer (deed) tax of $3.30 per $1,000 of actual consideration on transactions that exceed $100.",
+          "source": "Arkansas Department of Finance and Administration: real property transfer tax",
+          "url": "https://www.dfa.arkansas.gov/office/taxes/excise-tax-administration/miscellaneous-tax/arkansas-miscellaneous-tax-laws/real-property-transfer/",
+          "quote": "The tax rate is $3.30 per $1,000 of actual consideration on transactions that exceed $100. | Applicable Statutes: AR Code Ann. §26-60-101 et seq."
+        }
+      ],
       "propertyTax": [
         {
           "text": "For a homestead after reappraisal, the increase in assessed value is limited to not more than 5% of the property's assessed value for the previous year.",
@@ -150,6 +158,14 @@
           "quote": "Up to $25,000 down payment | payoff of first mortgage loan, sale or refinance of home"
         }
       ],
+      "closing": [
+        {
+          "text": "Colorado charges a state documentary fee on documents that convey real property: one cent for each $100 of the sale price when the price is more than $500. That works out to $1 for every $10,000 of price.",
+          "source": "Weld County Clerk and Recorder: recording a document (cites CRS 39-13-102)",
+          "url": "https://www.weld.gov/Government/Departments/Clerk-and-Recorder/Recording-Department/Recording-a-Document",
+          "quote": "A state documentary fee is assessed only on documents conveying real property. | $.01 per $100.00 if the sale price is greater than $500.00. | Colorado law (CRS 39-13-102) requires any document that transfers title with consideration exceeding $500.00"
+        }
+      ],
       "propertyTax": [
         {
           "text": "Colorado's senior homestead exemption exempts 50 percent of the first $200,000 of the actual value of a qualified applicant's primary residence. Applicants must have been born on or before January 1, 1961, and have owned and occupied the home as their primary residence continuously since January 1, 2016 or earlier.",
@@ -176,6 +192,14 @@
           "source": "CHFA: homebuyer mortgage programs",
           "url": "https://www.chfa.org/homebuyers/all-homebuyer-mortgage-programs/",
           "quote": "offers both down payment and closing cost assistance to eligible first-time homebuyers | someone who has not owned a home in the past three years"
+        }
+      ],
+      "closing": [
+        {
+          "text": "For a residential home, Connecticut's state conveyance tax is 0.75% of the sale price up to $800,000, 1.25% on the part from $800,000 to $2.5 million, and 2.25% on the part above $2.5 million. Municipalities add a base rate of 0.25%, and eligible ones can add up to another 0.25%.",
+          "source": "Connecticut Office of Legislative Research: report 2020-R-0020 on the real estate conveyance tax",
+          "url": "https://prdext3.cga.ct.gov/2020/rpt/pdf/2020-R-0020.pdf",
+          "quote": "0.75% on the first $800,000 | 1.25% | 2.25% | Beginning July 1, 2020 | The base rate is 0.25% for all municipalities."
         }
       ]
     },
@@ -386,6 +410,14 @@
           "source": "IHDA: getting an IHDA loan",
           "url": "https://www.ihda.org/my-home/getting-an-ihda-loan/",
           "quote": "10% of the purchase price up to $10,000 in assistance for down payment & closing costs offered as an interest-free loan | repaid monthly over a 10 year period"
+        }
+      ],
+      "closing": [
+        {
+          "text": "Illinois charges a state real estate transfer tax of 50 cents for each $500 of value, or fraction of $500, stated in the declaration filed with the transfer.",
+          "source": "Illinois General Assembly: 35 ILCS 200/31-10 (Real Estate Transfer Tax Law)",
+          "url": "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K31-10.htm",
+          "quote": "at the rate of 50¢ for each $500 of value or fraction of $500 stated in the declaration required by Section 31-25"
         }
       ],
       "propertyTax": [
@@ -1002,6 +1034,14 @@
           "quote": "allows homebuyers to choose either 2.5% or 5% of the home's purchase price. | Down payment assistance is forgiven after seven years. | If you sell your home within seven years, you must repay all of the assistance provided."
         }
       ],
+      "closing": [
+        {
+          "text": "Ohio counties may levy a real property transfer tax of up to 30 cents per $100 of value. The county commissioners set it by resolution, and the grantor (seller) pays it, so the rate depends on the county. Ask your county auditor for the current rate.",
+          "source": "Ohio Revised Code § 322.02",
+          "url": "https://codes.ohio.gov/orc/322",
+          "quote": "at a rate not to exceed thirty cents per hundred dollars for each one hundred dollars or fraction thereof | The tax shall be levied upon the grantor named in the deed and shall be paid by the grantor. | pursuant to a resolution adopted by the board of county commissioners"
+        }
+      ],
       "propertyTax": [
         {
           "text": "Ohio's homestead exemption lets qualifying homeowners exempt some of the market value of their homes from local property taxes. It is for low-income senior citizens, certain permanently and totally disabled Ohioans, and surviving spouses of those individuals.",
@@ -1552,6 +1592,14 @@
           "quote": "If you qualify, you may receive 3% or 5% in downpayment and closing costs assistance to help with financing your mortgage. | will include a second mortgage at 0% interest rate, due-on-sale or satisfaction, no payments and no additional fees."
         }
       ],
+      "closing": [
+        {
+          "text": "South Dakota charges a fee on transferring title to real property: fifty cents for each $500 of value or fraction of $500. The grantor (seller) pays it.",
+          "source": "South Dakota Codified Laws § 43-4-21",
+          "url": "https://sdlegislature.gov/Statutes/43-4-21",
+          "quote": "A fee is hereby imposed at the rate of fifty cents for each five hundred dollars of value or fraction thereof. | the privilege of transferring title to real property in the State of South Dakota | which fee shall be paid by the grantor"
+        }
+      ],
       "propertyTax": [
         {
           "text": "South Dakota's assessment freeze for the elderly and disabled requires you to be 65 or older or disabled, and to have owned an owner-occupied single-family dwelling and been a South Dakota resident for five years (unless you received the freeze the previous year). Income and property value limits apply, and applications go to the county treasurer on or before April 1.",
@@ -1618,6 +1666,14 @@
           "source": "West Virginia Housing Development Fund: Homeownership Program",
           "url": "https://www.wvhdf.com/home-buyers/homeownership-program",
           "quote": "Borrower(s) gross income must not exceed a county income limit; | The house to be purchased must not exceed a house price limit; | cannot have owned a home within the prior three years"
+        }
+      ],
+      "closing": [
+        {
+          "text": "West Virginia charges an excise tax on transferring real property: $1.10 for each $500 of value (or fraction of $500) to the state, plus 55 cents for each $500 to the county. A county may raise its share up to $1.65 for each $500. The grantor (seller) pays unless the grantee accepts the document without the tax having been paid.",
+          "source": "West Virginia Code, Chapter 11, Article 22: excise tax on the privilege of transferring real property",
+          "url": "https://code.wvlegislature.gov/pdf/11-22/",
+          "quote": "at the rate of $1.10 for each $500 value or fraction thereof as represented by the document | at the rate of 55 cents for each $500 value or fraction thereof as represented by such document | the county may increase the excise tax to an amount not to exceed $1.65 for each $500 value | the tax shall be paid by the grantor therein unless the grantee accepts the document without such tax having been paid"
         }
       ],
       "propertyTax": [
