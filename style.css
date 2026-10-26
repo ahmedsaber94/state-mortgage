@@ -157,6 +157,11 @@ th { border-bottom: 2px solid var(--ink); font-weight: 600; }
 td.num, th.num { text-align: right; }
 /* State names in the table: bigger tap area without making the rows taller. */
 .tablewrap td a { display: inline-block; padding: 10px 0; margin: -10px 0; }
+/* County table on phones: drop the middle money column (it is rate x value) so names do not wrap three times. */
+@media (max-width: 520px) {
+  #county-table th, #county-table td { padding-left: 8px; padding-right: 8px; }
+  #county-table th:nth-child(3), #county-table td:nth-child(3) { display: none; }
+}
 .plain { list-style: none; padding: 0; margin: 0 0 8px; }
 .plain li { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px solid var(--rule-soft); }
 .plain .val { font-variant-numeric: tabular-nums; color: var(--ink-soft); }

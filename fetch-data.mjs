@@ -7,7 +7,7 @@
 import { writeFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { STATES } from '../src/states.mjs';
+import { STATES, COUNTY_VARS, MIN_OWNER_HOMES, parseCounties } from '../src/states.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CENSUS_KEY = process.env.CENSUS_API_KEY;
@@ -154,10 +154,39 @@ async function latestAcs() {
   throw new Error(errors.join('\n'));
 }
 
+// County figures (same two tables, one row per county). They are an extra: if this step fails the
+// weekly rate refresh and the rest of the site still go ahead, only the county tables are left out.
+const MIN_COUNTIES_TOTAL = 1500; // the U.S. has about 3,100; far fewer means the response is not what we expect
+
+async function countiesAcs(year) {
+  const url =
+    `https://api.census.gov/data/${year}/acs/acs5?get=NAME,${COUNTY_VARS.value},${COUNTY_VARS.tax},${COUNTY_VARS.owners}` +
+    `&for=county:*&key=${encodeURIComponent(CENSUS_KEY)}`;
+  const body = await (await getWithRetry(url, `Census ACS ${year} counties`)).text();
+  let table;
+  try {
+    table = JSON.parse(body);
+  } catch {
+    throw new Error(`Census ACS ${year} counties: response was not JSON`);
+  }
+  const result = parseCounties(table, STATES);
+  if (result.kept < MIN_COUNTIES_TOTAL) {
+    throw new Error(`only ${result.kept} usable counties (skipped: ${JSON.stringify(result.skipped)})`);
+  }
+  return result;
+}
+
 // ---- Run -------------------------------------------------------------------
 try {
   const [{ rate, date }, acs] = await Promise.all([latestRate(), latestAcs()]);
   if (!(rate > 1 && rate < 20)) throw new Error(`Implausible mortgage rate: ${rate}`);
+
+  let counties = null;
+  try {
+    counties = await countiesAcs(acs.year);
+  } catch (err) {
+    console.warn(`County data skipped: ${err.message}`);
+  }
 
   const data = {
     meta: {
@@ -174,6 +203,15 @@ try {
   await mkdir(path.join(ROOT, 'data'), { recursive: true });
   await writeFile(path.join(ROOT, 'data', 'states.json'), JSON.stringify(data, null, 2) + '\n');
   console.log(`Saved ${data.states.length} states. 30-year rate ${rate}% (week of ${date}). ACS ${data.meta.acsLabel}.`);
+
+  if (counties) {
+    const file = {
+      meta: { generated: data.meta.generated, acsYear: acs.year, acsLabel: data.meta.acsLabel, minOwnerHomes: MIN_OWNER_HOMES },
+      states: counties.states,
+    };
+    await writeFile(path.join(ROOT, 'data', 'counties.json'), JSON.stringify(file) + '\n');
+    console.log(`Saved ${counties.kept} counties (skipped: ${JSON.stringify(counties.skipped)}).`);
+  }
 } catch (err) {
   die(`Data refresh failed:\n${err.message}`);
 }

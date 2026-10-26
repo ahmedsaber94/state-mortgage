@@ -21,3 +21,79 @@ export const STATES = LIST.map(([fips, name, abbr]) => ({
   abbr,
   slug: name.toLowerCase().replace(/\s+/g, '-'),
 }));
+
+// ---- County figures ----------------------------------------------------------------------------
+// Pure helpers for the county tables. Used by scripts/fetch-data.mjs (reading the Census response),
+// src/build.mjs (checking data/counties.json before it is shown) and the tests. They live in this
+// file so that the flat upload of files to the repository root keeps working unchanged.
+// County figures come from the same two ACS tables as the state figures:
+//   B25077 median value of owner-occupied homes, B25103 median real estate taxes paid.
+// B25003 (owner-occupied housing units) tells us how many homes sit behind a county's medians.
+
+export const COUNTY_VARS = { value: 'B25077_001E', tax: 'B25103_001E', owners: 'B25003_002E' };
+
+// Medians from a handful of homes are noisy, so counties below this are left out.
+export const MIN_OWNER_HOMES = 500;
+// A county rate outside this band is far more likely to be a data problem than a real tax rate.
+export const MIN_RATE = 0.05;
+export const MAX_RATE = 4.5;
+
+/** "Harris County, Texas" -> "Harris County". Other names are kept exactly as the Census Bureau gives them. */
+export function countyName(fullName, stateName) {
+  const name = String(fullName).trim();
+  const suffix = `, ${stateName}`;
+  return name.endsWith(suffix) ? name.slice(0, -suffix.length) : name;
+}
+
+/** A county entry as stored in counties.json: { n: name, v: median home value, t: median tax paid }. */
+export function isUsableCounty(c) {
+  if (!c || typeof c.n !== 'string' || !c.n.trim()) return false;
+  if (!Number.isFinite(c.v) || !Number.isFinite(c.t) || !(c.v > 0) || !(c.t > 0)) return false;
+  const rate = (c.t / c.v) * 100;
+  return rate >= MIN_RATE && rate <= MAX_RATE;
+}
+
+/**
+ * Turns the Census API table (first row = column names) into { states: { slug: [{ n, v, t }] }, kept, skipped }.
+ * Rows are skipped, never guessed: missing values (the Census Bureau uses large negative numbers),
+ * too few owner-occupied homes, implausible rates, and areas outside the 50 states.
+ */
+export function parseCounties(table, states) {
+  if (!Array.isArray(table) || table.length < 2) throw new Error('county table is empty');
+  const [head, ...rows] = table;
+  const col = Object.fromEntries(head.map((h, i) => [h, i]));
+  for (const k of ['NAME', 'state', COUNTY_VARS.value, COUNTY_VARS.tax, COUNTY_VARS.owners]) {
+    if (!(k in col)) throw new Error(`county table is missing the column ${k}`);
+  }
+  const byFips = new Map(states.map((s) => [s.fips, s]));
+  const out = {};
+  const skipped = { otherArea: 0, missing: 0, tooSmall: 0, implausible: 0 };
+  let kept = 0;
+  for (const r of rows) {
+    const st = byFips.get(r[col.state]);
+    if (!st) {
+      skipped.otherArea++;
+      continue;
+    }
+    const v = Number(r[col[COUNTY_VARS.value]]);
+    const t = Number(r[col[COUNTY_VARS.tax]]);
+    const owners = Number(r[col[COUNTY_VARS.owners]]);
+    if (![v, t, owners].every(Number.isFinite) || v <= 0 || t <= 0) {
+      skipped.missing++;
+      continue;
+    }
+    if (owners < MIN_OWNER_HOMES) {
+      skipped.tooSmall++;
+      continue;
+    }
+    const entry = { n: countyName(r[col.NAME], st.name), v, t };
+    if (!isUsableCounty(entry)) {
+      skipped.implausible++;
+      continue;
+    }
+    (out[st.slug] ??= []).push(entry);
+    kept++;
+  }
+  for (const list of Object.values(out)) list.sort((a, b) => a.n.localeCompare(b.n, 'en'));
+  return { states: out, kept, skipped };
+}

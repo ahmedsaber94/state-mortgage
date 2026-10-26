@@ -5,7 +5,7 @@ import { readFile, writeFile, mkdir, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { deflateSync } from 'node:zlib';
 import { fileURLToPath } from 'node:url';
-import { STATES } from './states.mjs';
+import { STATES, MIN_OWNER_HOMES, isUsableCounty } from './states.mjs';
 import { paymentBreakdown, incomeNeeded } from './calc.mjs';
 import { ledgerHtml, barHtml, factsHtml, money } from './ledger.mjs';
 
@@ -54,6 +54,14 @@ if (data.meta?.synthetic && !ALLOW_SYNTHETIC) {
 const insRates = (await readJson(path.join(ROOT, 'data', 'insurance-rates.json'), true)) ?? {};
 // Optional, sourced local facts per state (see README). Every item carries its own official source link.
 const LOCAL = (await readJson(path.join(ROOT, 'local-content.json'), true)) ?? { states: {} };
+// Optional county figures, written next to states.json by the fetch script. If the file is missing or
+// unreadable the site is built without county tables rather than failing.
+let COUNTY_DATA = null;
+try {
+  COUNTY_DATA = await readJson(path.join(path.dirname(DATA_PATH), 'counties.json'), true);
+} catch (err) {
+  console.warn(`Warning: counties.json could not be read (${err.message}); building without county tables.`);
+}
 
 if (!(OUT.length > 8) || ROOT.startsWith(OUT)) fail(`Refusing to clean output directory: ${OUT}`);
 
@@ -97,6 +105,25 @@ const national = {
   taxRate: round2(medianEff),
   insRatePct: config.insuranceRatePct,
 };
+
+// County tables: only for states with enough usable counties. Entries are checked again here, so a
+// damaged or hand-edited counties.json cannot put a nonsense rate on a page.
+const MIN_COUNTIES_FOR_TABLE = 3;
+const COUNTIES = new Map();
+for (const s of STATES) {
+  const list = (COUNTY_DATA?.states?.[s.slug] ?? [])
+    .filter(isUsableCounty)
+    .map((c) => ({ n: c.n.trim(), v: c.v, t: c.t, eff: (c.t / c.v) * 100 }))
+    .sort((a, b) => a.n.localeCompare(b.n, 'en'));
+  if (list.length >= MIN_COUNTIES_FOR_TABLE) COUNTIES.set(s.slug, list);
+}
+const COUNTY_LABEL = COUNTY_DATA?.meta?.acsLabel ?? data.meta.acsLabel;
+// [singular, plural, capitalised singular]. Louisiana has parishes and Alaska boroughs and census areas.
+const AREA_WORDS = {
+  louisiana: ['parish', 'parishes', 'Parish'],
+  alaska: ['borough or census area', 'boroughs and census areas', 'Borough or census area'],
+};
+const DEFAULT_AREA_WORDS = ['county', 'counties', 'County'];
 
 const RATE = data.meta.rate;
 const DOWN = config.defaultDownPct;
@@ -219,11 +246,11 @@ ${body.replace('<main>', '<main id="main" tabindex="-1">')}
 `;
 }
 
-function calcForm({ cfg, price, taxRate, insRatePct, stateSelect = '', taxHint }) {
+function calcForm({ cfg, price, taxRate, insRatePct, stateSelect = '', countySelect = '', taxHint }) {
   const insAnnual = Math.round((price * insRatePct) / 100);
   const config_ = esc(JSON.stringify(cfg));
   return `<form id="calc" class="calc" data-config="${config_}" novalidate>
-${stateSelect}
+${stateSelect}${countySelect}
 <div class="grid">
 <label class="field">Home price<span class="affix"><i class="pre">$</i><input name="price" type="number" inputmode="decimal" min="1" step="1000" value="${price}"></span></label>
 <label class="field">Down payment<span class="affix"><input name="down" type="number" inputmode="decimal" min="0" max="99" step="1" value="${DOWN}"><i class="suf">%</i></span></label>
@@ -297,6 +324,44 @@ async function statePage(s) {
     .filter(Boolean)
     .join('\n');
 
+  // County table and county picker (only when the state has usable county data).
+  const cl = COUNTIES.get(s.slug);
+  let countySelect = '';
+  let countySection = '';
+  let countyNoteLink = '';
+  let countyFaq = null;
+  if (cl) {
+    const [one, many, One] = AREA_WORDS[s.slug] ?? DEFAULT_AREA_WORDS;
+    const hi = cl.reduce((a, b) => (b.eff > a.eff ? b : a));
+    const lo = cl.reduce((a, b) => (b.eff < a.eff ? b : a));
+    countySelect = `<label class="field wide" style="margin-bottom:16px">${One}<select name="county"><option value="">${esc(s.name)} average</option>${cl
+      .map((c, i) => `<option value="${i}">${esc(c.n)}</option>`)
+      .join('')}</select><small>Loads the ${one}'s median home value and property tax rate.</small></label>`;
+    countyNoteLink = ` (see the <a href="#counties">${one} table</a> below)`;
+    const countyRows = cl
+      .map(
+        (c) =>
+          `<tr data-name="${esc(c.n.toLowerCase())}" data-p="${c.v}" data-r="${round2(c.eff)}"><td>${esc(c.n)}</td><td class="num">${pct(c.eff)}</td><td class="num">${usd0(c.t)}</td><td class="num">${usd0(c.v)}</td></tr>`
+      )
+      .join('');
+    countySection = `<section class="block wide" id="counties">
+<h2>Property tax by ${one} in ${esc(s.name)}</h2>
+<p>Property tax is set locally, so what you pay depends on where in ${esc(s.name)} you buy. The table shows the effective rate for the ${cl.length} ${many} with enough Census data: the median real estate tax paid by homeowners divided by the median home value. Rates run from ${pct(lo.eff)} in ${esc(lo.n)} to ${pct(hi.eff)} in ${esc(hi.n)}, against ${pct(s.eff)} for the state as a whole. Pick a ${one} in the calculator above to start from its figures.</p>
+<label class="field filter">Find a ${one}<span class="affix"><input id="county-filter" type="search" autocomplete="off" placeholder="Type a name"></span></label>
+<div class="tablewrap"><table id="county-table">
+<caption class="sr-only">Effective property tax rate by ${one} in ${esc(s.name)}</caption>
+<thead><tr><th scope="col">${One}</th><th scope="col" class="num">Effective rate</th><th scope="col" class="num">Median tax paid</th><th scope="col" class="num">Median home value</th></tr></thead>
+<tbody>${countyRows}</tbody>
+</table></div>
+<p id="county-no-match" hidden>Nothing matches that search.</p>
+<p class="note">Source: Census Bureau American Community Survey ${esc(COUNTY_LABEL)} 5-year estimates (tables B25077 and B25103). Areas with fewer than ${MIN_OWNER_HOMES} owner-occupied homes are left out because estimates from so few homes are less reliable. This is an effective rate, not the official tax rate a local government publishes, and your city, school district and exemptions change the bill. Areas the Census Bureau treats as county equivalents (such as independent cities and planning regions) appear under the names it gives them.</p>
+</section>`;
+    countyFaq = [
+      `Which ${s.name} ${one} has the highest property tax rate?`,
+      `Among the ${cl.length} ${many} with enough Census data, ${hi.n} has the highest effective property tax rate at ${pct(hi.eff)} and ${lo.n} has the lowest at ${pct(lo.eff)}. The ${s.name} average is ${pct(s.eff)}. An effective rate is the median real estate tax paid divided by the median home value, so it can differ from the official rate your local government publishes.`,
+    ];
+  }
+
   const faqs = [
     [
       `What is the property tax rate in ${s.name}?`,
@@ -315,6 +380,7 @@ async function statePage(s) {
       `Yes. It adds property tax at ${pct(s.eff)} of the home price and home insurance at ${s.insRatePct}% of the home price as a starting estimate. Change either number to match a real quote. Mortgage insurance is added automatically when the down payment is under 20%.`,
     ],
   ];
+  if (countyFaq) faqs.push(countyFaq);
 
   const body = `<main>
 <div class="wrap">
@@ -329,6 +395,7 @@ ${calcForm({
   price: s.price,
   taxRate: s.taxRate,
   insRatePct: s.insRatePct,
+  countySelect,
   taxHint: `${esc(s.name)} average effective rate`,
 })}
 ${statement(r, trustNote('state', s))}
@@ -348,8 +415,10 @@ ${statement(r, trustNote('state', s))}
 <thead><tr><th scope="col">Home price</th><th scope="col" class="num">Tax per year</th><th scope="col" class="num">Tax per month</th></tr></thead>
 <tbody>${taxRows}</tbody>
 </table></div>
-<p class="note">These figures apply the statewide average rate. Rates differ between counties and taxing districts, and some homes qualify for exemptions. Where a state caps yearly increases in assessed value, a new buyer can pay more than the long-time owners behind this average (see the <a href="${BASE}/methodology/">methodology</a>).</p>
+<p class="note">These figures apply the statewide average rate. Rates differ between counties${countyNoteLink} and taxing districts, and some homes qualify for exemptions. Where a state caps yearly increases in assessed value, a new buyer can pay more than the long-time owners behind this average (see the <a href="${BASE}/methodology/">methodology</a>).</p>
 </section>
+
+${countySection}
 
 <section class="block">
 <h2>States with similar property tax rates</h2>
@@ -506,7 +575,7 @@ function staticPages() {
 <li><strong>Home values:</strong> median value of owner-occupied homes, Census Bureau American Community Survey ${esc(data.meta.acsLabel)} 5-year estimates (table B25077).</li>
 <li><strong>Property tax:</strong> median real estate taxes paid by homeowners, same survey (table B25103). The effective rate is the median tax divided by the median home value.</li>
 <li><strong>Income:</strong> median household income, same survey (table B19013).</li>
-</ul>
+${COUNTIES.size ? `<li><strong>County figures:</strong> the same two tables (B25077 and B25103) for each county, ${esc(COUNTY_LABEL)} estimates. Counties with fewer than ${MIN_OWNER_HOMES} owner-occupied homes (table B25003) are left out because estimates from so few homes are less reliable. A county's effective rate is its median tax paid divided by its median home value. It is not the official rate the county publishes.</li>\n` : ''}</ul>
 <h2>Assumptions you can change</h2>
 <ul>
 <li>Home insurance starts at ${config.insuranceRatePct}% of the home price a year. This is a general starting estimate and not a figure measured for each state, so replace it with a quote from an insurer.</li>

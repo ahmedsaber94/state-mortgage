@@ -6,7 +6,8 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
-import { syntheticData } from './helpers/synthetic.mjs';
+import { syntheticData, syntheticCounties } from './helpers/synthetic.mjs';
+import { STATES, COUNTY_VARS, MIN_OWNER_HOMES, countyName, isUsableCounty, parseCounties } from '../src/states.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const BUILD = path.join(ROOT, 'src', 'build.mjs');
@@ -16,6 +17,7 @@ async function buildSynthetic() {
   const dataFile = path.join(dir, 'states.json');
   const out = path.join(dir, 'dist');
   await writeFile(dataFile, JSON.stringify(syntheticData()));
+  await writeFile(path.join(dir, 'counties.json'), JSON.stringify(syntheticCounties()));
   // '--base' '' pins the root path so these tests do not depend on the deployed config.json.
   const res = spawnSync(process.execPath, [BUILD, '--data', dataFile, '--out', out, '--allow-synthetic', '--base', ''], { encoding: 'utf8' });
   return { dir, dataFile, out, res };
@@ -247,4 +249,151 @@ test('sourced local facts appear on the state page with their source link', asyn
     const html = await readFile(path.join(out, `mortgage-calculator/${bare.slug}/index.html`), 'utf8');
     assert.doesNotMatch(html, /Property tax exemptions and rules|Homebuyer assistance|Taxes and fees at closing/);
   }
+});
+
+const round2 = (n) => Math.round(n * 100) / 100;
+const unesc = (s) => s.replaceAll('&amp;', '&').replaceAll('&#39;', "'");
+
+test('county table lists each usable county, sorted, and drops damaged entries', async () => {
+  const { out, res } = await buildSynthetic();
+  assert.equal(res.status, 0, res.stderr);
+  const html = await readFile(path.join(out, 'mortgage-calculator/texas/index.html'), 'utf8');
+  const section = html.match(/<section class="block wide" id="counties">[\s\S]*?<\/section>/)[0];
+  const rows = [...section.matchAll(/<tr data-name="([^"]*)" data-p="(\d+)" data-r="([\d.]+)"><td>([^<]*)<\/td><td class="num">([\d.]+)%<\/td><td class="num">\$([\d,]+)<\/td><td class="num">\$([\d,]+)<\/td><\/tr>/g)];
+  const valid = syntheticCounties().states.texas.filter((c) => c.t > 0 && c.t / c.v < 0.045);
+  assert.equal(rows.length, valid.length);
+  const names = rows.map((r) => unesc(r[4]));
+  assert.deepEqual(names, [...names].sort((a, b) => a.localeCompare(b, 'en')));
+  for (const r of rows) {
+    const c = valid.find((x) => x.n === unesc(r[4]));
+    assert.ok(c, `unexpected row ${r[4]}`);
+    assert.equal(Number(r[2]), c.v);
+    assert.equal(Number(r[3]), round2((c.t / c.v) * 100));
+    assert.equal(r[6], c.t.toLocaleString('en-US'));
+    assert.equal(r[7], c.v.toLocaleString('en-US'));
+  }
+  assert.doesNotMatch(html, /Broken County|Wild County/);
+  assert.ok(html.includes('Doña Ana &amp; O&#39;Brien County'), 'names with & and an apostrophe must be escaped');
+  assert.ok(!html.includes("O'Brien County"), 'raw apostrophe leaked into the page');
+  // The picker has one option per row plus the state average, and the option index points at that row.
+  const select = html.match(/<select name="county">([\s\S]*?)<\/select>/)[1];
+  const options = [...select.matchAll(/<option value="([^"]*)">([^<]*)<\/option>/g)];
+  assert.equal(options.length, rows.length + 1);
+  assert.equal(options[0][1], '');
+  options.slice(1).forEach((o, i) => {
+    assert.equal(o[1], String(i));
+    assert.equal(unesc(o[2]), names[i]);
+  });
+  // Text and structured data use the same extremes as the table.
+  const byRate = [...rows].sort((a, b) => Number(b[3]) - Number(a[3]));
+  const lowest = byRate.at(-1);
+  assert.match(section, new RegExp(`from ${lowest[5]}% in ${lowest[4]} to ${byRate[0][5]}% in ${byRate[0][4]}`));
+  assert.match(html, /Which Texas county has the highest property tax rate\?/);
+  assert.match(html, /href="#counties">county table<\/a> below/);
+  assert.match(section, /fewer than 500 owner-occupied homes/);
+});
+
+test('county picker and table are wired to the calculator script', async () => {
+  const { out } = await buildSynthetic();
+  const js = await readFile(path.join(out, 'assets/app.js'), 'utf8');
+  assert.match(js, /#county-table tbody tr/);
+  assert.match(js, /t\.name === 'county'/);
+  assert.match(js, /setupFilter\(countyFilter, 'county-table', 'county-no-match'\)/);
+  const html = await readFile(path.join(out, 'mortgage-calculator/texas/index.html'), 'utf8');
+  assert.match(html, /id="county-filter"/);
+  assert.match(html, /id="county-no-match" hidden/);
+  const ids = [...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]);
+  assert.equal(new Set(ids).size, ids.length, 'duplicate ids on the page');
+});
+
+test('Louisiana and Alaska use their own words for county areas', async () => {
+  const { out } = await buildSynthetic();
+  const la = await readFile(path.join(out, 'mortgage-calculator/louisiana/index.html'), 'utf8');
+  assert.match(la, /<h2>Property tax by parish in Louisiana<\/h2>/);
+  assert.match(la, /<label class="field wide"[^>]*>Parish<select name="county">/);
+  const ak = await readFile(path.join(out, 'mortgage-calculator/alaska/index.html'), 'utf8');
+  assert.match(ak, /<h2>Property tax by borough or census area in Alaska<\/h2>/);
+});
+
+test('states with no or too few counties get no county section or picker', async () => {
+  const { out } = await buildSynthetic();
+  for (const slug of ['wyoming', 'rhode-island']) {
+    const html = await readFile(path.join(out, `mortgage-calculator/${slug}/index.html`), 'utf8');
+    assert.doesNotMatch(html, /county-table|name="county"|href="#counties"|id="counties"/, slug);
+  }
+  const home = await readFile(path.join(out, 'index.html'), 'utf8');
+  assert.doesNotMatch(home, /county-table|name="county"/);
+});
+
+test('build still works without counties.json, or with a damaged one', async () => {
+  for (const content of [null, '{not json']) {
+    const dir = await mkdtemp(path.join(tmpdir(), 'mortgage-nocounty-'));
+    const dataFile = path.join(dir, 'states.json');
+    const out = path.join(dir, 'dist');
+    await writeFile(dataFile, JSON.stringify(syntheticData()));
+    if (content) await writeFile(path.join(dir, 'counties.json'), content);
+    const res = spawnSync(process.execPath, [BUILD, '--data', dataFile, '--out', out, '--allow-synthetic', '--base', ''], { encoding: 'utf8' });
+    assert.equal(res.status, 0, res.stderr);
+    if (content) assert.match(res.stderr, /counties\.json could not be read/);
+    for (const file of await htmlFiles(out)) {
+      assert.doesNotMatch(await readFile(file, 'utf8'), /county-table|name="county"|County figures:/, file);
+    }
+  }
+});
+
+test('methodology page explains the county figures when they are shown', async () => {
+  const { out } = await buildSynthetic();
+  const html = await readFile(path.join(out, 'methodology/index.html'), 'utf8');
+  assert.match(html, /<strong>County figures:<\/strong>/);
+  assert.match(html, /It is not the official rate the county publishes/);
+});
+
+const HEAD = ['NAME', COUNTY_VARS.value, COUNTY_VARS.tax, COUNTY_VARS.owners, 'state', 'county'];
+const row = (name, v, t, owners, state, county = '001') => [name, String(v), String(t), String(owners), state, county];
+
+test('county names drop only the trailing state', () => {
+  assert.equal(countyName('Harris County, Texas', 'Texas'), 'Harris County');
+  assert.equal(countyName('Richmond city, Virginia', 'Virginia'), 'Richmond city');
+  assert.equal(countyName('Capitol Planning Region, Connecticut', 'Connecticut'), 'Capitol Planning Region');
+  assert.equal(countyName('Something', 'Texas'), 'Something');
+});
+
+test('county rows are checked, not guessed', () => {
+  const table = [
+    HEAD,
+    row('Harris County, Texas', 250000, 4000, 900000, '48'),
+    row('Dallas County, Texas', 300000, 5500, 400000, '48'),
+    row('Loving County, Texas', 80000, 600, 40, '48'), // too few homes
+    row('Kenedy County, Texas', -666666666, -666666666, 120, '48'), // Census "not available"
+    row('Odd County, Texas', 100000, 90000, 5000, '48'), // 90% is not a tax rate
+    row('Missing County, Texas', null, 3000, 5000, '48'),
+    row('Ponce Municipio, Puerto Rico', 90000, 500, 9000, '72'), // outside the 50 states
+    row('Autauga County, Alabama', 190000, 800, 15000, '01'),
+  ];
+  const out = parseCounties(table, STATES);
+  assert.equal(out.kept, 3);
+  assert.deepEqual(out.skipped, { otherArea: 1, missing: 2, tooSmall: 1, implausible: 1 });
+  assert.deepEqual(out.states.texas.map((c) => c.n), ['Dallas County', 'Harris County']);
+  assert.deepEqual(out.states.texas[1], { n: 'Harris County', v: 250000, t: 4000 });
+  assert.deepEqual(out.states.alabama, [{ n: 'Autauga County', v: 190000, t: 800 }]);
+});
+
+test('owner-home threshold is inclusive and bad tables are refused', () => {
+  const ok = parseCounties([HEAD, row('A County, Ohio', 150000, 2000, MIN_OWNER_HOMES, '39')], STATES);
+  assert.equal(ok.kept, 1);
+  const short = parseCounties([HEAD, row('A County, Ohio', 150000, 2000, MIN_OWNER_HOMES - 1, '39')], STATES);
+  assert.equal(short.kept, 0);
+  assert.throws(() => parseCounties([], STATES), /empty/);
+  assert.throws(() => parseCounties([['NAME', 'state'], ['A', '39']], STATES), /missing the column/);
+});
+
+test('stored county entries must have a name, positive numbers and a believable rate', () => {
+  assert.ok(isUsableCounty({ n: 'A County', v: 200000, t: 2400 }));
+  assert.ok(!isUsableCounty({ n: '', v: 200000, t: 2400 }));
+  assert.ok(!isUsableCounty({ n: 'A', v: 0, t: 10 }));
+  assert.ok(!isUsableCounty({ n: 'A', v: 200000, t: -1 }));
+  assert.ok(!isUsableCounty({ n: 'A', v: 200000, t: 'x' }));
+  assert.ok(!isUsableCounty({ n: 'A', v: 200000, t: 20 })); // 0.01%
+  assert.ok(!isUsableCounty({ n: 'A', v: 100000, t: 6000 })); // 6%
+  assert.ok(!isUsableCounty(null));
 });

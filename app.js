@@ -13,6 +13,10 @@ function setupCalc(form) {
   var states = cfg.states || {};
   var cur = { price: cfg.price, taxRate: cfg.taxRate, insRatePct: cfg.insRatePct };
   var insTouched = false;
+  // State pages with county data have a county picker and a table; the picker reads the table rows.
+  var countyRows = document.querySelectorAll('#county-table tbody tr');
+  var hintEl = f.taxRate.closest ? f.taxRate.closest('label').querySelector('small') : null;
+  var baseHint = hintEl ? hintEl.textContent : '';
 
   function val(name) {
     var v = parseFloat(f[name].value);
@@ -70,8 +74,19 @@ function setupCalc(form) {
 
   form.addEventListener('input', function (e) {
     var t = e.target;
-    if (t.name === 'state') {
-      var s = states[t.value] || cfg.national || cur;
+    if (t.name === 'state' || t.name === 'county') {
+      var s;
+      if (t.name === 'state') {
+        s = states[t.value] || cfg.national || cur;
+      } else {
+        var row = t.value === '' ? null : countyRows[parseInt(t.value, 10)];
+        if (row) {
+          s = { price: parseFloat(row.getAttribute('data-p')), taxRate: parseFloat(row.getAttribute('data-r')), insRatePct: cfg.insRatePct };
+        } else {
+          s = { price: cfg.price, taxRate: cfg.taxRate, insRatePct: cfg.insRatePct };
+        }
+        if (hintEl) hintEl.textContent = row ? row.cells[0].textContent + ' effective rate' : baseHint;
+      }
       cur = { price: s.price, taxRate: s.taxRate, insRatePct: s.insRatePct };
       f.price.value = cur.price;
       f.taxRate.value = cur.taxRate;
@@ -92,6 +107,7 @@ function setupCalc(form) {
       HTMLFormElement.prototype.reset.call(form);
       cur = { price: cfg.price, taxRate: cfg.taxRate, insRatePct: cfg.insRatePct };
       insTouched = false;
+      if (hintEl) hintEl.textContent = baseHint;
       render();
     });
   }
@@ -101,8 +117,8 @@ function setupCalc(form) {
 }
 
 // Sticky total on phones: shown only while the full payment statement is scrolled out of view.
-// On the home page it also stays hidden while the state table is on screen, because the visitor
-// is comparing states there and the monthly total of the calculator above is not what they are reading.
+// It also stays hidden while the state table (home page) or the county table (state pages) is on screen,
+// because the visitor is comparing rows there and the monthly total of the calculator above is not what they are reading.
 function setupSumBar() {
   var sum = document.getElementById('sumbar');
   if (!sum || !('IntersectionObserver' in window)) return;
@@ -111,6 +127,8 @@ function setupSumBar() {
   var watch = [statement];
   var table = document.getElementById('state-table');
   if (table) watch.push(table);
+  var countyTable = document.getElementById('county-table');
+  if (countyTable) watch.push(countyTable);
   var seen = new Map();
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
@@ -125,9 +143,9 @@ function setupSumBar() {
   });
 }
 
-function setupFilter(input) {
-  var rows = Array.prototype.slice.call(document.querySelectorAll('#state-table tbody tr'));
-  var empty = document.getElementById('no-match');
+function setupFilter(input, tableId, emptyId) {
+  var rows = Array.prototype.slice.call(document.querySelectorAll('#' + tableId + ' tbody tr'));
+  var empty = document.getElementById(emptyId);
   input.addEventListener('input', function () {
     var q = input.value.trim().toLowerCase();
     var shown = 0;
@@ -145,5 +163,7 @@ function setupFilter(input) {
   if (form) setupCalc(form);
   setupSumBar();
   var filter = document.getElementById('state-filter');
-  if (filter) setupFilter(filter);
+  if (filter) setupFilter(filter, 'state-table', 'no-match');
+  var countyFilter = document.getElementById('county-filter');
+  if (countyFilter) setupFilter(countyFilter, 'county-table', 'county-no-match');
 })();

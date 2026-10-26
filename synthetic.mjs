@@ -26,3 +26,27 @@ export function syntheticData() {
     states,
   };
 }
+
+// Fake county figures for tests ONLY. Wyoming has none, Rhode Island too few for a table (the build
+// needs at least 3), and Texas carries two damaged entries that the build must drop. Names are listed
+// in reverse order on purpose, so the tests can check that pages sort them.
+export function syntheticCounties() {
+  const states = {};
+  STATES.forEach((s, i) => {
+    if (s.slug === 'wyoming') return;
+    const n = s.slug === 'rhode-island' ? 2 : 4 + (i % 5);
+    const list = [];
+    for (let j = 0; j < n; j++) {
+      const v = 120000 + ((i * 7 + j * 13) % 40) * 9000;
+      const eff = 0.3 + ((i * 5 + j * 11) % 30) * 0.05;
+      list.push({ n: `${s.name} County ${String.fromCharCode(65 + j)}`, v, t: Math.round((v * eff) / 100) });
+    }
+    if (s.slug === 'texas') {
+      list.push({ n: 'Broken County', v: 100000, t: -5 });
+      list.push({ n: 'Wild County', v: 100000, t: 90000 });
+      list.push({ n: "Doña Ana & O'Brien County", v: 200000, t: 3000 }); // characters that need escaping
+    }
+    states[s.slug] = list.reverse();
+  });
+  return { meta: { generated: '2026-10-09', acsYear: 2024, acsLabel: '2020–2024', minOwnerHomes: 500 }, states };
+}
