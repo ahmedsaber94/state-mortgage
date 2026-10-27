@@ -431,6 +431,36 @@ test('county headline falls back to all counties when owner counts are missing o
   }
 });
 
+test('home page state list opens the state page, with a link fallback for keyboard users', async () => {
+  const { out } = await buildSynthetic();
+  const home = await readFile(path.join(out, 'index.html'), 'utf8');
+  assert.match(home, /<select name="state" data-path="\/mortgage-calculator\/">/);
+  assert.match(home, /<p id="state-go" class="state-go" hidden><a href="#states">/);
+  assert.match(home, /Choose a state to open its own page/);
+  assert.doesNotMatch(home, /Loads the state's typical home value/);
+  // Every option value is a real state page, so the path + value + "/" that app.js builds exists.
+  for (const m of home.matchAll(/<option value="([a-z-]+)">/g)) {
+    assert.ok(await exists(path.join(out, 'mortgage-calculator', m[1], 'index.html')), `no page for ${m[1]}`);
+  }
+  const code = await readFile(path.join(out, 'assets/app.js'), 'utf8');
+  assert.match(code, /window\.location\.href = href/);
+  assert.match(code, /lastKey === '' \|\| lastKey === 'Enter' \|\| lastKey === ' '/);
+  // State pages have no state list, so they carry no fallback link either.
+  const tx = await readFile(path.join(out, 'mortgage-calculator/texas/index.html'), 'utf8');
+  assert.doesNotMatch(tx, /name="state"|id="state-go"/);
+});
+
+test('with a base path, the state list opens pages under that path', async () => {
+  const dir = await mkdtemp(path.join(tmpdir(), 'mortgage-base-'));
+  const dataFile = path.join(dir, 'states.json');
+  const out = path.join(dir, 'dist');
+  await writeFile(dataFile, JSON.stringify(syntheticData()));
+  const res = spawnSync(process.execPath, [BUILD, '--data', dataFile, '--out', out, '--allow-synthetic', '--base', '/mortgage'], { encoding: 'utf8' });
+  assert.equal(res.status, 0, res.stderr);
+  const home = await readFile(path.join(out, 'index.html'), 'utf8');
+  assert.match(home, /data-path="\/mortgage\/mortgage-calculator\/"/);
+});
+
 test('calculator note tells visitors a picked county replaces the state average', async () => {
   const { out } = await buildSynthetic();
   const tx = await readFile(path.join(out, 'mortgage-calculator/texas/index.html'), 'utf8');

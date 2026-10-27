@@ -96,6 +96,9 @@ p { margin: 0 0 1em; }
   background: var(--sheet); border: 1px solid var(--field-line); border-radius: 3px;
 }
 .calc-msg { margin: 14px 0 0; color: #8a2b1a; font-weight: 600; }
+/* Home page: link to the chosen state's page, shown under the state list (keyboard fallback). */
+.state-go { margin: -8px 0 12px; }
+.state-go a { display: inline-block; padding: 8px 0; font-weight: 600; }
 .linkbtn {
   margin-top: 6px; padding: 12px 0; border: 0; background: none; color: var(--green-ink);
   font: inherit; text-decoration: underline; cursor: pointer;

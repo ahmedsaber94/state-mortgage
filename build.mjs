@@ -271,7 +271,7 @@ function trustNote(kind, s, hasCounties = false) {
   const how =
     kind === 'state'
       ? `Principal and interest use the standard fixed-rate loan formula. Property tax uses the ${esc(s.name)} average effective rate: the median real estate tax paid divided by the median home value.${hasCounties ? ' If you pick a county, it uses that county\'s rate instead.' : ''} Home insurance is a general estimate that you can change.`
-      : 'Principal and interest use the standard fixed-rate loan formula. Pick a state to start from its average property tax rate. Home insurance is a general estimate that you can change.';
+      : 'Principal and interest use the standard fixed-rate loan formula. Choose a state to open its page, which starts from the average property tax rate of that state. Home insurance is a general estimate that you can change.';
   return `<div class="trust"><p><strong>How this is calculated.</strong> ${how}</p><p>Sources: <a href="https://www.freddiemac.com/pmms" rel="noopener">Freddie Mac mortgage rate survey</a>, week of ${esc(RATE_DATE)}; <a href="https://www.census.gov/programs-surveys/acs" rel="noopener">U.S. Census Bureau American Community Survey</a>, ${esc(data.meta.acsLabel)}. Updated ${esc(UPDATED)}. <a href="${BASE}/methodology/">Full methodology</a>.</p></div>`;
 }
 
@@ -486,9 +486,11 @@ function homePage() {
   const stateMap = Object.fromEntries(
     states.map((s) => [s.slug, { name: s.name, price: s.price, taxRate: s.taxRate, insRatePct: s.insRatePct }])
   );
-  const select = `<label class="field wide" style="margin-bottom:16px">State<select name="state"><option value="">United States (typical)</option>${STATES.map(
+  // Choosing a state opens its own page (app.js reads data-path). The link under the list is the fallback
+  // for keyboard users, who step through the options with the arrow keys and are not moved automatically.
+  const select = `<label class="field wide" style="margin-bottom:16px">State<select name="state" data-path="${BASE}/mortgage-calculator/"><option value="">United States (typical)</option>${STATES.map(
     (s) => `<option value="${s.slug}">${esc(s.name)}</option>`
-  ).join('')}</select><small>Loads the state's typical home value and property tax rate.</small></label>`;
+  ).join('')}</select><small>Choose a state to open its own page, with county property tax rates where available.</small></label><p id="state-go" class="state-go" hidden><a href="#states">Open the state page</a></p>`;
   const top = ranked.slice(0, 5);
   const bottom = ranked.slice(-5).reverse();
   const li = (o) =>
@@ -505,7 +507,7 @@ function homePage() {
 <div class="wrap">
 <div class="hero">
 <h1>Mortgage calculator for every U.S. state</h1>
-<p class="lede">See your monthly payment with property tax and home insurance included. Choose a state to start from its typical home value and tax rate. The national 30-year rate is ${RATE}% (Freddie Mac, week of ${esc(RATE_DATE)}).</p>
+<p class="lede">See your monthly payment with property tax and home insurance included. Choose a state to open its page, with county property tax rates and local details. The national 30-year rate is ${RATE}% (Freddie Mac, week of ${esc(RATE_DATE)}).</p>
 </div>
 <div class="tool">
 ${calcForm({
@@ -514,7 +516,7 @@ ${calcForm({
   taxRate: national.taxRate,
   insRatePct: national.insRatePct,
   stateSelect: select,
-  taxHint: 'Typical state average. Pick a state to load its rate.',
+  taxHint: 'Starts at the national typical rate. Each state page starts at its own.',
 })}
 ${statement(natScenario, trustNote('home'))}
 </div>

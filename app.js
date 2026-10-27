@@ -100,6 +100,47 @@ function setupCalc(form) {
     render();
   });
 
+  // Home page: choosing a state opens that state's page (it has the county picker, county table and local facts).
+  // The input handler above has already loaded the state's numbers by then, which is what a keyboard user sees.
+  // On a closed list, arrow keys and typed letters change the value step by step (typing "T" lands on Tennessee before
+  // "Texas" can be finished), so they never move the page: the link under the list (shown for every choice) is how a
+  // keyboard user goes on. A click, a tap, Enter or Space (committing an open list) opens the page.
+  var stateSel = f.state;
+  var goBox = document.getElementById('state-go');
+  var lastKey = '';
+  function showGoLink() {
+    // Returns the chosen state's page address, or '' when no state is chosen. Also fills in the link under the list.
+    var slug = stateSel.value;
+    var s = states[slug];
+    if (!slug || !s) {
+      if (goBox) goBox.hidden = true;
+      return '';
+    }
+    var href = (stateSel.getAttribute('data-path') || '') + slug + '/';
+    var link = goBox ? goBox.querySelector('a') : null;
+    if (link) {
+      link.setAttribute('href', href);
+      link.textContent = 'Open the ' + s.name + ' page →';
+      goBox.hidden = false;
+    }
+    return href;
+  }
+  if (stateSel && stateSel.tagName === 'SELECT') {
+    stateSel.addEventListener('keydown', function (e) {
+      lastKey = e.key || '';
+    });
+    ['pointerdown', 'mousedown', 'touchstart'].forEach(function (name) {
+      stateSel.addEventListener(name, function () {
+        lastKey = '';
+      });
+    });
+    stateSel.addEventListener('change', function () {
+      var href = showGoLink();
+      if (!href || !(lastKey === '' || lastKey === 'Enter' || lastKey === ' ')) return;
+      window.location.href = href;
+    });
+  }
+
   var reset = document.getElementById('reset-btn');
   if (reset) {
     reset.addEventListener('click', function () {
@@ -108,12 +149,42 @@ function setupCalc(form) {
       cur = { price: cfg.price, taxRate: cfg.taxRate, insRatePct: cfg.insRatePct };
       insTouched = false;
       if (hintEl) hintEl.textContent = baseHint;
+      if (goBox) goBox.hidden = true;
       render();
     });
   }
   form.addEventListener('submit', function (e) {
     e.preventDefault();
   });
+
+  // Coming back with the Back button (or a reload) makes the browser put the old field values back, including the
+  // chosen state or county, while the statement is built from the page's defaults. Redraw it from what the fields hold.
+  // Browsers put the values back after the page has loaded, so this also runs on "pageshow".
+  function syncRestored() {
+    if (stateSel && stateSel.tagName === 'SELECT' && states[stateSel.value]) {
+      var st = states[stateSel.value];
+      cur = { price: st.price, taxRate: st.taxRate, insRatePct: st.insRatePct };
+      showGoLink();
+    }
+    if (f.county && f.county.value !== '' && hintEl) {
+      var back = countyRows[parseInt(f.county.value, 10)];
+      if (back) hintEl.textContent = back.cells[0].textContent + ' effective rate';
+    }
+    // Only redraw when a field differs from the page's own value, so a normal visit leaves the statement untouched.
+    var restored = false;
+    for (var i = 0; i < form.elements.length; i++) {
+      var el = form.elements[i];
+      if (el.tagName === 'INPUT' && el.value !== el.defaultValue) restored = true;
+      if (el.tagName === 'SELECT') {
+        var first = 0;
+        for (var j = 0; j < el.options.length; j++) if (el.options[j].defaultSelected) first = j;
+        if (el.selectedIndex !== first) restored = true;
+      }
+    }
+    if (restored) render();
+  }
+  syncRestored();
+  window.addEventListener('pageshow', syncRestored);
 }
 
 // Sticky total on phones: shown only while the full payment statement is scrolled out of view.
