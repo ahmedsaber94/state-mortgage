@@ -34,6 +34,9 @@ export const COUNTY_VARS = { value: 'B25077_001E', tax: 'B25103_001E', owners: '
 
 // Medians from a handful of homes are noisy, so counties below this are left out.
 export const MIN_OWNER_HOMES = 500;
+// The "highest" and "lowest" county named in the page text come from counties with at least this many
+// owner-occupied homes, so a headline never rests on a median from a very small sample.
+export const HEADLINE_OWNER_HOMES = 2000;
 // A county rate outside this band is far more likely to be a data problem than a real tax rate.
 export const MIN_RATE = 0.05;
 export const MAX_RATE = 4.5;
@@ -45,7 +48,7 @@ export function countyName(fullName, stateName) {
   return name.endsWith(suffix) ? name.slice(0, -suffix.length) : name;
 }
 
-/** A county entry as stored in counties.json: { n: name, v: median home value, t: median tax paid }. */
+/** A county entry as stored in counties.json: { n: name, v: median home value, t: median tax paid, o: owner-occupied homes }. */
 export function isUsableCounty(c) {
   if (!c || typeof c.n !== 'string' || !c.n.trim()) return false;
   if (!Number.isFinite(c.v) || !Number.isFinite(c.t) || !(c.v > 0) || !(c.t > 0)) return false;
@@ -86,7 +89,7 @@ export function parseCounties(table, states) {
       skipped.tooSmall++;
       continue;
     }
-    const entry = { n: countyName(r[col.NAME], st.name), v, t };
+    const entry = { n: countyName(r[col.NAME], st.name), v, t, o: owners };
     if (!isUsableCounty(entry)) {
       skipped.implausible++;
       continue;

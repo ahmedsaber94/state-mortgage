@@ -39,12 +39,13 @@ export function syntheticCounties() {
     for (let j = 0; j < n; j++) {
       const v = 120000 + ((i * 7 + j * 13) % 40) * 9000;
       const eff = 0.3 + ((i * 5 + j * 11) % 30) * 0.05;
-      list.push({ n: `${s.name} County ${String.fromCharCode(65 + j)}`, v, t: Math.round((v * eff) / 100) });
+      const o = 600 + ((i * 3 + j * 17) % 40) * 150; // some below the 2,000 headline threshold, some above
+      list.push({ n: `${s.name} County ${String.fromCharCode(65 + j)}`, v, t: Math.round((v * eff) / 100), o });
     }
     if (s.slug === 'texas') {
       list.push({ n: 'Broken County', v: 100000, t: -5 });
       list.push({ n: 'Wild County', v: 100000, t: 90000 });
-      list.push({ n: "Doña Ana & O'Brien County", v: 200000, t: 3000 }); // characters that need escaping
+      list.push({ n: "Doña Ana & O'Brien County", v: 200000, t: 3000, o: 5000 }); // characters that need escaping
     }
     states[s.slug] = list.reverse();
   });

@@ -284,10 +284,22 @@ test('county table lists each usable county, sorted, and drops damaged entries',
     assert.equal(o[1], String(i));
     assert.equal(unesc(o[2]), names[i]);
   });
-  // Text and structured data use the same extremes as the table.
-  const byRate = [...rows].sort((a, b) => Number(b[3]) - Number(a[3]));
-  const lowest = byRate.at(-1);
-  assert.match(section, new RegExp(`from ${lowest[5]}% in ${lowest[4]} to ${byRate[0][5]}% in ${byRate[0][4]}`));
+  // The highest and lowest counties named in the text come only from counties with 2,000+ owner-occupied homes.
+  const pool = valid.filter((c) => c.o >= 2000);
+  assert.ok(pool.length >= 3 && pool.length < valid.length, 'the synthetic data should have both large and small counties');
+  const byEff = [...pool].sort((a, b) => b.t / b.v - a.t / a.v);
+  const hi = byEff[0];
+  const lo = byEff.at(-1);
+  const pc = (c) => ((c.t / c.v) * 100).toFixed(2);
+  const escHtml = (s) => s.replaceAll('&', '&amp;').replaceAll("'", '&#39;');
+  assert.ok(
+    section.includes(`Among the ${pool.length} counties with at least 2,000 owner-occupied homes, rates run from ${pc(lo)}% in ${escHtml(lo.n)} to ${pc(hi)}% in ${escHtml(hi.n)}`),
+    section
+  );
+  const faq = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)].map((m) => JSON.parse(m[1])).find((o) => o['@type'] === 'FAQPage');
+  const q = faq.mainEntity.find((e) => /highest property tax rate/.test(e.name));
+  assert.ok(q.acceptedAnswer.text.includes(`${hi.n} has the highest effective property tax rate at ${pc(hi)}% and ${lo.n} has the lowest at ${pc(lo)}%`), q.acceptedAnswer.text);
+  assert.match(q.acceptedAnswer.text, /Among the \d+ counties with at least 2,000 owner-occupied homes/);
   assert.match(html, /Which Texas county has the highest property tax rate\?/);
   assert.match(html, /href="#counties">county table<\/a> below/);
   assert.match(section, /fewer than 500 owner-occupied homes/);
@@ -374,8 +386,8 @@ test('county rows are checked, not guessed', () => {
   assert.equal(out.kept, 3);
   assert.deepEqual(out.skipped, { otherArea: 1, missing: 2, tooSmall: 1, implausible: 1 });
   assert.deepEqual(out.states.texas.map((c) => c.n), ['Dallas County', 'Harris County']);
-  assert.deepEqual(out.states.texas[1], { n: 'Harris County', v: 250000, t: 4000 });
-  assert.deepEqual(out.states.alabama, [{ n: 'Autauga County', v: 190000, t: 800 }]);
+  assert.deepEqual(out.states.texas[1], { n: 'Harris County', v: 250000, t: 4000, o: 900000 });
+  assert.deepEqual(out.states.alabama, [{ n: 'Autauga County', v: 190000, t: 800, o: 15000 }]);
 });
 
 test('owner-home threshold is inclusive and bad tables are refused', () => {
@@ -396,4 +408,37 @@ test('stored county entries must have a name, positive numbers and a believable 
   assert.ok(!isUsableCounty({ n: 'A', v: 200000, t: 20 })); // 0.01%
   assert.ok(!isUsableCounty({ n: 'A', v: 100000, t: 6000 })); // 6%
   assert.ok(!isUsableCounty(null));
+});
+
+test('county headline falls back to all counties when owner counts are missing or too few', async () => {
+  const base = syntheticCounties();
+  const noCounts = structuredClone(base);
+  for (const list of Object.values(noCounts.states)) for (const c of list) delete c.o;
+  const fewBig = structuredClone(base);
+  for (const c of fewBig.states.texas) c.o = c.n.endsWith('County A') || c.n.endsWith('County B') ? 9000 : 700; // only 2 large counties
+  for (const [label, counties] of [['no owner counts', noCounts], ['two large counties', fewBig]]) {
+    const dir = await mkdtemp(path.join(tmpdir(), 'mortgage-headline-'));
+    const dataFile = path.join(dir, 'states.json');
+    const out = path.join(dir, 'dist');
+    await writeFile(dataFile, JSON.stringify(syntheticData()));
+    await writeFile(path.join(dir, 'counties.json'), JSON.stringify(counties));
+    const res = spawnSync(process.execPath, [BUILD, '--data', dataFile, '--out', out, '--allow-synthetic', '--base', ''], { encoding: 'utf8' });
+    assert.equal(res.status, 0, res.stderr);
+    const html = await readFile(path.join(out, 'mortgage-calculator/texas/index.html'), 'utf8');
+    assert.match(html, /Rates run from \d\.\d\d% in .* to \d\.\d\d% in /, label);
+    assert.doesNotMatch(html, /Among the \d+ counties with at least 2,000/, label);
+    assert.match(html, /has the highest effective property tax rate at/, label);
+  }
+});
+
+test('calculator note tells visitors a picked county replaces the state average', async () => {
+  const { out } = await buildSynthetic();
+  const tx = await readFile(path.join(out, 'mortgage-calculator/texas/index.html'), 'utf8');
+  const note = tx.match(/<div class="trust">[\s\S]*?<\/div>/)[0];
+  assert.match(note, /Texas average effective rate/);
+  assert.match(note, /If you pick a county, it uses that county's rate instead\./);
+  const wy = await readFile(path.join(out, 'mortgage-calculator/wyoming/index.html'), 'utf8');
+  assert.doesNotMatch(wy.match(/<div class="trust">[\s\S]*?<\/div>/)[0], /If you pick a county/);
+  const methodology = await readFile(path.join(out, 'methodology/index.html'), 'utf8');
+  assert.match(methodology, /at least 2,000 owner-occupied homes/);
 });

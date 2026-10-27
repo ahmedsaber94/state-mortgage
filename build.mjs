@@ -5,7 +5,7 @@ import { readFile, writeFile, mkdir, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { deflateSync } from 'node:zlib';
 import { fileURLToPath } from 'node:url';
-import { STATES, MIN_OWNER_HOMES, isUsableCounty } from './states.mjs';
+import { STATES, MIN_OWNER_HOMES, HEADLINE_OWNER_HOMES, isUsableCounty } from './states.mjs';
 import { paymentBreakdown, incomeNeeded } from './calc.mjs';
 import { ledgerHtml, barHtml, factsHtml, money } from './ledger.mjs';
 
@@ -113,7 +113,7 @@ const COUNTIES = new Map();
 for (const s of STATES) {
   const list = (COUNTY_DATA?.states?.[s.slug] ?? [])
     .filter(isUsableCounty)
-    .map((c) => ({ n: c.n.trim(), v: c.v, t: c.t, eff: (c.t / c.v) * 100 }))
+    .map((c) => ({ n: c.n.trim(), v: c.v, t: c.t, o: Number.isFinite(c.o) ? c.o : null, eff: (c.t / c.v) * 100 }))
     .sort((a, b) => a.n.localeCompare(b.n, 'en'));
   if (list.length >= MIN_COUNTIES_FOR_TABLE) COUNTIES.set(s.slug, list);
 }
@@ -267,10 +267,10 @@ ${stateSelect}${countySelect}
 
 // Sources, date and a one-paragraph method, shown right under the payment so visitors do not have to
 // hunt for the footer or the methodology page.
-function trustNote(kind, s) {
+function trustNote(kind, s, hasCounties = false) {
   const how =
     kind === 'state'
-      ? `Principal and interest use the standard fixed-rate loan formula. Property tax uses the ${esc(s.name)} average effective rate: the median real estate tax paid divided by the median home value. Home insurance is a general estimate that you can change.`
+      ? `Principal and interest use the standard fixed-rate loan formula. Property tax uses the ${esc(s.name)} average effective rate: the median real estate tax paid divided by the median home value.${hasCounties ? ' If you pick a county, it uses that county\'s rate instead.' : ''} Home insurance is a general estimate that you can change.`
       : 'Principal and interest use the standard fixed-rate loan formula. Pick a state to start from its average property tax rate. Home insurance is a general estimate that you can change.';
   return `<div class="trust"><p><strong>How this is calculated.</strong> ${how}</p><p>Sources: <a href="https://www.freddiemac.com/pmms" rel="noopener">Freddie Mac mortgage rate survey</a>, week of ${esc(RATE_DATE)}; <a href="https://www.census.gov/programs-surveys/acs" rel="noopener">U.S. Census Bureau American Community Survey</a>, ${esc(data.meta.acsLabel)}. Updated ${esc(UPDATED)}. <a href="${BASE}/methodology/">Full methodology</a>.</p></div>`;
 }
@@ -332,8 +332,15 @@ async function statePage(s) {
   let countyFaq = null;
   if (cl) {
     const [one, many, One] = AREA_WORDS[s.slug] ?? DEFAULT_AREA_WORDS;
-    const hi = cl.reduce((a, b) => (b.eff > a.eff ? b : a));
-    const lo = cl.reduce((a, b) => (b.eff < a.eff ? b : a));
+    // Name the highest and lowest only among counties with a large enough sample (when the data says how many).
+    const big = cl.filter((c) => c.o !== null && c.o >= HEADLINE_OWNER_HOMES);
+    const pool = big.length >= MIN_COUNTIES_FOR_TABLE ? big : cl;
+    const hi = pool.reduce((a, b) => (b.eff > a.eff ? b : a));
+    const lo = pool.reduce((a, b) => (b.eff < a.eff ? b : a));
+    const range =
+      pool === cl
+        ? `Rates run from ${pct(lo.eff)} in ${esc(lo.n)} to ${pct(hi.eff)} in ${esc(hi.n)}`
+        : `Among the ${pool.length} ${many} with at least ${HEADLINE_OWNER_HOMES.toLocaleString('en-US')} owner-occupied homes, rates run from ${pct(lo.eff)} in ${esc(lo.n)} to ${pct(hi.eff)} in ${esc(hi.n)}`;
     countySelect = `<label class="field wide" style="margin-bottom:16px">${One}<select name="county"><option value="">${esc(s.name)} average</option>${cl
       .map((c, i) => `<option value="${i}">${esc(c.n)}</option>`)
       .join('')}</select><small>Loads the ${one}'s median home value and property tax rate.</small></label>`;
@@ -346,7 +353,7 @@ async function statePage(s) {
       .join('');
     countySection = `<section class="block wide" id="counties">
 <h2>Property tax by ${one} in ${esc(s.name)}</h2>
-<p>Property tax is set locally, so what you pay depends on where in ${esc(s.name)} you buy. The table shows the effective rate for the ${cl.length} ${many} with enough Census data: the median real estate tax paid by homeowners divided by the median home value. Rates run from ${pct(lo.eff)} in ${esc(lo.n)} to ${pct(hi.eff)} in ${esc(hi.n)}, against ${pct(s.eff)} for the state as a whole. Pick a ${one} in the calculator above to start from its figures.</p>
+<p>Property tax is set locally, so what you pay depends on where in ${esc(s.name)} you buy. The table shows the effective rate for the ${cl.length} ${many} with enough Census data: the median real estate tax paid by homeowners divided by the median home value. ${range}, against ${pct(s.eff)} for the state as a whole. Pick a ${one} in the calculator above to start from its figures.</p>
 <label class="field filter">Find a ${one}<span class="affix"><input id="county-filter" type="search" autocomplete="off" placeholder="Type a name"></span></label>
 <div class="tablewrap"><table id="county-table">
 <caption class="sr-only">Effective property tax rate by ${one} in ${esc(s.name)}</caption>
@@ -358,7 +365,7 @@ async function statePage(s) {
 </section>`;
     countyFaq = [
       `Which ${s.name} ${one} has the highest property tax rate?`,
-      `Among the ${cl.length} ${many} with enough Census data, ${hi.n} has the highest effective property tax rate at ${pct(hi.eff)} and ${lo.n} has the lowest at ${pct(lo.eff)}. The ${s.name} average is ${pct(s.eff)}. An effective rate is the median real estate tax paid divided by the median home value, so it can differ from the official rate your local government publishes.`,
+      `Among the ${pool.length} ${many} ${pool === cl ? 'with enough Census data' : `with at least ${HEADLINE_OWNER_HOMES.toLocaleString('en-US')} owner-occupied homes`}, ${hi.n} has the highest effective property tax rate at ${pct(hi.eff)} and ${lo.n} has the lowest at ${pct(lo.eff)}. The ${s.name} average is ${pct(s.eff)}. An effective rate is the median real estate tax paid divided by the median home value, so it can differ from the official rate your local government publishes.`,
     ];
   }
 
@@ -398,7 +405,7 @@ ${calcForm({
   countySelect,
   taxHint: `${esc(s.name)} average effective rate`,
 })}
-${statement(r, trustNote('state', s))}
+${statement(r, trustNote('state', s, Boolean(cl)))}
 </div>
 
 <section class="block">
@@ -575,7 +582,7 @@ function staticPages() {
 <li><strong>Home values:</strong> median value of owner-occupied homes, Census Bureau American Community Survey ${esc(data.meta.acsLabel)} 5-year estimates (table B25077).</li>
 <li><strong>Property tax:</strong> median real estate taxes paid by homeowners, same survey (table B25103). The effective rate is the median tax divided by the median home value.</li>
 <li><strong>Income:</strong> median household income, same survey (table B19013).</li>
-${COUNTIES.size ? `<li><strong>County figures:</strong> the same two tables (B25077 and B25103) for each county, ${esc(COUNTY_LABEL)} estimates. Counties with fewer than ${MIN_OWNER_HOMES} owner-occupied homes (table B25003) are left out because estimates from so few homes are less reliable. A county's effective rate is its median tax paid divided by its median home value. It is not the official rate the county publishes.</li>\n` : ''}</ul>
+${COUNTIES.size ? `<li><strong>County figures:</strong> the same two tables (B25077 and B25103) for each county, ${esc(COUNTY_LABEL)} estimates. Counties with fewer than ${MIN_OWNER_HOMES} owner-occupied homes (table B25003) are left out because estimates from so few homes are less reliable. A county's effective rate is its median tax paid divided by its median home value. It is not the official rate the county publishes. The highest and lowest counties named in the page text come only from counties with at least ${HEADLINE_OWNER_HOMES.toLocaleString('en-US')} owner-occupied homes, when the data says how many there are.</li>\n` : ''}</ul>
 <h2>Assumptions you can change</h2>
 <ul>
 <li>Home insurance starts at ${config.insuranceRatePct}% of the home price a year. This is a general starting estimate and not a figure measured for each state, so replace it with a quote from an insurer.</li>
